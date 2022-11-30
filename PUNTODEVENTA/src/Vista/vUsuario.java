@@ -115,7 +115,7 @@ public class vUsuario extends JInternalFrame {
 				usuario = lista.get(fila);
 				lblId.setText("" + usuario.getId());
 				txtUsuario.setText(usuario.getUser());
-				txtPassword.setText(usuario.getPasword());
+				txtPassword.setText(usuario.getPassword());
 				txtNombre.setText(usuario.getNombre());
 
 			}
@@ -132,7 +132,7 @@ public class vUsuario extends JInternalFrame {
 				try {
 					Usuario user = new Usuario();
 					user.setUser(txtUsuario.getText());
-					user.setPasword(txtPassword.getText());
+					user.setPassword(txtPassword.getText());
 					user.setNombre(txtNombre.getText());
 
 					if (dao.insertarUsuario(user)) {
@@ -162,7 +162,7 @@ public class vUsuario extends JInternalFrame {
 						return;
 					}
 					usuario.setUser(txtUsuario.getText());
-					usuario.setPasword(txtPassword.getText());
+					usuario.setPassword(txtPassword.getText());
 					usuario.setNombre(txtNombre.getText());
 					if (dao.editarUsuario(usuario)) {
 						actualizarTabla();
@@ -228,7 +228,7 @@ public class vUsuario extends JInternalFrame {
 			Object o[] = new Object[4];
 			o[0] = u.getId();
 			o[1] = u.getUser();
-			o[2] = u.getPasword();
+			o[2] = u.getPassword();
 			o[3] = u.getNombre();
 			modelo.addRow(o);
 		}

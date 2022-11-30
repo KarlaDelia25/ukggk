@@ -8,16 +8,14 @@ public class conexion {
 
 
 
-
-
 	Connection cx = null;
 
 	public Connection conectar() {
 	try {
-	Class.forName("org.sqlite.JDBC");
-	cx = DriverManager.getConnection("jdbc:sqlite:sistema.db");
-		//Class.forName("com.mysql.cj.jdbc.Driver");
-		//cx = DriverManager.getConnection("jdbc:mysql://localhost:3306/sistema","root","");
+	//Class.forName("org.sqlite.JDBC");
+	//cx = DriverManager.getConnection("jdbc:sqlite:sistema.db");
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		cx = DriverManager.getConnection("jdbc:mysql://localhost:3306/puntoventa","root","");
 	System.out.println("CONEXION EXITOSA");
 	} catch (ClassNotFoundException e) {
 

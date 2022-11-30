@@ -73,24 +73,7 @@ public class Buscar extends JFrame {
 		));
 		scrollPane.setViewportView(table);
 		
-		JButton btnNewButton = new JButton("MODIFICAR PRODUCTO");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Modificarproducto newJframe = new Modificarproducto ();
-				newJframe.setVisible(true);
-			}
-		});
-		btnNewButton.setBounds(25, 529, 182, 23);
-		contentPane.add(btnNewButton);
-		
-		btnEliminarProducto = new JButton("ELIMINAR PRODUCTO");
-		btnEliminarProducto.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Eliminarproducto newJframe = new Eliminarproducto ();
-				newJframe.setVisible(true);
-			}
-		});
-		btnEliminarProducto.setBounds(242, 529, 182, 23);
-		contentPane.add(btnEliminarProducto);
+	
 	}
 }
+

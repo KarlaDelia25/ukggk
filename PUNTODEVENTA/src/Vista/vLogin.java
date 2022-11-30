@@ -79,7 +79,7 @@ public class vLogin extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				Usuario user = new Usuario();
 				user.setUser(txtUser.getText());
-				user.setPasword(String.valueOf(txtPassword.getPassword()));
+				user.setPassword(String.valueOf(txtPassword.getPassword()));
 				if (dao.loginUsuarios(user)) {
 					JOptionPane.showMessageDialog(null, "BIENVENIDO MANITO");
 					vCargando cargando = new vCargando();

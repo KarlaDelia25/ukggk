@@ -16,9 +16,7 @@ public class Salidas extends JFrame {
 	private JPanel contentPane;
 	private JTextField textField;
 
-	/**
-	 * Launch the application.
-	 */
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -32,9 +30,7 @@ public class Salidas extends JFrame {
 		});
 	}
 
-	/**
-	 * Create the frame.
-	 */
+	
 	public Salidas() {
 		setTitle("SALIDAS");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -19,7 +19,7 @@ public class daoProductos{
 	public boolean insertarProductos(Productos produc) {
 		PreparedStatement ps = null;
 		try {
-			ps = cx.conectar().prepareStatement("INSERT INTO Productoss VALUES(null,?,?,?,?)");
+			ps = cx.conectar().prepareStatement("INSERT INTO productos VALUES(null,?,?,?,?)");
 			ps.setString(1, produc.getDescripccion());
 			ps.setDouble(2, produc.getPrecio());
 			ps.setDouble(3, produc.getPrecioventa());
@@ -41,7 +41,7 @@ public class daoProductos{
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		try {
-			ps = cx.conectar().prepareStatement("SELECT * FROM Productoss");
+			ps = cx.conectar().prepareStatement("SELECT * FROM productos");
 			rs = ps.executeQuery();
 			while (rs.next()) {
 				Productos productos = new Productos();
@@ -63,7 +63,7 @@ public class daoProductos{
 	public boolean eliminarProductos(int id) {
 		PreparedStatement ps = null;
 		try {
-			ps = cx.conectar().prepareStatement("DELETE FROM Productoss WHERE id =?");
+			ps = cx.conectar().prepareStatement("DELETE FROM productos WHERE id =?");
 			ps.setInt(1, id);
 			ps.executeUpdate();
 			cx.desconectar();
@@ -80,7 +80,7 @@ public class daoProductos{
 public boolean editarProductos(Productos produc) {
 	PreparedStatement ps = null;
 	try {
-		ps = cx.conectar().prepareStatement("UPDATE Productoss  SET descripcion=?,precio=?precioventa=?,img=? WHERE id=?");
+		ps = cx.conectar().prepareStatement("UPDATE productoss  SET descripcion=?,precio=?precioventa=?,img=? WHERE id=?");
 		ps.setString(1, produc.getDescripccion());
 		ps.setDouble(3, produc.getPrecio());
 		ps.setString(4, produc.getImg());

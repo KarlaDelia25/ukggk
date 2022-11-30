@@ -25,7 +25,7 @@ public class DaoUsuario {
 		try {
 			ps = cx.conectar().prepareStatement("INSERT INTO usuario VALUES(null,?,?,?)");
 			ps.setString(1, user.getUser());
-			ps.setString(2,  convertirSHA256(user.getPasword()));
+			ps.setString(2,  convertirSHA256(user.getPassword()));
 			ps.setString(3, user.getNombre());
 			ps.executeUpdate();
 			return true;
@@ -49,7 +49,7 @@ public class DaoUsuario {
 				Usuario u = new Usuario();
 				u.setId(rs.getInt("id"));
 				u.setUser(rs.getString("user"));
-				u.setPasword(rs.getString("password"));
+				u.setPassword(rs.getString("password"));
 				u.setNombre(rs.getString("Nombre"));
 				lista.add(u);
 
@@ -81,7 +81,7 @@ public class DaoUsuario {
 
 			ps = cx.conectar().prepareStatement("UPDATE usuario SET user=?,password=?,nombre=? WHERE id=?");
 			ps.setString(1, user.getUser());
-			ps.setString(2, convertirSHA256(user.getPasword()));
+			ps.setString(2, convertirSHA256(user.getPassword()));
 			ps.setString(3, user.getNombre());
 			ps.setInt(4, user.getId());
 			ps.executeUpdate();
@@ -121,7 +121,7 @@ public class DaoUsuario {
 		try {
 			ps = cx.conectar().prepareStatement("SELECT * FROM usuario WHERE user=? AND password=?");
 			ps.setString(1, user.getUser());
-			ps.setString(2, convertirSHA256(user.getPasword()));
+			ps.setString(2, convertirSHA256(user.getPassword()));
 			rs = ps.executeQuery();
 			if (rs.next()) {
 				return true;

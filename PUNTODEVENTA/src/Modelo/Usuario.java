@@ -26,12 +26,12 @@ public class Usuario {
 		this.user = user;
 	}
 
-	public String getPasword() {
+	public String getPassword() {
 		return password;
 	}
 
-	public void setPasword(String pasword) {
-		this.password = pasword;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public String getNombre() {
@@ -41,5 +41,6 @@ public class Usuario {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-
 }
+
+	
