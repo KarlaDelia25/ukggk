@@ -72,7 +72,7 @@ public class vClientes extends JFrame {
 		lista = dao.consultaclientes();
 		for (Clientes pr : lista) {
 			Object prov[] = new Object[4];
-			prov[0] = pr.getId();
+			prov[0] = pr.getIdClientes();
 			prov[1] = pr.getNombre();
 			prov[2] = pr.getEmail();
 			prov[3] = pr.getTelefono();
@@ -181,7 +181,7 @@ public class vClientes extends JFrame {
 				try {
 					int opcion=JOptionPane.showConfirmDialog(null,"ESTAS SEGURO DE ELIMINAR ESTE PROVEEDOR??","ELIMINAR CARACTERISTICAS",JOptionPane.YES_NO_OPTION);
 				    if (opcion ==0) {
-					if (dao.eliminarclientes(clientes.getId())) {
+					if (dao.eliminarclientes(clientes.getIdClientes())) {
 						actualizarTabla();
 						limpiar();
 						JOptionPane.showMessageDialog(null, "SE ELIMINÓ CORRECTAMENTE");
@@ -249,7 +249,7 @@ public class vClientes extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				fila = tblClientes.getSelectedRow();
 				clientes = lista.get(fila);
-				lblId.setText("" + clientes.getId());
+				lblId.setText("" + clientes.getIdClientes());
 				txtNombre.setText(clientes.getNombre());
 				txtEmail.setText(clientes.getEmail());
 				txtTelefono.setText("" + clientes.getTelefono());

@@ -1,7 +1,7 @@
 package Modelo;
 
 public class Empleados {
-	int id;
+	int idEmpleados;
     String nombre;
     String email;
     String direccion;
@@ -17,14 +17,14 @@ public Empleados(){
 
 
 
-public int getId() {
-	return id;
+public int getIdEmpleados() {
+	return idEmpleados;
 }
 
 
 
-public void setId(int id) {
-	this.id = id;
+public void setIdEmpleados(int idEmpleados) {
+	this.idEmpleados = idEmpleados;
 }
 
 
@@ -86,7 +86,5 @@ public int getRfc() {
 public void setRfc(int rfc) {
 	this.rfc = rfc;
 }
-
-
 
 }

@@ -1,7 +1,7 @@
 package Modelo;
 
 public class Clientes {
-	int id;
+	int idClientes;
     String nombre;
     String email;
     String direccion;
@@ -16,14 +16,14 @@ public Clientes(){
 
 
 
-public int getId() {
-	return id;
+public int getIdClientes() {
+	return idClientes;
 }
 
 
 
-public void setId(int id) {
-	this.id = id;
+public void setIdClientes(int idClientes) {
+	this.idClientes = idClientes;
 }
 
 
@@ -73,6 +73,7 @@ public int getTelefono() {
 public void setTelefono(int telefono) {
 	this.telefono = telefono;
 }
+
 }
 
 

@@ -46,7 +46,7 @@ public class daoClientes {
 			rs = ps.executeQuery();
 			while (rs.next()) {
 				Clientes clientes = new Clientes();
-				clientes.setId(rs.getInt("id"));
+				clientes.setIdClientes(rs.getInt("id"));
 				clientes.setNombre(rs.getString("nombre"));
 				clientes.setEmail(rs.getString("email"));
 				clientes.setDireccion(rs.getString("direccion"));
@@ -86,7 +86,7 @@ public boolean editarclientes(Clientes clien) {
 		ps.setString(2, clien.getEmail());
 		ps.setString(3, clien.getDireccion());
 		ps.setInt(4, clien.getTelefono());
-		ps.setInt(5, clien.getId());
+		ps.setInt(5, clien.getIdClientes());
 		ps.executeUpdate();
 		cx.desconectar();
 		return true;

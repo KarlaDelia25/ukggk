@@ -49,7 +49,9 @@ public class vEmpleados extends JFrame {
 	DefaultTableModel modelo = new DefaultTableModel();
 	ArrayList<Empleados> lista;
 	int fila = -1;
-	Empleados clientes = new Empleados();
+	Empleados empleados = new Empleados();
+	private JTable tblEmpleados;
+	private JTextField txtRfc;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -72,7 +74,7 @@ public class vEmpleados extends JFrame {
 		lista = dao.consultaempleados();
 		for (Empleados em : lista) {
 			Object emp[] = new Object[4];
-			emp[0] = em.getId();
+			emp[0] = em.getIdEmpleados();
 			emp[1] = em.getNombre();
 			emp[2] = em.getEmail();
 			emp[3] = em.getTelefono();
@@ -94,7 +96,7 @@ public class vEmpleados extends JFrame {
 	}
 
 	public vEmpleados() {
-		setTitle("Clientes");
+		setTitle("EMPLEADOS");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 799, 505);
 		contentPane = new JPanel();
@@ -162,7 +164,7 @@ public class vEmpleados extends JFrame {
 					empleados.setEmail(txtEmail.getText());
 					empleados.setTelefono(Integer.parseInt(txtTelefono.getText().toString()));
 					empleados.setDireccion(txtDireccion.getText());
-					if (dao.insertarEmpleados(empleados)) {
+					if (dao.insertarEmpleado(empleados)) {
 						JOptionPane.showMessageDialog(null, "SE AGREGO CORRECTAMENTE");
 					} else {
 						JOptionPane.showMessageDialog(null, "ERROR");
@@ -173,7 +175,7 @@ public class vEmpleados extends JFrame {
 				}
 			}
 		});
-		btnAgregar.setBounds(10, 255, 89, 23);
+		btnAgregar.setBounds(10, 268, 89, 23);
 		contentPane.add(btnAgregar);
 
 		btnEliminar = new JButton("ELIMINAR");
@@ -182,7 +184,7 @@ public class vEmpleados extends JFrame {
 				try {
 					int opcion=JOptionPane.showConfirmDialog(null,"ESTAS SEGURO DE ELIMINAR ESTE PROVEEDOR??","ELIMINAR CARACTERISTICAS",JOptionPane.YES_NO_OPTION);
 				    if (opcion ==0) {
-					if (dao.eliminarEmpleados(empleados.getId())) {
+					if (dao.eliminarEmpleados(empleados.getIdEmpleados())) {
 						actualizarTabla();
 						limpiar();
 						JOptionPane.showMessageDialog(null, "SE ELIMINÓ CORRECTAMENTE");
@@ -212,11 +214,11 @@ public class vEmpleados extends JFrame {
 						JOptionPane.showMessageDialog(null, "CAMPOS VACÍOS");
 						return;
 					}
-					clientes.setNombre(txtNombre.getText());
-					clientes.setEmail(txtEmail.getText());
-					clientes.setTelefono(Integer.parseInt(txtTelefono.getText().toString()));
-					clientes.setDireccion(txtDireccion.getText());
-					if (dao.editarclientes(clientes)) {
+					empleados.setNombre(txtNombre.getText());
+					empleados.setEmail(txtEmail.getText());
+					empleados.setTelefono(Integer.parseInt(txtTelefono.getText().toString()));
+					empleados.setDireccion(txtDireccion.getText());
+					if (dao.editarempleados(empleados)) {
 						JOptionPane.showMessageDialog(null, "SE EDITÓ CORRECTAMENTE");
 					} else {
 						JOptionPane.showMessageDialog(null, "ERROR");
@@ -243,18 +245,30 @@ public class vEmpleados extends JFrame {
 		scrollPane = new JScrollPane();
 		scrollPane.setBounds(173, 11, 610, 365);
 		contentPane.add(scrollPane);
+		
+		tblEmpleados = new JTable();
+		scrollPane.setViewportView(tblEmpleados);
+		
+		txtRfc = new JTextField();
+		txtRfc.setColumns(10);
+		txtRfc.setBounds(62, 224, 101, 20);
+		contentPane.add(txtRfc);
+		
+		JLabel lblRfc = new JLabel("RFC");
+		lblRfc.setBounds(10, 227, 46, 14);
+		contentPane.add(lblRfc);
 
-		tblClientes = new JTable();
-		tblClientes.addMouseListener(new MouseAdapter() {
+		tblEmpleados = new JTable();
+		tblEmpleados.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				fila = tblClientes.getSelectedRow();
-				clientes = lista.get(fila);
-				lblId.setText("" + clientes.getId());
-				txtNombre.setText(clientes.getNombre());
-				txtEmail.setText(clientes.getEmail());
-				txtTelefono.setText("" + clientes.getTelefono());
-				txtDireccion.setText(clientes.getDireccion());
+				fila = tblEmpleados.getSelectedRow();
+				empleados = lista.get(fila);
+				lblId.setText("" + empleados.getIdEmpleados());
+				txtNombre.setText(empleados.getNombre());
+				txtEmail.setText(empleados.getEmail());
+				txtTelefono.setText("" + empleados.getTelefono());
+				txtDireccion.setText(empleados.getDireccion());
 
 			}
 		});
@@ -275,5 +289,4 @@ public class vEmpleados extends JFrame {
 	
 	
 	}
-	
 }

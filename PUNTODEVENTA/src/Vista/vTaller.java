@@ -99,7 +99,7 @@ public class vTaller extends JFrame {
 	public vTaller() {
 		setTitle("TALLER");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 799, 626);
+		setBounds(100, 100, 926, 655);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -119,7 +119,7 @@ public class vTaller extends JFrame {
 		contentPane.add(lblNewLabel_2);
 
 		txtDetalles = new JTextField();
-		txtDetalles.setBounds(10, 71, 153, 178);
+		txtDetalles.setBounds(10, 71, 193, 178);
 		contentPane.add(txtDetalles);
 		txtDetalles.setColumns(10);
 
@@ -129,11 +129,11 @@ public class vTaller extends JFrame {
 
 		txtCostototal = new JTextField();
 		txtCostototal.setColumns(10);
-		txtCostototal.setBounds(62, 463, 101, 20);
+		txtCostototal.setBounds(88, 466, 101, 20);
 		contentPane.add(txtCostototal);
 
 		JLabel lblNewLabel_2_2 = new JLabel("COSTO TOTAL");
-		lblNewLabel_2_2.setBounds(10, 469, 46, 14);
+		lblNewLabel_2_2.setBounds(10, 469, 74, 14);
 		contentPane.add(lblNewLabel_2_2);
 
 		btnAgregar = new JButton("AGREGAR");
@@ -163,7 +163,7 @@ public class vTaller extends JFrame {
 				}
 			}
 		});
-		btnAgregar.setBounds(397, 553, 89, 23);
+		btnAgregar.setBounds(517, 582, 89, 23);
 		contentPane.add(btnAgregar);
 
 		btnEliminar = new JButton("ELIMINAR");
@@ -189,7 +189,7 @@ public class vTaller extends JFrame {
 				
 			}
 		});
-		btnEliminar.setBounds(496, 553, 89, 23);
+		btnEliminar.setBounds(616, 582, 89, 23);
 		contentPane.add(btnEliminar);
 
 		btnEditar = new JButton("EDITAR");
@@ -219,7 +219,7 @@ public class vTaller extends JFrame {
 				}
 			}
 		});
-		btnEditar.setBounds(595, 553, 89, 23);
+		btnEditar.setBounds(715, 582, 89, 23);
 		contentPane.add(btnEditar);
 
 		btnBorrar = new JButton("BORRAR");
@@ -228,13 +228,13 @@ public class vTaller extends JFrame {
 				limpiar();
 			}
 		});
-		btnBorrar.setBounds(694, 553, 89, 23);
+		btnBorrar.setBounds(811, 582, 89, 23);
 		contentPane.add(btnBorrar);
 
 
 
 		scrollPane = new JScrollPane();
-		scrollPane.setBounds(173, 11, 610, 531);
+		scrollPane.setBounds(213, 11, 687, 531);
 		contentPane.add(scrollPane);
 
 		tblTaller = new JTable();
@@ -259,29 +259,30 @@ public class vTaller extends JFrame {
 				"New column", "New column", "New column", "New column", "New column", "New column"
 			}
 		));
+		tblTaller.getColumnModel().getColumn(1).setPreferredWidth(175);
 		scrollPane.setViewportView(tblTaller);
 		
 		textRefacciones = new JTextField();
 		textRefacciones.setColumns(10);
-		textRefacciones.setBounds(10, 280, 153, 178);
+		textRefacciones.setBounds(10, 280, 193, 178);
 		contentPane.add(textRefacciones);
 		
 		hioj = new JLabel("MECANICO");
-		hioj.setBounds(10, 516, 46, 14);
+		hioj.setBounds(10, 516, 74, 14);
 		contentPane.add(hioj);
 		
 		txtMecanico = new JTextField();
 		txtMecanico.setColumns(10);
-		txtMecanico.setBounds(62, 513, 101, 20);
+		txtMecanico.setBounds(88, 513, 101, 20);
 		contentPane.add(txtMecanico);
 		
 		JButton btnNewButton = new JButton("CONSULTAR DATOS DEL CLIENTE");
-		btnNewButton.setBounds(213, 553, 174, 23);
+		btnNewButton.setBounds(227, 582, 242, 23);
 		contentPane.add(btnNewButton);
 		
 		txtCliente = new JTextField();
 		txtCliente.setColumns(10);
-		txtCliente.setBounds(62, 553, 101, 20);
+		txtCliente.setBounds(88, 553, 101, 20);
 		contentPane.add(txtCliente);
 		
 		lblCliente = new JLabel("CLIENTE");

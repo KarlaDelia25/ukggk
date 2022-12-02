@@ -48,7 +48,7 @@ public class daoEmpleados {
 			rs = ps.executeQuery();
 			while (rs.next()) {
 				Empleados empleados = new Empleados();
-				empleados.setId(rs.getInt("id"));
+				empleados.setIdEmpleados(rs.getInt("id"));
 				empleados.setNombre(rs.getString("nombre"));
 				empleados.setEmail(rs.getString("email"));
 				empleados.setDireccion(rs.getString("direccion"));
@@ -90,7 +90,7 @@ public boolean editarempleados(Empleados em) {
 		ps.setString(3, em.getDireccion());
 		ps.setInt(4, em.getTelefono());
 		ps.setInt(5, em.getRfc());
-		ps.setInt(6, em.getId());
+		ps.setInt(6, em.getIdEmpleados());
 		ps.executeUpdate();
 		cx.desconectar();
 		return true;
