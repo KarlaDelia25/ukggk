@@ -14,7 +14,7 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class Buscar extends JFrame {
+public class vBuscar extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
@@ -28,7 +28,7 @@ public class Buscar extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Buscar frame = new Buscar();
+					vBuscar frame = new vBuscar();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -40,7 +40,7 @@ public class Buscar extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Buscar() {
+	public vBuscar() {
 		setTitle("BUSCAR");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 543, 634);

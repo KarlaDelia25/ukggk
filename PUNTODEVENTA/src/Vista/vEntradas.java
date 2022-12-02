@@ -10,7 +10,7 @@ import javax.swing.JSpinner;
 import java.awt.Font;
 import javax.swing.JButton;
 
-public class Entradas extends JFrame {
+public class vEntradas extends JFrame {
 
 	private JPanel contentPane;
 
@@ -21,7 +21,7 @@ public class Entradas extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Entradas frame = new Entradas();
+					vEntradas frame = new vEntradas();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -33,7 +33,7 @@ public class Entradas extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Entradas() {
+	public vEntradas() {
 		setTitle("ENTRADAS");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 764, 300);

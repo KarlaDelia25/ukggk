@@ -29,23 +29,26 @@ import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.Font;
-import javax.swing.JSpinner;
 
 public class vInventario extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField txtCodigo;
+	private JTextField txtExistencia;
+	private JTextField txtCantidad;
+	private JTextField txtImporte;
 	private JButton btnAgregar;
+	private JButton btnEliminar;
+	private JButton btnEditar;
+	private JButton btnBorrar;
+	private JButton btnSeleccionar;
 	private JLabel lblId;
+	private JTable tblInventario;
+	private JScrollPane scrollPane;
 	daoInventario dao = new daoInventario();
 	DefaultTableModel modelo = new DefaultTableModel();
 	ArrayList<Inventario> lista;
 	int fila = -1;
 	Inventario inventario = new Inventario();
-	private JLabel lblCdigoDelProducto;
-	private JLabel lblCantidadActual;
-	private JTable table;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -60,89 +63,207 @@ public class vInventario extends JFrame {
 		});
 	}
 
+	public void actualizarTabla() {
 
-	public vInventario() {
-		setTitle("Inventario");
+		while (modelo.getRowCount() > 0) {
+			modelo.removeRow(0);
+		}
+		lista = dao.consultaInventario();
+		for (Inventario inv: lista) {
+			Object inven[] = new Object[4];
+			inven[0] = inv.getId();
+			inven[1] = inv.getExistencia();
+			inven[2] = inv.getCantidad();
+			inven[3] = inv.getImporte();
+			modelo.addRow(inven);
+
+		}
+		tblInventario.setModel(modelo);
+	}
+
+	public void limpiar() {
+		lblId.setText("");
+		txtExistencia.setText("");
+		txtCantidad.setText("");
+		txtImporte.setText("");
+	
+	}
+
+	public vInventario(){
+		setTitle("CARACTERISTICAS");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 799, 603);
+		setBounds(100, 100, 799, 505);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		lblId = new JLabel("AGREGAR INVENTARIO");
-		lblId.setFont(new Font("Tahoma", Font.BOLD, 25));
-		lblId.setBounds(27, 11, 324, 45);
+		JLabel lblNewLabel = new JLabel("ID");
+		lblNewLabel.setBounds(10, 26, 46, 14);
+		contentPane.add(lblNewLabel);
+
+		lblId = new JLabel("0");
+		lblId.setBounds(38, 26, 46, 14);
 		contentPane.add(lblId);
 
-		txtCodigo = new JTextField();
-		txtCodigo.setBounds(142, 69, 404, 31);
-		contentPane.add(txtCodigo);
-		txtCodigo.setColumns(10);
+		JLabel lblNewLabel_2 = new JLabel("EXISTENCIA");
+		lblNewLabel_2.setBounds(10, 74, 46, 14);
+		contentPane.add(lblNewLabel_2);
 
-		btnAgregar = new JButton("ELIMINAR");
-		btnAgregar.setBackground(Color.BLUE);
+		txtExistencia = new JTextField();
+		txtExistencia.setBounds(62, 71, 101, 20);
+		contentPane.add(txtExistencia);
+		txtExistencia.setColumns(10);
+
+		txtCantidad = new JTextField();
+		txtCantidad.setColumns(10);
+		txtCantidad.setBounds(62, 111, 101, 20);
+		contentPane.add(txtCantidad);
+
+		JLabel lblNewLabel_2_1 = new JLabel("CANTIDAD");
+		lblNewLabel_2_1.setBounds(10, 114, 46, 14);
+		contentPane.add(lblNewLabel_2_1);
+
+		txtImporte = new JTextField();
+		txtImporte.setColumns(10);
+		txtImporte.setBounds(62, 159, 101, 20);
+		contentPane.add(txtImporte);
+
+		JLabel lblNewLabel_2_2 = new JLabel("IMPORTE");
+		lblNewLabel_2_2.setBounds(10, 162, 46, 14);
+		contentPane.add(lblNewLabel_2_2);
+
+		btnAgregar = new JButton("AGREGAR");
 		btnAgregar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-		
+				try {
+					if (txtExistencia.getText().equals("") || txtCantidad.getText().equals("")
+							|| txtImporte.getText().equals("")) {
+						actualizarTabla();
+						JOptionPane.showMessageDialog(null, "CAMPOS VACÍOS");
+						return;
+					}
+					Inventario inventario = new Inventario();
+					inventario.setExistencia(Integer.parseInt(txtExistencia.getText().toString()));
+					inventario.setCantidad(Integer.parseInt(txtCantidad.getText().toString()));
+					inventario.setImporte(Integer.parseInt(txtImporte.getText().toString()));
+					if (dao.insertarInventario(inventario)) {
+						JOptionPane.showMessageDialog(null, "SE AGREGO CORRECTAMENTE");
+					} else {
+						JOptionPane.showMessageDialog(null, "ERROR");
+					}
+
+				} catch (Exception e2) {
+					JOptionPane.showMessageDialog(null, "ERROR");
+				}
 			}
 		});
-		btnAgregar.setBounds(10, 258, 110, 23);
+		btnAgregar.setBounds(10, 213, 89, 23);
 		contentPane.add(btnAgregar);
-		
-		lblCdigoDelProducto = new JLabel("CÓDIGO DEL PRODUCTO");
-		lblCdigoDelProducto.setBounds(10, 83, 122, 14);
-		contentPane.add(lblCdigoDelProducto);
-		
-		lblCantidadActual = new JLabel("CANTIDAD ACTUAL");
-		lblCantidadActual.setBounds(10, 150, 110, 14);
-		contentPane.add(lblCantidadActual);
-		
-		JSpinner spinner = new JSpinner();
-		spinner.setBounds(107, 147, 59, 20);
-		contentPane.add(spinner);
-		
-		JButton btnAgregar_1 = new JButton("AGREGAR ");
-		btnAgregar_1.setBackground(Color.BLUE);
-		btnAgregar_1.setBounds(10, 218, 110, 23);
-		contentPane.add(btnAgregar_1);
-		
-		JButton btnEditar = new JButton("EDITAR");
-		btnEditar.setBackground(Color.BLUE);
-		btnEditar.setBounds(10, 292, 110, 23);
+
+		btnEliminar = new JButton("ELIMINAR");
+		btnEliminar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					int opcion=JOptionPane.showConfirmDialog(null,"ESTAS SEGURO DE ELIMINAR ESTE INVENTARIO??","ELIMINAR CARACTERISTICAS",JOptionPane.YES_NO_OPTION);
+				    if (opcion ==0) {
+					if (dao.eliminarInventario(inventario.getId())) {
+						actualizarTabla();
+						limpiar();
+						JOptionPane.showMessageDialog(null, "SE ELIMINÓ CORRECTAMENTE");
+
+					} else {
+						JOptionPane.showMessageDialog(null, "ERROR");
+
+					}
+				    }
+
+				} catch (Exception e2) {
+					JOptionPane.showMessageDialog(null, "ERROR");
+				}
+				
+			}
+		});
+		btnEliminar.setBounds(10, 261, 89, 23);
+		contentPane.add(btnEliminar);
+
+		btnEditar = new JButton("EDITAR");
+		btnEditar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					if (txtExistencia.getText().equals("") || txtCantidad.getText().equals("")
+							|| txtImporte.getText().equals("")) {
+						actualizarTabla();
+						JOptionPane.showMessageDialog(null, "CAMPOS VACÍOS");
+						return;
+					}
+					inventario.setExistencia(Integer.parseInt(txtExistencia.getText().toString()));
+					inventario.setCantidad(Integer.parseInt(txtExistencia.getText().toString()));
+					inventario.setImporte(Integer.parseInt(txtExistencia.getText().toString()));
+					if (dao.editarInventario(inventario)) {
+						JOptionPane.showMessageDialog(null, "SE EDITÓ CORRECTAMENTE");
+					} else {
+						JOptionPane.showMessageDialog(null, "ERROR");
+					}
+					
+				} catch (Exception e2) {
+					JOptionPane.showMessageDialog(null, "ERROR");
+					
+				}
+			}
+		});
+		btnEditar.setBounds(10, 308, 89, 23);
 		contentPane.add(btnEditar);
-		
-		JButton btnBorrar = new JButton("BORRAR");
-		btnBorrar.setBackground(Color.BLUE);
-		btnBorrar.setBounds(10, 326, 110, 23);
+
+		btnBorrar = new JButton("BORRAR");
+		btnBorrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				limpiar();
+			}
+		});
+		btnBorrar.setBounds(10, 353, 89, 23);
 		contentPane.add(btnBorrar);
-		
-		JLabel lblExistencia = new JLabel("EXISTENCIA");
-		lblExistencia.setBounds(10, 122, 110, 14);
-		contentPane.add(lblExistencia);
-		
-		JSpinner spinner_1 = new JSpinner();
-		spinner_1.setBounds(107, 119, 59, 20);
-		contentPane.add(spinner_1);
-		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(189, 111, 479, 284);
+
+	
+
+
+		scrollPane = new JScrollPane();
+		scrollPane.setBounds(173, 11, 610, 365);
 		contentPane.add(scrollPane);
+
+		tblInventario = new JTable();
+		tblInventario.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				fila = tblInventario.getSelectedRow();
+				inventario = lista.get(fila);
+				lblId.setText("" + inventario.getId());
+				txtImporte.setText("" + inventario.getExistencia());
+				txtImporte.setText("" + inventario.getCantidad());
+				txtImporte.setText("" + inventario.getImporte());
 		
-		table = new JTable();
-		table.setModel(new DefaultTableModel(
+
+			}
+		});
+		tblInventario.setModel(new DefaultTableModel(
 			new Object[][] {
 			},
 			new String[] {
-				"New column", "New column", "New column"
+				"New column", "New column", "New column", "New column"
 			}
 		));
-		scrollPane.setViewportView(table);
-	
+		scrollPane.setViewportView(tblInventario);
+		actualizarTabla();
+		modelo.addColumn("ID");
+		modelo.addColumn("MARCA");
+		modelo.addColumn("MODELO");
+		modelo.addColumn("PRECIO");
+		modelo.addColumn("IMG");
+		actualizarTabla();
 	
 	
 	}
+	
 }
-
 

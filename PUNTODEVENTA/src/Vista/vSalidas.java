@@ -11,7 +11,7 @@ import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
-public class Salidas extends JFrame {
+public class vSalidas extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
@@ -21,7 +21,7 @@ public class Salidas extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Salidas frame = new Salidas();
+					vSalidas frame = new vSalidas();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -31,7 +31,7 @@ public class Salidas extends JFrame {
 	}
 
 	
-	public Salidas() {
+	public vSalidas() {
 		setTitle("SALIDAS");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 774, 306);

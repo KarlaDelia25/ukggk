@@ -3,9 +3,7 @@ package Modelo;
 
 
 public class Inventario {
-	int codigo;
-	String Descripcion;
-	Double precio;
+	int id;
 	int cantidad;
 	int importe;
 	int existencia;
@@ -14,28 +12,12 @@ public class Inventario {
 		
 	}
 
-	public int getCodigo() {
-		return codigo;
+	public int getId() {
+		return id;
 	}
 
-	public void setCodigo(int codigo) {
-		this.codigo = codigo;
-	}
-
-	public String getDescripcion() {
-		return Descripcion;
-	}
-
-	public void setDescripcion(String descripcion) {
-		Descripcion = descripcion;
-	}
-
-	public Double getPrecio() {
-		return precio;
-	}
-
-	public void setPrecio(Double precio) {
-		this.precio = precio;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public int getCantidad() {
@@ -61,4 +43,4 @@ public class Inventario {
 	public void setExistencia(int existencia) {
 		this.existencia = existencia;
 	}
-	}
+}

@@ -24,7 +24,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.Toolkit;
 
-public class vUsuario extends JInternalFrame {
+public class vUsuario extends JFrame {
 
 	private JPanel NOMBRE;
 	private JLabel lblId;

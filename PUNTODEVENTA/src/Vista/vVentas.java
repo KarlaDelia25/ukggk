@@ -35,7 +35,6 @@ import javax.swing.border.MatteBorder;
 public class vVentas extends JFrame {
 
 	private JPanel contentPane;
-	private JButton btnBuscar;
 	private JTable tblVentas;
 	private JScrollPane scrollPane;
 	daoVentas dao = new daoVentas();
@@ -85,22 +84,6 @@ public class vVentas extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		btnBuscar = new JButton("BUSCAR");
-		btnBuscar.setBackground(new Color(187, 233, 255));
-		btnBuscar.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 128, 192)));
-		btnBuscar.setFont(new Font("Tahoma", Font.PLAIN, 8));
-		btnBuscar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Buscar newJframe = new Buscar ();
-				newJframe.setVisible(true);
-			
-						
-				
-			}
-		});
-		btnBuscar.setBounds(22, 67, 85, 23);
-		contentPane.add(btnBuscar);
-
 		scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 101, 773, 326);
 		contentPane.add(scrollPane);
@@ -140,27 +123,27 @@ public class vVentas extends JFrame {
 		JButton btnEntradas = new JButton("ENTRADAS");
 		btnEntradas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Entradas newJframe = new Entradas ();
+				vEntradas newJframe = new vEntradas ();
 				newJframe.setVisible(true);
 			}
 		});
 		btnEntradas.setFont(new Font("Tahoma", Font.PLAIN, 8));
 		btnEntradas.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 128, 192)));
 		btnEntradas.setBackground(new Color(187, 233, 255));
-		btnEntradas.setBounds(127, 67, 85, 23);
+		btnEntradas.setBounds(10, 67, 85, 23);
 		contentPane.add(btnEntradas);
 		
 		JButton btnSalidas = new JButton("SALIDAS");
 		btnSalidas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Salidas newJframe = new Salidas ();
+				vSalidas newJframe = new vSalidas ();
 				newJframe.setVisible(true);
 			}
 		});
 		btnSalidas.setFont(new Font("Tahoma", Font.PLAIN, 8));
 		btnSalidas.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 128, 192)));
 		btnSalidas.setBackground(new Color(187, 233, 255));
-		btnSalidas.setBounds(222, 67, 85, 23);
+		btnSalidas.setBounds(105, 67, 85, 23);
 		contentPane.add(btnSalidas);
 		
 		JButton btnCobrar = new JButton("COBRAR");
@@ -185,10 +168,10 @@ public class vVentas extends JFrame {
 		btnImprimirTicket.setBounds(489, 553, 85, 23);
 		contentPane.add(btnImprimirTicket);
 		
-		JButton btnVentasDelDia = new JButton("VENTAS DEL DIA ");
+		JButton btnVentasDelDia = new JButton("VENTAS DEL DÍA/MES/AÑO");
 		btnVentasDelDia.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Ventasdeldia newJframe = new Ventasdeldia ();
+				vVentasdeldia newJframe = new vVentasdeldia ();
 				newJframe.setVisible(true);
 			}
 		});

@@ -20,8 +20,8 @@ import java.awt.Color;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-import Dao.daoProductos;
-import Modelo.Productos;
+import Dao.daoRefacciones;
+import Modelo.Refacciones;
 
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -31,7 +31,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JSpinner;
 
-public class vProductos extends JFrame {
+public class vRefacciones extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtDescripcion;
@@ -44,12 +44,12 @@ public class vProductos extends JFrame {
 	private JLabel lblId;
 	private JTable tblProductos;
 	private JScrollPane scrollPane;
-	daoProductos dao = new daoProductos();
+	daoRefacciones dao = new daoRefacciones();
 	DefaultTableModel modelo = new DefaultTableModel();
-	ArrayList<Productos> lista;
+	ArrayList<Refacciones> lista;
 	private JLabel lblImg;
 	int fila = -1;
-	Productos Productos = new Productos();
+	Refacciones Productos = new Refacciones();
 	private JSpinner spnPrecio;
 	private JSpinner spnPreciov;
 
@@ -57,7 +57,7 @@ public class vProductos extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					vProductos frame = new vProductos();
+					vRefacciones frame = new vRefacciones();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -72,7 +72,7 @@ public class vProductos extends JFrame {
 			modelo.removeRow(0);
 		}
 		lista = dao.consultaProductoss();
-		for (Productos pro : lista) {
+		for (Refacciones pro : lista) {
 			Object produc[] = new Object[4];
 			produc[0] = pro.getId();
 			produc[1] = pro.getDescripccion();
@@ -93,7 +93,7 @@ public class vProductos extends JFrame {
 
 	}
 
-	public vProductos() {
+	public vRefacciones() {
 		setTitle("PRODUCTOS");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 799, 505);
@@ -147,7 +147,7 @@ public class vProductos extends JFrame {
 						JOptionPane.showMessageDialog(null, "CAMPOS VACÍOS");
 						return;
 					}
-					Productos Productos = new Productos();
+					Refacciones Productos = new Refacciones();
 					Productos.setDescripccion(txtDescripcion.getText());
 					Productos.setPrecio(Double.parseDouble(spnPrecio.getValue().toString()));
 					Productos.setPrecioventa(Double.parseDouble(spnPreciov.getValue().toString()));

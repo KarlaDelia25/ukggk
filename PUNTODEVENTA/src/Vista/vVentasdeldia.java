@@ -12,7 +12,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JButton;
 
-public class Ventasdeldia extends JFrame {
+public class vVentasdeldia extends JFrame {
 
 	private JPanel contentPane;
 	private JTable table;
@@ -22,7 +22,7 @@ public class Ventasdeldia extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Ventasdeldia frame = new Ventasdeldia();
+					vVentasdeldia frame = new vVentasdeldia();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -32,7 +32,7 @@ public class Ventasdeldia extends JFrame {
 	}
 
 	
-	public Ventasdeldia() {
+	public vVentasdeldia() {
 		setTitle("VENTAS DEL DÍA");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 755, 633);

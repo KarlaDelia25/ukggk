@@ -1,13 +1,13 @@
 package Modelo;
 
 
-public class Productos {
+public class Refacciones {
 	int id;
 	String descripccion;
 	Double precioventa;
 	Double precio;
 	String img;
-	public Productos() {
+	public Refacciones() {
 		
 	}
 	public int getId() {

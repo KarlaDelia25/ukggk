@@ -6,17 +6,17 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import Conexion.conexion;
-import Modelo.Productos;
+import Modelo.Refacciones;
 
 
-public class daoProductos{
+public class daoRefacciones{
 	conexion cx;
 
-	public daoProductos() {
+	public daoRefacciones() {
 		cx = new conexion();
 	}
 
-	public boolean insertarProductos(Productos produc) {
+	public boolean insertarProductos(Refacciones produc) {
 		PreparedStatement ps = null;
 		try {
 			ps = cx.conectar().prepareStatement("INSERT INTO productos VALUES(null,?,?,?,?)");
@@ -36,15 +36,15 @@ public class daoProductos{
 
 	}
 
-	public ArrayList<Productos> consultaProductoss() {
-		ArrayList<Productos> lista = new ArrayList<Productos>();
+	public ArrayList<Refacciones> consultaProductoss() {
+		ArrayList<Refacciones> lista = new ArrayList<Refacciones>();
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		try {
 			ps = cx.conectar().prepareStatement("SELECT * FROM productos");
 			rs = ps.executeQuery();
 			while (rs.next()) {
-				Productos productos = new Productos();
+				Refacciones productos = new Refacciones();
 				productos.setId(rs.getInt("id"));
 				productos.setDescripccion(rs.getString("descripcion"));
 				productos.setPrecio(rs.getDouble("precio"));
@@ -77,7 +77,7 @@ public class daoProductos{
 
 	}
 
-public boolean editarProductos(Productos produc) {
+public boolean editarProductos(Refacciones produc) {
 	PreparedStatement ps = null;
 	try {
 		ps = cx.conectar().prepareStatement("UPDATE productoss  SET descripcion=?,precio=?precioventa=?,img=? WHERE id=?");
