@@ -50,7 +50,7 @@ public class vRefacciones extends JFrame {
 	ArrayList<Refacciones> lista;
 	int fila = -1;
 	Refacciones Productos = new Refacciones();
-	
+
 	private JTextField txtPrecio;
 	private JTextField txtPrecioventa;
 	private JButton btnNewButton;
@@ -86,22 +86,17 @@ public class vRefacciones extends JFrame {
 		}
 		tblProductos.setModel(modelo);
 	}
-	
-
 
 	public void limpiar() {
 		lblId.setText("");
 		txtDescripcion.setText("");
 		txtPrecio.setText("");
 		txtPrecioventa.setText("");
-	
 
 	}
 
 	public vRefacciones() {
-		
-		
-				
+
 		setTitle("PRODUCTOS");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 799, 545);
@@ -141,7 +136,7 @@ public class vRefacciones extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					if (txtDescripcion.getText().equals("") || txtDescripcion.getText().equals("")
-							|| txtPrecio.getText().equals("") || txtPrecioventa.getText().equals("")){
+							|| txtPrecio.getText().equals("") || txtPrecioventa.getText().equals("")) {
 						actualizarTabla();
 						JOptionPane.showMessageDialog(null, "CAMPOS VACÍOS");
 						return;
@@ -168,23 +163,25 @@ public class vRefacciones extends JFrame {
 		btnEliminar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					int opcion=JOptionPane.showConfirmDialog(null,"ESTAS SEGURO DE ELIMINAR LA COLUMNA DE Productoss??","ELIMINAR Productoss",JOptionPane.YES_NO_OPTION);
-				    if (opcion ==0) {
-					if (dao.eliminarProductos(Productos.getIdproductos())) {
-						actualizarTabla();
-						limpiar();
-						JOptionPane.showMessageDialog(null, "SE ELIMINÓ CORRECTAMENTE");
+					int opcion = JOptionPane.showConfirmDialog(null,
+							"ESTAS SEGURO DE ELIMINAR LA COLUMNA DE Productoss??", "ELIMINAR Productoss",
+							JOptionPane.YES_NO_OPTION);
+					if (opcion == 0) {
+						if (dao.eliminarProductos(Productos.getIdproductos())) {
+							actualizarTabla();
+							limpiar();
+							JOptionPane.showMessageDialog(null, "SE ELIMINÓ CORRECTAMENTE");
 
-					} else {
-						JOptionPane.showMessageDialog(null, "ERROR");
+						} else {
+							JOptionPane.showMessageDialog(null, "ERROR");
 
+						}
 					}
-				    }
 
 				} catch (Exception e2) {
 					JOptionPane.showMessageDialog(null, "ERROR");
 				}
-				
+
 			}
 		});
 		btnEliminar.setBounds(10, 261, 89, 23);
@@ -208,10 +205,10 @@ public class vRefacciones extends JFrame {
 					} else {
 						JOptionPane.showMessageDialog(null, "ERROR");
 					}
-					
+
 				} catch (Exception e2) {
 					JOptionPane.showMessageDialog(null, "ERROR");
-					
+
 				}
 			}
 		});
@@ -241,75 +238,28 @@ public class vRefacciones extends JFrame {
 				txtDescripcion.setText(Productos.getDescripccion());
 				txtPrecio.setText("" + Productos.getPrecio());
 				txtPrecioventa.setText("" + Productos.getPrecioventa());
-		
 
 			}
 		});
 		tblProductos.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-			},
-			new String[] {
-				"New column", "New column", "New column", "New column"
-			}
-		));
+				new Object[][] { { null, null, null, null }, { null, null, null, null }, { null, null, null, null },
+						{ null, null, null, null }, { null, null, null, null }, },
+				new String[] { "New column", "New column", "New column", "New column" }));
 		scrollPane.setViewportView(tblProductos);
-		
+
 		txtPrecio = new JTextField();
 		txtPrecio.setBounds(65, 102, 102, 26);
 		contentPane.add(txtPrecio);
 		txtPrecio.setColumns(10);
-		
+
 		txtPrecioventa = new JTextField();
 		txtPrecioventa.setColumns(10);
 		txtPrecioventa.setBounds(65, 159, 102, 26);
 		contentPane.add(txtPrecioventa);
-		
-		btnNewButton = new JButton("PASAR UNA  FILA");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				int FilaSeleccionada=tblProductos.getSelectedRow();
-				
-				if(FilaSeleccionada>=0) {
-					String Datos[]=new String[2];
-					Datos[0]=tblProductos.getValueAt(FilaSeleccionada,0).toString();
-					Datos[0]=tblProductos.getValueAt(FilaSeleccionada,1).toString();
-					Datos[0]=tblProductos.getValueAt(FilaSeleccionada,2).toString();
-					Datos[0]=tblProductos.getValueAt(FilaSeleccionada,3).toString();
-					
-					vBuscar.modelo2.addRow(Datos);
-					modelo.removeRow(FilaSeleccionada);
-					
-					
-					
-					
-					
-					
-				}
-			}
-		});
+
 		btnNewButton.setBounds(24, 443, 129, 23);
 		contentPane.add(btnNewButton);
-		
-		btnNewButton_1 = new JButton("PASAR TODAS LAS FILAS");
-		btnNewButton_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				for(int i =0; i < tblProductos.getRowCount(); i++) {
-					String Datos[]=new String[2];
-					Datos[0]=tblProductos.getValueAt(i, 0).toString();
-					Datos[1]=tblProductos.getValueAt(i, 1).toString();
-					Datos[2]=tblProductos.getValueAt(i, 2).toString();
-					Datos[3]=tblProductos.getValueAt(i, 3).toString();
-					
-					vBuscar.modelo2.addRow(Datos);
-				}
-				nuevatabla();
-			}
-		});
+
 		btnNewButton_1.setBounds(22, 477, 131, 23);
 		contentPane.add(btnNewButton_1);
 		actualizarTabla();
@@ -317,13 +267,14 @@ public class vRefacciones extends JFrame {
 		modelo.addColumn("DESCRIPCION");
 		modelo.addColumn("PRECIO");
 		modelo.addColumn("PRECIOV");
-		vBuscar tabla2= new vBuscar();
+		vBuscar tabla2 = new vBuscar();
 		tabla2.setVisible(true);
-	
+
 		actualizarTabla();
 	}
+
 	public void nuevatabla() {
-		modelo=new DefaultTableModel();
+		modelo = new DefaultTableModel();
 		tblProductos.setModel(modelo);
 	}
 }
