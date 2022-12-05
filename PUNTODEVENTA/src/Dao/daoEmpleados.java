@@ -6,7 +6,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import Conexion.conexion;
-import Modelo.Clientes;
 import Modelo.Empleados;
 
 
@@ -22,10 +21,10 @@ public class daoEmpleados {
 		PreparedStatement ps = null;
 		try {
 			ps = cx.conectar().prepareStatement("INSERT INTO empleados VALUES(null,?,?,?,?,?)");
-			ps.setString(1, em.getNombre());
-			ps.setString(2, em.getEmail());
-			ps.setString(3, em.getDireccion());
-			ps.setInt(4, em.getTelefono());
+			ps.setString(1, em.getNombreem());
+			ps.setString(2, em.getEmailem());
+			ps.setString(3, em.getDireccionem());
+			ps.setInt(4, em.getTelefonoem());
 			ps.setInt(5, em.getRfc());
 			ps.executeUpdate();
 			cx.desconectar();
@@ -48,11 +47,11 @@ public class daoEmpleados {
 			rs = ps.executeQuery();
 			while (rs.next()) {
 				Empleados empleados = new Empleados();
-				empleados.setIdEmpleados(rs.getInt("id"));
-				empleados.setNombre(rs.getString("nombre"));
-				empleados.setEmail(rs.getString("email"));
-				empleados.setDireccion(rs.getString("direccion"));
-				empleados.setTelefono(rs.getInt("telefono"));
+				empleados.setIdEmpleados(rs.getInt("idempleados"));
+				empleados.setNombreem(rs.getString("nombre"));
+				empleados.setEmailem(rs.getString("email"));
+				empleados.setDireccionem(rs.getString("direccion"));
+				empleados.setTelefonoem(rs.getInt("telefono"));
 				empleados.setRfc(rs.getInt("rfc"));
 				lista.add(empleados);
 
@@ -67,7 +66,7 @@ public class daoEmpleados {
 	public boolean eliminarEmpleados(int id) {
 		PreparedStatement ps = null;
 		try {
-			ps = cx.conectar().prepareStatement("DELETE FROM empleados WHERE id =?");
+			ps = cx.conectar().prepareStatement("DELETE FROM empleados WHERE idempleados=?");
 			ps.setInt(1, id);
 			ps.executeUpdate();
 			cx.desconectar();
@@ -84,11 +83,11 @@ public class daoEmpleados {
 public boolean editarempleados(Empleados em) {
 	PreparedStatement ps = null;
 	try {
-		ps = cx.conectar().prepareStatement("UPDATE empleados SET nombre=?,email=?,direccion=?,telefono=?,rfc=? WHERE id=?");
-		ps.setString(1, em.getNombre());
-		ps.setString(2, em.getEmail());
-		ps.setString(3, em.getDireccion());
-		ps.setInt(4, em.getTelefono());
+		ps = cx.conectar().prepareStatement("UPDATE empleados SET nombre=?,email=?,direccion=?,telefono=?,rfc=? WHERE idempleados=?");
+		ps.setString(1, em.getNombreem());
+		ps.setString(2, em.getEmailem());
+		ps.setString(3, em.getDireccionem());
+		ps.setInt(4, em.getTelefonoem());
 		ps.setInt(5, em.getRfc());
 		ps.setInt(6, em.getIdEmpleados());
 		ps.executeUpdate();

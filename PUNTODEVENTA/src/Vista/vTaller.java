@@ -39,7 +39,6 @@ public class vTaller extends JFrame {
 	private JButton btnEliminar;
 	private JButton btnEditar;
 	private JButton btnBorrar;
-	private JButton btnSeleccionar;
 	private JLabel lblId;
 	private JTable tblTaller;
 	private JScrollPane scrollPane;
@@ -47,7 +46,7 @@ public class vTaller extends JFrame {
 	DefaultTableModel modelo = new DefaultTableModel();
 	ArrayList<Taller> lista;
 	int fila = -1;
-	Taller caracteristicas = new Taller();
+	Taller taller = new Taller();
 	private JTextField textRefacciones;
 	private JLabel hioj;
 	private JTextField txtMecanico;
@@ -74,8 +73,8 @@ public class vTaller extends JFrame {
 		}
 		lista = dao.consultaTaller();
 		for (Taller ta : lista) {
-			Object tall[] = new Object[4];
-			tall[0] = ta.getId();
+			Object tall[] = new Object[6];
+			tall[0] = ta.getIdtaller();
 			tall[1] = ta.getDetalles();
 			tall[2] = ta.getRefacciones();
 			tall[3] = ta.getCostototal();
@@ -93,7 +92,7 @@ public class vTaller extends JFrame {
 		textRefacciones.setText("");
 		txtCostototal.setText("");
 		txtMecanico.setText("");
-
+		txtCliente.setText("");
 	}
 
 	public vTaller() {
@@ -141,7 +140,7 @@ public class vTaller extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					if (txtDetalles.getText().equals("") || textRefacciones.getText().equals("")
-							|| txtCostototal.getText().equals("") || txtMecanico.getText().equals("")) {
+							|| txtCostototal.getText().equals("") || txtMecanico.getText().equals("") || txtCliente.getText().equals("")) {
 						actualizarTabla();
 						JOptionPane.showMessageDialog(null, "CAMPOS VACÍOS");
 						return;
@@ -152,7 +151,7 @@ public class vTaller extends JFrame {
 					taller.setCostototal(Double.parseDouble(txtCostototal.getText().toString()));
 					taller.setMecanico(txtMecanico.getText());
 					taller.setMecanico(txtCliente.getText());
-					if (dao.insertarTaller(caracteristicas)) {
+					if (dao.insertarTaller(taller)) {
 						JOptionPane.showMessageDialog(null, "SE AGREGO CORRECTAMENTE");
 					} else {
 						JOptionPane.showMessageDialog(null, "ERROR");
@@ -172,7 +171,7 @@ public class vTaller extends JFrame {
 				try {
 					int opcion=JOptionPane.showConfirmDialog(null,"ESTAS SEGURO DE ELIMINAR LA REFACCIÓN??","ELIMINAR REFACCIÓN",JOptionPane.YES_NO_OPTION);
 				    if (opcion ==0) {
-					if (dao.eliminarTaller(caracteristicas.getId())) {
+					if (dao.eliminarTaller(taller.getIdtaller())) {
 						actualizarTabla();
 						limpiar();
 						JOptionPane.showMessageDialog(null, "SE ELIMINÓ CORRECTAMENTE");
@@ -202,12 +201,12 @@ public class vTaller extends JFrame {
 						JOptionPane.showMessageDialog(null, "CAMPOS VACÍOS");
 						return;
 					}
-					caracteristicas.setDetalles(txtDetalles.getText());
-					caracteristicas.setRefacciones(textRefacciones.getText());
-					caracteristicas.setCostototal(Double.parseDouble(txtCostototal.getText().toString()));
-					caracteristicas.setMecanico(txtMecanico.getText());
-					caracteristicas.setCliente(txtCliente.getText());
-					if (dao.editarTaller(caracteristicas)) {
+					taller.setDetalles(txtDetalles.getText());
+					taller.setRefacciones(textRefacciones.getText());
+					taller.setCostototal(Double.parseDouble(txtCostototal.getText().toString()));
+					taller.setMecanico(txtMecanico.getText());
+					taller.setCliente(txtCliente.getText());
+					if (dao.editarTaller(taller)) {
 						JOptionPane.showMessageDialog(null, "SE EDITÓ CORRECTAMENTE");
 					} else {
 						JOptionPane.showMessageDialog(null, "ERROR");
@@ -242,24 +241,30 @@ public class vTaller extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				fila = tblTaller.getSelectedRow();
-				caracteristicas = lista.get(fila);
-				lblId.setText("" + caracteristicas.getId());
-				txtDetalles.setText(caracteristicas.getDetalles());
-				textRefacciones.setText(caracteristicas.getRefacciones());
-				txtCostototal.setText("" + caracteristicas.getCostototal());
-				txtMecanico.setText(caracteristicas.getMecanico());
-				txtCliente.setText(caracteristicas.getCliente());
+				taller = lista.get(fila);
+				lblId.setText("" + taller.getIdtaller());
+				txtDetalles.setText(taller.getDetalles());
+				textRefacciones.setText(taller.getRefacciones());
+				txtCostototal.setText("" + taller.getCostototal());
+				txtMecanico.setText(taller.getMecanico());
+				txtCliente.setText(taller.getCliente());
 
 			}
 		});
 		tblTaller.setModel(new DefaultTableModel(
 			new Object[][] {
+				{null, null, null, null, null, null},
+				{null, null, null, null, null, null},
+				{null, null, null, null, null, null},
+				{null, null, null, null, null, null},
+				{null, null, null, null, null, null},
+				{null, null, null, null, null, null},
 			},
 			new String[] {
 				"New column", "New column", "New column", "New column", "New column", "New column"
 			}
 		));
-		tblTaller.getColumnModel().getColumn(1).setPreferredWidth(175);
+		tblTaller.getColumnModel().getColumn(1).setPreferredWidth(247);
 		scrollPane.setViewportView(tblTaller);
 		
 		textRefacciones = new JTextField();
@@ -276,10 +281,6 @@ public class vTaller extends JFrame {
 		txtMecanico.setBounds(88, 513, 101, 20);
 		contentPane.add(txtMecanico);
 		
-		JButton btnNewButton = new JButton("CONSULTAR DATOS DEL CLIENTE");
-		btnNewButton.setBounds(227, 582, 242, 23);
-		contentPane.add(btnNewButton);
-		
 		txtCliente = new JTextField();
 		txtCliente.setColumns(10);
 		txtCliente.setBounds(88, 553, 101, 20);
@@ -288,6 +289,7 @@ public class vTaller extends JFrame {
 		lblCliente = new JLabel("CLIENTE");
 		lblCliente.setBounds(10, 556, 46, 14);
 		contentPane.add(lblCliente);
+		
 		actualizarTabla();
 		modelo.addColumn("ID");
 		modelo.addColumn("DETALLES");

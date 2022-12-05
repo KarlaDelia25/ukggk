@@ -19,7 +19,7 @@ public class daoInventario {
 	public boolean insertarInventario(Inventario inv) {
 		PreparedStatement ps = null;
 		try {
-			ps = cx.conectar().prepareStatement("INSERT INTO inventario VALUES(null,?,?,?,?)");
+			ps = cx.conectar().prepareStatement("INSERT INTO inventario VALUES(null,?,?,?)");
 			ps.setInt(1, inv.getExistencia());
 			ps.setInt(2, inv.getCantidad());
 			ps.setInt(3, inv.getImporte());
@@ -44,10 +44,10 @@ public class daoInventario {
 			rs = ps.executeQuery();
 			while (rs.next()) {
 				Inventario inventario = new Inventario();
-				inventario.setId(rs.getInt("id"));
-				inventario.setExistencia(rs.getInt("marca"));
-				inventario.setCantidad(rs.getInt("modelo"));
-				inventario.setImporte(rs.getInt("precio"));
+				inventario.setIdinventario(rs.getInt("idinventario"));
+				inventario.setExistencia(rs.getInt("existencia"));
+				inventario.setCantidad(rs.getInt("cantidad"));
+				inventario.setImporte(rs.getInt("importe"));
 				lista.add(inventario);
 
 			}
@@ -61,7 +61,7 @@ public class daoInventario {
 	public boolean eliminarInventario(int id) {
 		PreparedStatement ps = null;
 		try {
-			ps = cx.conectar().prepareStatement("DELETE FROM caracteristicas WHERE id =?");
+			ps = cx.conectar().prepareStatement("DELETE FROM inventario WHERE idinventario =?");
 			ps.setInt(1, id);
 			ps.executeUpdate();
 			cx.desconectar();
@@ -78,7 +78,7 @@ public class daoInventario {
 public boolean editarInventario(Inventario inv) {
 	PreparedStatement ps = null;
 	try {
-		ps = cx.conectar().prepareStatement("UPDATE caracteristicas  SET marca=?,modelo=?,precio=?,img=? WHERE id=?");
+		ps = cx.conectar().prepareStatement("UPDATE inventario  SET marca=?,modelo=?,precio=?,img=? WHERE idinventario=?");
 		ps.setInt(1, inv.getExistencia());
 		ps.setInt(2, inv.getCantidad());
 		ps.setInt(3, inv.getImporte());

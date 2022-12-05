@@ -1,12 +1,12 @@
 package Modelo;
 
 
-public class Refacciones {
+public class Buscar {
 	int idproductos;
 	String descripccion;
 	Double precioventa;
 	Double precio;
-	public Refacciones() {
+	public Buscar() {
 		
 		
 	}

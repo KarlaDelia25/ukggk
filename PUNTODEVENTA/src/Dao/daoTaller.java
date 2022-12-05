@@ -45,7 +45,7 @@ public class daoTaller {
 			rs = ps.executeQuery();
 			while (rs.next()) {
 				Taller taller = new Taller();
-				taller.setId(rs.getInt("id"));
+				taller.setIdtaller(rs.getInt("idtaller"));
 				taller.setDetalles(rs.getString("detalles"));
 				taller.setRefacciones(rs.getString("refacciones"));
 				taller.setCostototal(rs.getDouble("costototal"));
@@ -62,11 +62,11 @@ public class daoTaller {
 
 	}
 
-	public boolean eliminarTaller(int id) {
+	public boolean eliminarTaller(int idtaller) {
 		PreparedStatement ps = null;
 		try {
-			ps = cx.conectar().prepareStatement("DELETE FROM taller WHERE id =?");
-			ps.setInt(1, id);
+			ps = cx.conectar().prepareStatement("DELETE FROM taller WHERE idtaller =?");
+			ps.setInt(1, idtaller);
 			ps.executeUpdate();
 			cx.desconectar();
 			return true;
@@ -82,13 +82,13 @@ public class daoTaller {
 public boolean editarTaller(Taller tall) {
 	PreparedStatement ps = null;
 	try {
-		ps = cx.conectar().prepareStatement("UPDATE taller  SET detalles=?,refacciones=?,costototal=?,mecanico=?,cliente=? WHERE id=?");
+		ps = cx.conectar().prepareStatement("UPDATE taller  SET detalles=?,refacciones=?,costototal=?,mecanico=?,cliente=? WHERE idtaller=?");
 		ps.setString(1, tall.getDetalles());
 		ps.setString(2, tall.getRefacciones());
 		ps.setDouble(3, tall.getCostototal());
 		ps.setString(4, tall.getMecanico());
 		ps.setString(5, tall.getCliente());
-		ps.setInt(6, tall.getId());
+		ps.setInt(6, tall.getIdtaller());
 		ps.executeUpdate();
 		cx.desconectar();
 		return true;

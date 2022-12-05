@@ -70,8 +70,8 @@ public class vInventario extends JFrame {
 		}
 		lista = dao.consultaInventario();
 		for (Inventario inv: lista) {
-			Object inven[] = new Object[4];
-			inven[0] = inv.getId();
+			Object inven[] = new Object[5];
+			inven[0] = inv.getIdinventario();
 			inven[1] = inv.getExistencia();
 			inven[2] = inv.getCantidad();
 			inven[3] = inv.getImporte();
@@ -90,7 +90,7 @@ public class vInventario extends JFrame {
 	}
 
 	public vInventario(){
-		setTitle("CARACTERISTICAS");
+		setTitle("INVENTARIO");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 799, 505);
 		contentPane = new JPanel();
@@ -168,7 +168,7 @@ public class vInventario extends JFrame {
 				try {
 					int opcion=JOptionPane.showConfirmDialog(null,"ESTAS SEGURO DE ELIMINAR ESTE INVENTARIO??","ELIMINAR CARACTERISTICAS",JOptionPane.YES_NO_OPTION);
 				    if (opcion ==0) {
-					if (dao.eliminarInventario(inventario.getId())) {
+					if (dao.eliminarInventario(inventario.getIdinventario())) {
 						actualizarTabla();
 						limpiar();
 						JOptionPane.showMessageDialog(null, "SE ELIMINÓ CORRECTAMENTE");
@@ -238,7 +238,7 @@ public class vInventario extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				fila = tblInventario.getSelectedRow();
 				inventario = lista.get(fila);
-				lblId.setText("" + inventario.getId());
+				lblId.setText("" + inventario.getIdinventario());
 				txtImporte.setText("" + inventario.getExistencia());
 				txtImporte.setText("" + inventario.getCantidad());
 				txtImporte.setText("" + inventario.getImporte());
@@ -248,6 +248,11 @@ public class vInventario extends JFrame {
 		});
 		tblInventario.setModel(new DefaultTableModel(
 			new Object[][] {
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
 			},
 			new String[] {
 				"New column", "New column", "New column", "New column"
@@ -256,10 +261,9 @@ public class vInventario extends JFrame {
 		scrollPane.setViewportView(tblInventario);
 		actualizarTabla();
 		modelo.addColumn("ID");
-		modelo.addColumn("MARCA");
-		modelo.addColumn("MODELO");
-		modelo.addColumn("PRECIO");
-		modelo.addColumn("IMG");
+		modelo.addColumn("EXISTENCIA");
+		modelo.addColumn("CANTIDAD");
+		modelo.addColumn("IMPORTE");
 		actualizarTabla();
 	
 	

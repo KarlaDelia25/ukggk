@@ -40,9 +40,12 @@ public class vVentas extends JFrame {
 	daoVentas dao = new daoVentas();
 	DefaultTableModel modelo = new DefaultTableModel();
 	ArrayList<Ventas> lista;
+	static double total;
+	double sub_total;
+	double igv;
+	
 	int fila = -1;
 	Ventas Ventas = new Ventas();
-	private JTextField txtCodigo;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -56,6 +59,7 @@ public class vVentas extends JFrame {
 			}
 		});
 	}
+	public static DefaultTableModel modelo3                     ;
 
 	public void actualizarTabla() {
 
@@ -66,7 +70,6 @@ public class vVentas extends JFrame {
 		for (Ventas ca : lista) {
 			Object carac[] = new Object[4];
 			carac[0] = ca.getCodigo();
-		
 
 			modelo.addRow(carac);
 
@@ -75,6 +78,9 @@ public class vVentas extends JFrame {
 	}
 
 	public vVentas() {
+		
+		
+		
 		setTitle("VENTA DE PRODUCTOS");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 799, 626);
@@ -107,19 +113,6 @@ public class vVentas extends JFrame {
 		));
 		scrollPane.setViewportView(tblVentas);
 		
-		JButton btnAgregar = new JButton("AGREGAR PRODUCTO");
-		btnAgregar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-	
-		}
-		
-	});
-		btnAgregar.setFont(new Font("Tahoma", Font.PLAIN, 8));
-		btnAgregar.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 128, 192)));
-		btnAgregar.setBackground(new Color(187, 233, 255));
-		btnAgregar.setBounds(629, 25, 154, 23);
-		contentPane.add(btnAgregar);
-		
 		JButton btnEntradas = new JButton("ENTRADAS");
 		btnEntradas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -138,6 +131,7 @@ public class vVentas extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				vSalidas newJframe = new vSalidas ();
 				newJframe.setVisible(true);
+				
 			}
 		});
 		btnSalidas.setFont(new Font("Tahoma", Font.PLAIN, 8));
@@ -180,16 +174,6 @@ public class vVentas extends JFrame {
 		btnVentasDelDia.setBackground(new Color(187, 233, 255));
 		btnVentasDelDia.setBounds(629, 553, 154, 23);
 		contentPane.add(btnVentasDelDia);
-		
-		JLabel lblNewLabel = new JLabel("CÓDIGO DEL PRODUCTO:");
-		lblNewLabel.setFont(new Font("Arial", Font.BOLD, 16));
-		lblNewLabel.setBounds(22, 13, 232, 40);
-		contentPane.add(lblNewLabel);
-		
-		txtCodigo = new JTextField();
-		txtCodigo.setBounds(252, 23, 368, 33);
-		contentPane.add(txtCodigo);
-		txtCodigo.setColumns(10);
 		
 		JLabel lblProductosEn = new JLabel("0 PRODUCTOS EN LA VENTA ACTUAL");
 		lblProductosEn.setFont(new Font("Arial", Font.PLAIN, 12));
@@ -241,18 +225,23 @@ public class vVentas extends JFrame {
 		lblCambio.setFont(new Font("Arial", Font.PLAIN, 12));
 		lblCambio.setBounds(190, 562, 52, 14);
 		contentPane.add(lblCambio);
+		
+		JButton btnNewButton = new JButton("BUSCAR Y/OAGREGAR");
+		btnNewButton.setBounds(216, 66, 166, 23);
+		contentPane.add(btnNewButton);
 		actualizarTabla();
 		modelo.addColumn("CÓDIGO DE BARRAS");
 		modelo.addColumn("DESCRIPCIÓN DEL PRODUCTO");
+		modelo.addColumn("PRECIO");
 		modelo.addColumn("PRECIO VENTA");
-		modelo.addColumn("CANTIDAD");
-		modelo.addColumn("IMPORTE");
-		modelo.addColumn("EXISTENCIA");
-		modelo.addColumn("IMAGEN");
+
+
+		
 		actualizarTabla();
 	
 	
-	}
+	
+
+
 }
-
-
+}

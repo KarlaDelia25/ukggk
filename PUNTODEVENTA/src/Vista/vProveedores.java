@@ -1,55 +1,49 @@
 package Vista;
 
 import java.awt.EventQueue;
-import java.awt.Image;
 
 import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFileChooser;
 import javax.swing.JScrollPane;
-import javax.swing.border.LineBorder;
-import javax.swing.filechooser.FileNameExtensionFilter;
-
-import java.awt.Color;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
 
 import Dao.daoProveedores;
 import Modelo.Proveedores;
 
+
+import javax.swing.JButton;
 import java.awt.event.ActionListener;
-import java.io.File;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.Toolkit;
 
 public class vProveedores extends JFrame {
 
-	private JPanel contentPane;
-	private JTextField txtNombre;
-	private JTextField txtEmail;
-	private JTextField txtTelefono;
-	private JTextField txtDireccion;
-	private JButton btnAgregar;
-	private JButton btnEliminar;
-	private JButton btnEditar;
-	private JButton btnBorrar;
-	private JButton btnSeleccionar;
+	private JPanel NOMBRE;
 	private JLabel lblId;
-	private JTable tblProveedores;
-	private JScrollPane scrollPane;
+	private JTextField txtNombrec;
+	private JTextField txtEmailc;
+	private JTextField txtDireccionc;
+	private JButton btnAgrgar;
+	private JButton btnEditar;
+	private JButton btnEliminar;
+	private JButton btnBorrar;
+	int fila = -1;
 	daoProveedores dao = new daoProveedores();
 	DefaultTableModel modelo = new DefaultTableModel();
-	ArrayList<Proveedores> lista;
-	int fila = -1;
-	Proveedores provedores = new Proveedores();
+	ArrayList<Proveedores> lista = new ArrayList<Proveedores>();
+	private JTable tblClientes;
+	Proveedores proveedores = new Proveedores();
+	private JTextField txtTelefonoc;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -64,171 +58,165 @@ public class vProveedores extends JFrame {
 		});
 	}
 
-	public void actualizarTabla() {
-
-		while (modelo.getRowCount() > 0) {
-			modelo.removeRow(0);
-		}
-		lista = dao.consultaProveedores();
-		for (Proveedores pr : lista) {
-			Object prov[] = new Object[4];
-			prov[0] = pr.getId();
-			prov[1] = pr.getNombre();
-			prov[2] = pr.getEmail();
-			prov[3] = pr.getTelefono();
-			prov[4] = pr.getDireccion();
-			modelo.addRow(prov);
-
-		}
-		tblProveedores.setModel(modelo);
-	}
-
-	public void limpiar() {
-		lblId.setText("");
-		txtNombre.setText("");
-		txtEmail.setText("");
-		txtTelefono.setText("");
-		txtDireccion.setText("");
-
-	}
-
 	public vProveedores() {
+		//setLocationRelativeTo(null);
+		//setIconImage(Toolkit.getDefaultToolkit().getImage(vUsuario.class.getResource("/img/Ying.jpg")));
 		setTitle("PROVEEDORES");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 799, 505);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setBounds(100, 100, 534, 352);
+		NOMBRE = new JPanel();
+		NOMBRE.setBorder(new EmptyBorder(5, 5, 5, 5));
+		//setLocationRelativeTo(null);
 
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
+		setContentPane(NOMBRE);
+		NOMBRE.setLayout(null);
 
-		JLabel lblNewLabel = new JLabel("ID");
-		lblNewLabel.setBounds(10, 26, 46, 14);
-		contentPane.add(lblNewLabel);
+		txtNombrec = new JTextField();
+		txtNombrec.setColumns(10);
+		txtNombrec.setBounds(106, 53, 86, 20);
+		NOMBRE.add(txtNombrec);
 
-		lblId = new JLabel("0");
-		lblId.setBounds(38, 26, 46, 14);
-		contentPane.add(lblId);
+		txtEmailc = new JTextField();
+		txtEmailc.setColumns(10);
+		txtEmailc.setBounds(106, 84, 86, 20);
+		NOMBRE.add(txtEmailc);
 
-		JLabel lblNewLabel_2 = new JLabel("NOMBRE");
-		lblNewLabel_2.setBounds(10, 74, 46, 14);
-		contentPane.add(lblNewLabel_2);
+		JLabel lblNewLabel = new JLabel("NOMBRE");
+		lblNewLabel.setBounds(10, 56, 71, 14);
+		NOMBRE.add(lblNewLabel);
 
-		txtNombre = new JTextField();
-		txtNombre.setBounds(62, 71, 101, 20);
-		contentPane.add(txtNombre);
-		txtNombre.setColumns(10);
+		JLabel Password = new JLabel("EMAIL");
+		Password.setBounds(10, 87, 59, 14);
+		NOMBRE.add(Password);
 
-		txtEmail = new JTextField();
-		txtEmail.setColumns(10);
-		txtEmail.setBounds(62, 111, 101, 20);
-		contentPane.add(txtEmail);
+		JLabel gdfjgjdfioj = new JLabel("DIRECCION");
+		gdfjgjdfioj.setBounds(10, 121, 71, 14);
+		NOMBRE.add(gdfjgjdfioj);
 
-		JLabel lblNewLabel_2_1 = new JLabel("EMAIL");
-		lblNewLabel_2_1.setBounds(10, 114, 46, 14);
-		contentPane.add(lblNewLabel_2_1);
+		JLabel lblNewLabel_3 = new JLabel("ID");
+		lblNewLabel_3.setBounds(10, 11, 46, 14);
+		NOMBRE.add(lblNewLabel_3);
 
-		txtTelefono = new JTextField();
-		txtTelefono.setColumns(10);
-		txtTelefono.setBounds(62, 159, 101, 20);
-		contentPane.add(txtTelefono);
+		txtDireccionc = new JTextField();
+		txtDireccionc.setBounds(106, 118, 86, 20);
+		NOMBRE.add(txtDireccionc);
+		txtDireccionc.setColumns(10);
 
-		JLabel lblNewLabel_2_2 = new JLabel("TELEFONO");
-		lblNewLabel_2_2.setBounds(10, 162, 46, 14);
-		contentPane.add(lblNewLabel_2_2);
+		lblId = new JLabel("1");
+		lblId.setBounds(111, 11, 81, 31);
+		NOMBRE.add(lblId);
 
-		txtDireccion = new JTextField();
-		txtDireccion.setColumns(10);
-		txtDireccion.setBounds(62, 190, 101, 20);
-		contentPane.add(txtDireccion);
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(53, 195, 414, 107);
+		NOMBRE.add(scrollPane);
 
-		JLabel uihh = new JLabel("DIREECION");
-		uihh.setBounds(10, 188, 46, 14);
-		contentPane.add(uihh);
-
-		btnAgregar = new JButton("AGREGAR");
-		btnAgregar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				try {
-					if (txtNombre.getText().equals("") || txtEmail.getText().equals("")
-							|| txtTelefono.getText().equals("") || txtDireccion.getText().equals("")) {
-						actualizarTabla();
-						JOptionPane.showMessageDialog(null, "CAMPOS VACÍOS");
-						return;
-					}
-					Proveedores proveedores = new Proveedores();
-					proveedores.setNombre(txtNombre.getText());
-					proveedores.setEmail(txtEmail.getText());
-					proveedores.setTelefono(Integer.parseInt(txtTelefono.getText().toString()));
-					proveedores.setDireccion(txtDireccion.getText());
-					if (dao.insertarProveedores(proveedores)) {
-						JOptionPane.showMessageDialog(null, "SE AGREGO CORRECTAMENTE");
-					} else {
-						JOptionPane.showMessageDialog(null, "ERROR");
-					}
-
-				} catch (Exception e2) {
-					JOptionPane.showMessageDialog(null, "ERROR");
-				}
-			}
-		});
-		btnAgregar.setBounds(10, 255, 89, 23);
-		contentPane.add(btnAgregar);
-
-		btnEliminar = new JButton("ELIMINAR");
-		btnEliminar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				try {
-					int opcion=JOptionPane.showConfirmDialog(null,"ESTAS SEGURO DE ELIMINAR ESTE PROVEEDOR??","ELIMINAR CARACTERISTICAS",JOptionPane.YES_NO_OPTION);
-				    if (opcion ==0) {
-					if (dao.eliminarProveedores(provedores.getId())) {
-						actualizarTabla();
-						limpiar();
-						JOptionPane.showMessageDialog(null, "SE ELIMINÓ CORRECTAMENTE");
-
-					} else {
-						JOptionPane.showMessageDialog(null, "ERROR");
-
-					}
-				    }
-
-				} catch (Exception e2) {
-					JOptionPane.showMessageDialog(null, "ERROR");
-				}
+		tblClientes = new JTable();
+		tblClientes.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				fila = tblClientes.getSelectedRow();
+				proveedores = lista.get(fila);
+				lblId.setText("" + proveedores.getIdproveedores());
+				txtNombrec.setText(proveedores.getNombreprov());
+				txtEmailc.setText(proveedores.getEmailprov());
+				txtDireccionc.setText(proveedores.getDireccionprov());
+				txtTelefonoc.setText(""+proveedores.getTelefonoprov());
 				
+
 			}
 		});
-		btnEliminar.setBounds(10, 302, 89, 23);
-		contentPane.add(btnEliminar);
+		tblClientes.setModel(new DefaultTableModel(
+			new Object[][] {
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+			},
+			new String[] {
+				"New column", "New column", "New column", "New column", "New column"
+			}
+		));
+		scrollPane.setViewportView(tblClientes);
+
+		btnAgrgar = new JButton("AGREGAR");
+		btnAgrgar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					Proveedores proveedores = new Proveedores();
+					proveedores.setNombreprov(txtNombrec.getText());
+					proveedores.setEmailprov(txtEmailc.getText());
+					proveedores.setDireccionprov(txtDireccionc.getText());
+					proveedores.setTelefonoprov(Integer.parseInt(txtTelefonoc.getText().toString()));
+
+					if (dao.insertarProveedores(proveedores)) {
+						actualizarTabla();
+						JOptionPane.showMessageDialog(null, "SE AGREGO CORRCTAMENTE");
+					} else {
+						JOptionPane.showMessageDialog(null, "ERROR");
+					}
+
+				} catch (Exception ex) {
+					JOptionPane.showMessageDialog(null, "ERROR");
+
+				}
+
+			}
+		});
+		btnAgrgar.setBounds(233, 7, 89, 23);
+		NOMBRE.add(btnAgrgar);
 
 		btnEditar = new JButton("EDITAR");
 		btnEditar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					if (txtNombre.getText().equals("") || txtEmail.getText().equals("")
-							|| txtTelefono.getText().equals("") || txtDireccion.getText().equals("")) {
-						actualizarTabla();
-						JOptionPane.showMessageDialog(null, "CAMPOS VACÍOS");
+					if (txtNombrec.getText().equals("") || txtEmailc.getText().equals("")
+							|| txtDireccionc.getText().equals("") || txtTelefonoc.getText().equals("")) {
+						JOptionPane.showMessageDialog(null, "CAMPOS VACIOS");
 						return;
 					}
-					provedores.setNombre(txtNombre.getText());
-					provedores.setEmail(txtEmail.getText());
-					provedores.setTelefono(Integer.parseInt(txtTelefono.getText().toString()));
-					provedores.setDireccion(txtDireccion.getText());
-					if (dao.editarProveedores(provedores)) {
-						JOptionPane.showMessageDialog(null, "SE EDITÓ CORRECTAMENTE");
+					proveedores.setNombreprov(txtNombrec.getText());
+					proveedores.setEmailprov(txtEmailc.getText());
+					proveedores.setDireccionprov(txtDireccionc.getText());
+					proveedores.setTelefonoprov(Integer.parseInt(txtTelefonoc.getText().toString()));
+					if (dao.editarProveedores(proveedores)) {
+						actualizarTabla();
+						limpiar();
+						JOptionPane.showMessageDialog(null, "SE A CORRECTAMENTE");
+
 					} else {
 						JOptionPane.showMessageDialog(null, "ERROR");
 					}
-					
+
 				} catch (Exception e2) {
 					JOptionPane.showMessageDialog(null, "ERROR");
-					
 				}
 			}
 		});
-		btnEditar.setBounds(10, 337, 89, 23);
-		contentPane.add(btnEditar);
+		btnEditar.setBounds(233, 41, 89, 23);
+		NOMBRE.add(btnEditar);
+
+		btnEliminar = new JButton("ELIMINAR");
+		btnEliminar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					int opcion = JOptionPane.showConfirmDialog(null, "ESTA SEGURO DE ELIMINAR ESTE CLIENTE ?",
+							"ELIMINAR USUARIO", JOptionPane.YES_NO_OPTION);
+					if (opcion == 0) {
+						if (dao.eliminarProveedores(lista.get(fila).getIdproveedores())) {
+							actualizarTabla();
+							JOptionPane.showMessageDialog(null, "SE ELIMINO CORRECTAMENTE !!");
+						} else {
+							JOptionPane.showMessageDialog(null, "ERROR");
+						}
+					}
+				} catch (Exception ex) {
+					JOptionPane.showMessageDialog(null, "ERROR");
+				}
+			}
+		});
+		btnEliminar.setBounds(233, 75, 89, 23);
+		NOMBRE.add(btnEliminar);
 
 		btnBorrar = new JButton("BORRAR");
 		btnBorrar.addActionListener(new ActionListener() {
@@ -236,44 +224,52 @@ public class vProveedores extends JFrame {
 				limpiar();
 			}
 		});
-		btnBorrar.setBounds(10, 371, 89, 23);
-		contentPane.add(btnBorrar);
-
-		scrollPane = new JScrollPane();
-		scrollPane.setBounds(173, 11, 610, 365);
-		contentPane.add(scrollPane);
-
-		tblProveedores = new JTable();
-		tblProveedores.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				fila = tblProveedores.getSelectedRow();
-				provedores = lista.get(fila);
-				lblId.setText("" + provedores.getId());
-				txtNombre.setText(provedores.getNombre());
-				txtEmail.setText(provedores.getEmail());
-				txtTelefono.setText("" + provedores.getTelefono());
-				txtDireccion.setText(provedores.getDireccion());
-
-			}
-		});
-		tblProveedores.setModel(new DefaultTableModel(
-				new Object[][] { { null, null, null, null, null }, { null, null, null, null, null },
-						{ null, null, null, null, null }, { null, null, null, null, null },
-						{ null, null, null, null, null }, { null, null, null, null, null }, },
-				new String[] { "New column", "New column", "New column", "New column", "New column" }));
-		actualizarTabla();
-
+		btnBorrar.setBounds(233, 112, 89, 23);
+		NOMBRE.add(btnBorrar);
 		
+		JLabel lblTelefono = new JLabel("TELEFONO");
+		lblTelefono.setBounds(10, 158, 71, 14);
+		NOMBRE.add(lblTelefono);
+		
+		txtTelefonoc = new JTextField();
+		txtTelefonoc.setColumns(10);
+		txtTelefonoc.setBounds(106, 155, 86, 20);
+		NOMBRE.add(txtTelefonoc);
+
 		modelo.addColumn("ID");
 		modelo.addColumn("NOMBRE");
 		modelo.addColumn("EMAIL");
-		modelo.addColumn("TELÉFONO");
-		modelo.addColumn("DIRECCIÓN");
+		modelo.addColumn("DIRECCION");
+		modelo.addColumn("TELEFONO");
 		actualizarTabla();
-	
-	
+		
 	}
-	
+
+	public void actualizarTabla() {
+		while (modelo.getRowCount() > 0) {
+			modelo.removeRow(0);
+		}
+		lista = dao.consultaProveedores();
+		for (Proveedores u : lista) {
+			Object o[] = new Object[5];
+			o[0] = u.getIdproveedores();
+			o[1] = u.getNombreprov();
+			o[2] = u.getEmailprov();
+			o[3] = u.getDireccionprov();
+			o[4] = u.getTelefonoprov();
+			
+			
+			modelo.addRow(o);
+		}
+		tblClientes.setModel(modelo);
+	}
+
+	public void limpiar() {
+		txtNombrec.setText("");
+		txtEmailc.setText("");
+		txtDireccionc.setText("");
+		txtTelefonoc.setText("");
+	}
 }
+
 

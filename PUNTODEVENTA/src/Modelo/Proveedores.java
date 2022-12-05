@@ -1,11 +1,12 @@
 package Modelo;
 
 public class Proveedores {
-	int id;
-    String nombre;
-    String email;
-    String direccion;
-    int telefono;
+	int idproveedores;
+    String nombreprov;
+    String emailprov;
+    String direccionprov;
+    int telefonoprov;
+    
 
 
 
@@ -16,62 +17,62 @@ public Proveedores(){
 
 
 
-public int getId() {
-	return id;
+public int getIdproveedores() {
+	return idproveedores;
 }
 
 
 
-public void setId(int id) {
-	this.id = id;
+public void setIdproveedores(int idproveedores) {
+	this.idproveedores = idproveedores;
 }
 
 
 
-public String getNombre() {
-	return nombre;
+public String getNombreprov() {
+	return nombreprov;
 }
 
 
 
-public void setNombre(String nombre) {
-	this.nombre = nombre;
+public void setNombreprov(String nombreprov) {
+	this.nombreprov = nombreprov;
 }
 
 
 
-public String getEmail() {
-	return email;
+public String getEmailprov() {
+	return emailprov;
 }
 
 
 
-public void setEmail(String email) {
-	this.email = email;
+public void setEmailprov(String emailprov) {
+	this.emailprov = emailprov;
 }
 
 
 
-public String getDireccion() {
-	return direccion;
+public String getDireccionprov() {
+	return direccionprov;
 }
 
 
 
-public void setDireccion(String direccion) {
-	this.direccion = direccion;
+public void setDireccionprov(String direccionprov) {
+	this.direccionprov = direccionprov;
 }
 
 
 
-public int getTelefono() {
-	return telefono;
+public int getTelefonoprov() {
+	return telefonoprov;
 }
 
 
 
-public void setTelefono(int telefono) {
-	this.telefono = telefono;
+public void setTelefonoprov(int telefonoprov) {
+	this.telefonoprov = telefonoprov;
 }
 }
 

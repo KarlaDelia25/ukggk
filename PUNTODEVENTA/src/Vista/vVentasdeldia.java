@@ -70,7 +70,7 @@ public class vVentasdeldia extends JFrame {
 		lblNewLabel.setBounds(200, 52, 171, 31);
 		contentPane.add(lblNewLabel);
 		
-		JButton btnNewButton = new JButton("IMPRIMIR");
+		JButton btnNewButton = new JButton("PDF");
 		btnNewButton.setBounds(575, 100, 89, 23);
 		contentPane.add(btnNewButton);
 		

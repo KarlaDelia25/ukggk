@@ -3,7 +3,7 @@ package Modelo;
 
 
 public class Inventario {
-	int id;
+	int idinventario;
 	int cantidad;
 	int importe;
 	int existencia;
@@ -12,12 +12,12 @@ public class Inventario {
 		
 	}
 
-	public int getId() {
-		return id;
+	public int getIdinventario() {
+		return idinventario;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setIdinventario(int idinventario) {
+		this.idinventario = idinventario;
 	}
 
 	public int getCantidad() {
@@ -44,3 +44,5 @@ public class Inventario {
 		this.existencia = existencia;
 	}
 }
+
+	

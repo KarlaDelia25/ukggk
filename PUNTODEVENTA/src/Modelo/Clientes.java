@@ -2,10 +2,10 @@ package Modelo;
 
 public class Clientes {
 	int idClientes;
-    String nombre;
-    String email;
-    String direccion;
-    int telefono;
+    String nombrecliente;
+    String emailcliente;
+    String direccioncliente;
+    int telefonocliente;
 
 
 
@@ -28,52 +28,51 @@ public void setIdClientes(int idClientes) {
 
 
 
-public String getNombre() {
-	return nombre;
+public String getNombrecliente() {
+	return nombrecliente;
 }
 
 
 
-public void setNombre(String nombre) {
-	this.nombre = nombre;
+public void setNombrecliente(String nombrecliente) {
+	this.nombrecliente = nombrecliente;
 }
 
 
 
-public String getEmail() {
-	return email;
+public String getEmailcliente() {
+	return emailcliente;
 }
 
 
 
-public void setEmail(String email) {
-	this.email = email;
+public void setEmailcliente(String emailcliente) {
+	this.emailcliente = emailcliente;
 }
 
 
 
-public String getDireccion() {
-	return direccion;
+public String getDireccioncliente() {
+	return direccioncliente;
 }
 
 
 
-public void setDireccion(String direccion) {
-	this.direccion = direccion;
+public void setDireccioncliente(String direccioncliente) {
+	this.direccioncliente = direccioncliente;
 }
 
 
 
-public int getTelefono() {
-	return telefono;
+public int getTelefonocliente() {
+	return telefonocliente;
 }
 
 
 
-public void setTelefono(int telefono) {
-	this.telefono = telefono;
+public void setTelefonocliente(int telefonocliente) {
+	this.telefonocliente = telefonocliente;
 }
-
 }
 
 

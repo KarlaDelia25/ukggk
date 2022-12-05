@@ -19,11 +19,10 @@ public class daoRefacciones{
 	public boolean insertarProductos(Refacciones produc) {
 		PreparedStatement ps = null;
 		try {
-			ps = cx.conectar().prepareStatement("INSERT INTO productos VALUES(null,?,?,?,?)");
+			ps = cx.conectar().prepareStatement("INSERT INTO productos VALUES(null,?,?,?)");
 			ps.setString(1, produc.getDescripccion());
 			ps.setDouble(2, produc.getPrecio());
 			ps.setDouble(3, produc.getPrecioventa());
-			ps.setString(4, produc.getImg());
 			ps.executeUpdate();
 			cx.desconectar();
 			return true;
@@ -45,11 +44,10 @@ public class daoRefacciones{
 			rs = ps.executeQuery();
 			while (rs.next()) {
 				Refacciones productos = new Refacciones();
-				productos.setId(rs.getInt("id"));
+				productos.setIdproductos(rs.getInt("idproductos"));
 				productos.setDescripccion(rs.getString("descripcion"));
 				productos.setPrecio(rs.getDouble("precio"));
-				productos.setPrecio(rs.getDouble("precioventa"));
-				productos.setImg(rs.getString("img"));
+				productos.setPrecioventa(rs.getDouble("precioventa"));
 				lista.add(productos);
 
 			}
@@ -60,11 +58,11 @@ public class daoRefacciones{
 
 	}
 
-	public boolean eliminarProductos(int id) {
+	public boolean eliminarProductos(int idproductos) {
 		PreparedStatement ps = null;
 		try {
-			ps = cx.conectar().prepareStatement("DELETE FROM productos WHERE id =?");
-			ps.setInt(1, id);
+			ps = cx.conectar().prepareStatement("DELETE FROM productos WHERE idproductos =?");
+			ps.setInt(1, idproductos);
 			ps.executeUpdate();
 			cx.desconectar();
 			return true;
@@ -80,11 +78,11 @@ public class daoRefacciones{
 public boolean editarProductos(Refacciones produc) {
 	PreparedStatement ps = null;
 	try {
-		ps = cx.conectar().prepareStatement("UPDATE productoss  SET descripcion=?,precio=?precioventa=?,img=? WHERE id=?");
+		ps = cx.conectar().prepareStatement("UPDATE productos  SET descripcion=?,precio=?,precioventa=? WHERE idproductos=?");
 		ps.setString(1, produc.getDescripccion());
-		ps.setDouble(3, produc.getPrecio());
-		ps.setString(4, produc.getImg());
-		ps.setInt(4, produc.getId());
+		ps.setDouble(2, produc.getPrecio());
+		ps.setDouble(3, produc.getPrecioventa());
+		ps.setInt(5, produc.getIdproductos());
 		ps.executeUpdate();
 		cx.desconectar();
 		return true;

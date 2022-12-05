@@ -20,10 +20,10 @@ public class daoProveedores {
 		PreparedStatement ps = null;
 		try {
 			ps = cx.conectar().prepareStatement("INSERT INTO proveedores VALUES(null,?,?,?,?)");
-			ps.setString(1, prov.getNombre());
-			ps.setString(2, prov.getEmail());
-			ps.setString(3, prov.getDireccion());
-			ps.setInt(4, prov.getTelefono());
+			ps.setString(1, prov.getNombreprov());
+			ps.setString(2, prov.getEmailprov());
+			ps.setString(3, prov.getDireccionprov());
+			ps.setInt(4, prov.getTelefonoprov());
 			ps.executeUpdate();
 			cx.desconectar();
 			return true;
@@ -45,11 +45,11 @@ public class daoProveedores {
 			rs = ps.executeQuery();
 			while (rs.next()) {
 				Proveedores proveedores = new Proveedores();
-				proveedores.setId(rs.getInt("id"));
-				proveedores.setNombre(rs.getString("nombre"));
-				proveedores.setEmail(rs.getString("email"));
-				proveedores.setDireccion(rs.getString("direccion"));
-				proveedores.setTelefono(rs.getInt("telefono"));
+				proveedores.setIdproveedores(rs.getInt("idproveedores"));
+				proveedores.setNombreprov(rs.getString("nombre"));
+				proveedores.setEmailprov(rs.getString("email"));
+				proveedores.setDireccionprov(rs.getString("direccion"));
+				proveedores.setTelefonoprov(rs.getInt("telefono"));
 				lista.add(proveedores);
 
 			}
@@ -60,11 +60,11 @@ public class daoProveedores {
 
 	}
 
-	public boolean eliminarProveedores(int id) {
+	public boolean eliminarProveedores(int idprov) {
 		PreparedStatement ps = null;
 		try {
-			ps = cx.conectar().prepareStatement("DELETE FROM proveedores WHERE id =?");
-			ps.setInt(1, id);
+			ps = cx.conectar().prepareStatement("DELETE FROM proveedores WHERE idproveedores =?");
+			ps.setInt(1, idprov);
 			ps.executeUpdate();
 			cx.desconectar();
 			return true;
@@ -80,12 +80,12 @@ public class daoProveedores {
 public boolean editarProveedores(Proveedores prov) {
 	PreparedStatement ps = null;
 	try {
-		ps = cx.conectar().prepareStatement("UPDATE proveedores  SET nombre=?,email=?,direccion=?,telefono=? WHERE id=?");
-		ps.setString(1, prov.getNombre());
-		ps.setString(2, prov.getEmail());
-		ps.setString(3, prov.getDireccion());
-		ps.setInt(4, prov.getTelefono());
-		ps.setInt(5, prov.getId());
+		ps = cx.conectar().prepareStatement("UPDATE proveedores  SET nombre=?,email=?,direccion=?,telefono=? WHERE idproveedores?");
+		ps.setString(1, prov.getNombreprov());
+		ps.setString(2, prov.getEmailprov());
+		ps.setString(3, prov.getDireccionprov());
+		ps.setInt(4, prov.getTelefonoprov());
+		ps.setInt(5, prov.getIdproveedores());
 		ps.executeUpdate();
 		cx.desconectar();
 		return true;

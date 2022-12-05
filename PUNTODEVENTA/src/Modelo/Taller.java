@@ -1,7 +1,7 @@
 package Modelo;
 
 public class Taller {
-	int id;
+	int idtaller;
 	String detalles;
 	String refacciones;
 	Double costototal;
@@ -16,14 +16,14 @@ public Taller() {
 
 
 
-public int getId() {
-	return id;
+public int getIdtaller() {
+	return idtaller;
 }
 
 
 
-public void setId(int id) {
-	this.id = id;
+public void setIdtaller(int idtaller) {
+	this.idtaller = idtaller;
 }
 
 
@@ -85,5 +85,8 @@ public String getCliente() {
 public void setCliente(String cliente) {
 	this.cliente = cliente;
 }
+
+
+
 }
 

@@ -21,10 +21,10 @@ public class daoClientes {
 		PreparedStatement ps = null;
 		try {
 			ps = cx.conectar().prepareStatement("INSERT INTO clientes VALUES(null,?,?,?,?)");
-			ps.setString(1, prov.getNombre());
-			ps.setString(2, prov.getEmail());
-			ps.setString(3, prov.getDireccion());
-			ps.setInt(4, prov.getTelefono());
+			ps.setString(1, prov.getNombrecliente());
+			ps.setString(2, prov.getEmailcliente());
+			ps.setString(3, prov.getDireccioncliente());
+			ps.setInt(4, prov.getTelefonocliente());
 			ps.executeUpdate();
 			cx.desconectar();
 			return true;
@@ -46,11 +46,11 @@ public class daoClientes {
 			rs = ps.executeQuery();
 			while (rs.next()) {
 				Clientes clientes = new Clientes();
-				clientes.setIdClientes(rs.getInt("id"));
-				clientes.setNombre(rs.getString("nombre"));
-				clientes.setEmail(rs.getString("email"));
-				clientes.setDireccion(rs.getString("direccion"));
-				clientes.setTelefono(rs.getInt("telefono"));
+				clientes.setIdClientes(rs.getInt("idclientes"));
+				clientes.setNombrecliente(rs.getString("nombre"));
+				clientes.setEmailcliente(rs.getString("email"));
+				clientes.setDireccioncliente(rs.getString("direccion"));
+				clientes.setTelefonocliente(rs.getInt("telefono"));
 				lista.add(clientes);
 
 			}
@@ -61,11 +61,11 @@ public class daoClientes {
 
 	}
 
-	public boolean eliminarclientes(int id) {
+	public boolean eliminarclientes(int idclientes) {
 		PreparedStatement ps = null;
 		try {
-			ps = cx.conectar().prepareStatement("DELETE FROM clientes WHERE id =?");
-			ps.setInt(1, id);
+			ps = cx.conectar().prepareStatement("DELETE FROM clientes WHERE idclientes=?");
+			ps.setInt(1, idclientes);
 			ps.executeUpdate();
 			cx.desconectar();
 			return true;
@@ -81,11 +81,11 @@ public class daoClientes {
 public boolean editarclientes(Clientes clien) {
 	PreparedStatement ps = null;
 	try {
-		ps = cx.conectar().prepareStatement("UPDATE clientes SET nombre=?,email=?,direccion=?,telefono=? WHERE id=?");
-		ps.setString(1, clien.getNombre());
-		ps.setString(2, clien.getEmail());
-		ps.setString(3, clien.getDireccion());
-		ps.setInt(4, clien.getTelefono());
+		ps = cx.conectar().prepareStatement("UPDATE clientes SET nombre=?,email=?,direccion=?,telefono=? WHERE idclientes=?");
+		ps.setString(1, clien.getNombrecliente());
+		ps.setString(2, clien.getEmailcliente());
+		ps.setString(3, clien.getDireccioncliente());
+		ps.setInt(4, clien.getTelefonocliente());
 		ps.setInt(5, clien.getIdClientes());
 		ps.executeUpdate();
 		cx.desconectar();

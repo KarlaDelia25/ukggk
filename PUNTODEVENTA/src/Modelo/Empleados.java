@@ -2,10 +2,10 @@ package Modelo;
 
 public class Empleados {
 	int idEmpleados;
-    String nombre;
-    String email;
-    String direccion;
-    int telefono;
+    String nombreem;
+    String emailem;
+    String direccionem;
+    int telefonoem;
     int rfc;
 
 
@@ -29,50 +29,50 @@ public void setIdEmpleados(int idEmpleados) {
 
 
 
-public String getNombre() {
-	return nombre;
+public String getNombreem() {
+	return nombreem;
 }
 
 
 
-public void setNombre(String nombre) {
-	this.nombre = nombre;
+public void setNombreem(String nombreem) {
+	this.nombreem = nombreem;
 }
 
 
 
-public String getEmail() {
-	return email;
+public String getEmailem() {
+	return emailem;
 }
 
 
 
-public void setEmail(String email) {
-	this.email = email;
+public void setEmailem(String emailem) {
+	this.emailem = emailem;
 }
 
 
 
-public String getDireccion() {
-	return direccion;
+public String getDireccionem() {
+	return direccionem;
 }
 
 
 
-public void setDireccion(String direccion) {
-	this.direccion = direccion;
+public void setDireccionem(String direccionem) {
+	this.direccionem = direccionem;
 }
 
 
 
-public int getTelefono() {
-	return telefono;
+public int getTelefonoem() {
+	return telefonoem;
 }
 
 
 
-public void setTelefono(int telefono) {
-	this.telefono = telefono;
+public void setTelefonoem(int telefonoem) {
+	this.telefonoem = telefonoem;
 }
 
 
@@ -86,5 +86,7 @@ public int getRfc() {
 public void setRfc(int rfc) {
 	this.rfc = rfc;
 }
-
 }
+
+
+
