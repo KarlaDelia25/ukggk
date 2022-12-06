@@ -93,6 +93,7 @@ public class DaoProvedor {
             ps = null;
             cx.desconectar();
         } catch (SQLException ex) {
+        	ex.printStackTrace();
             System.out.println("Fallo metodo read");
         }
         return lista2;

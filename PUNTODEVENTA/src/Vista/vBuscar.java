@@ -78,16 +78,16 @@ public class vBuscar extends javax.swing.JFrame {
 		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 		getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-		jLabel1.setText("Proveedor");
+		jLabel1.setText("id");
 		getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 21, -1, -1));
 
-		jLabel2.setText("Contacto");
+		jLabel2.setText("descripcion");
 		getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, -1, -1));
 
-		jLabel3.setText("Telefono");
+		jLabel3.setText("precio");
 		getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, -1, -1));
 
-		jLabel4.setText("Cuidad");
+		jLabel4.setText("precioventa");
 		getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, -1, -1));
 		getContentPane().add(txtCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 130, 150, 30));
 
