@@ -1,6 +1,8 @@
 package Vista;
 
+import java.awt.BorderLayout;
 import java.awt.Desktop;
+import java.awt.EventQueue;
 import java.awt.Toolkit;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -13,7 +15,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import com.itextpdf.text.BaseColor;
@@ -31,20 +36,47 @@ import com.itextpdf.text.pdf.PdfWriter;
 
 import Dao.DaoProvedor;
 import Modelo.Proveedor;
-import javax.swing.JButton;
-import javax.swing.JTextField;
 
-public class vBuscar extends javax.swing.JFrame {
+public class vBuscar extends JFrame {
 
+	private JPanel contentPane;
+	private javax.swing.JButton btnAgregar;
+	private javax.swing.JButton btnEliminar;
+	private javax.swing.JButton btnPDF;
+	private javax.swing.JLabel jLabel5;
+	private javax.swing.JScrollPane jScrollPane1;
+	private javax.swing.JTable tblDatos;
+	private javax.swing.JTextField txtBuscar;
+	
 	Proveedor p, p1;
 	DaoProvedor DaoProveedor;
 	int id = 0;
 	ArrayList<Proveedor> listaProveedors = null;
 	Object opciones[] = { "Aceptar" };
-	static DefaultTableModel model = new DefaultTableModel();
+	DefaultTableModel model = new DefaultTableModel();
 
+	
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					vBuscar frame = new vBuscar();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	
 	public vBuscar() {
-		setTitle("BUSCAR Y AGREGAR PRODUCTO");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 616, 429);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		
 		initComponents();
 		model.addColumn("NOMBRE");
 		model.addColumn("CONTACTO");
@@ -54,21 +86,25 @@ public class vBuscar extends javax.swing.JFrame {
 		p1 = new Proveedor();
 		refrescarTabla();
 	}
-
-	@SuppressWarnings("unchecked")
-	// <editor-fold defaultstate="collapsed" desc="Generated
-	// Code">//GEN-BEGIN:initComponents
+	
 	private void initComponents() {
 		btnAgregar = new javax.swing.JButton();
+		btnAgregar.setBounds(37, 146, 61, 33);
 		btnEliminar = new javax.swing.JButton();
+		btnEliminar.setBounds(126, 146, 61, 33);
 		jScrollPane1 = new javax.swing.JScrollPane();
+		jScrollPane1.setBounds(10, 190, 580, 189);
 		tblDatos = new javax.swing.JTable();
 		jLabel5 = new javax.swing.JLabel();
+		jLabel5.setBounds(223, 98, 80, 40);
 		txtBuscar = new javax.swing.JTextField();
+		txtBuscar.setBounds(215, 142, 245, 40);
 		btnPDF = new javax.swing.JButton();
+		btnPDF.setBounds(484, 142, 80, 40);
+		//setSize(600, 700);
+		
+		
 
-		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-		getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
 		btnAgregar.setText("Agregar");
 		btnAgregar.addActionListener(new java.awt.event.ActionListener() {
@@ -76,7 +112,9 @@ public class vBuscar extends javax.swing.JFrame {
 				btnAgregarActionPerformed(evt);
 			}
 		});
-		getContentPane().add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 80, 40));
+		getContentPane().setLayout(null);
+		contentPane.setLayout(null);
+		getContentPane().add(btnAgregar);
 
 		btnEliminar.setText("Eliminar");
 		btnEliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -84,7 +122,7 @@ public class vBuscar extends javax.swing.JFrame {
 				btnEliminarActionPerformed(evt);
 			}
 		});
-		getContentPane().add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 190, 70, 40));
+		getContentPane().add(btnEliminar);
 
 		tblDatos.setModel(
 				new DefaultTableModel(
@@ -101,17 +139,17 @@ public class vBuscar extends javax.swing.JFrame {
 		});
 		jScrollPane1.setViewportView(tblDatos);
 
-		getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, 630, 220));
+		getContentPane().add(jScrollPane1);
 
 		jLabel5.setText("BUSCAR");
-		getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 280, -1, -1));
+		getContentPane().add(jLabel5);
 
 		txtBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
 			public void keyReleased(java.awt.event.KeyEvent evt) {
 				txtBuscarKeyReleased(evt);
 			}
 		});
-		getContentPane().add(txtBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 270, 270, 30));
+		getContentPane().add(txtBuscar);
 
 		btnPDF.setText("PDF");
 		btnPDF.addActionListener(new java.awt.event.ActionListener() {
@@ -119,11 +157,12 @@ public class vBuscar extends javax.swing.JFrame {
 				btnPDFActionPerformed(evt);
 			}
 		});
-		getContentPane().add(btnPDF, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 190, 70, 40));
+		getContentPane().add(btnPDF);
 
-		pack();
+	
 	}// </editor-fold>//GEN-END:initComponents
 
+	
 	private void btnPDFActionPerformed(java.awt.event.ActionEvent evt) {
 		try {
 			FileOutputStream archivo;
@@ -310,48 +349,4 @@ public class vBuscar extends javax.swing.JFrame {
 		//txtCiudad.setText("");
 	}
 
-	public static void main(String args[]) {
-		/* Set the Nimbus look and feel */
-		// <editor-fold defaultstate="collapsed" desc=" Look and feel setting code
-		// (optional) ">
-		/*
-		 * If Nimbus (introduced in Java SE 6) is not available, stay with the default
-		 * look and feel. For details see
-		 * http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-		 */
-		try {
-			for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-				if ("Nimbus".equals(info.getName())) {
-					javax.swing.UIManager.setLookAndFeel(info.getClassName());
-					break;
-				}
-			}
-		} catch (ClassNotFoundException ex) {
-			java.util.logging.Logger.getLogger(vBuscar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-		} catch (InstantiationException ex) {
-			java.util.logging.Logger.getLogger(vBuscar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-		} catch (IllegalAccessException ex) {
-			java.util.logging.Logger.getLogger(vBuscar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-		} catch (javax.swing.UnsupportedLookAndFeelException ex) {
-			java.util.logging.Logger.getLogger(vBuscar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-		}
-		// </editor-fold>
-
-		/* Create and display the form */
-		java.awt.EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				new vBuscar().setVisible(true);
-			}
-		});
-	}
-
-	// Variables declaration - do not modify//GEN-BEGIN:variables
-	private javax.swing.JButton btnAgregar;
-	private javax.swing.JButton btnEliminar;
-	private javax.swing.JButton btnPDF;
-	private javax.swing.JLabel jLabel5;
-	private javax.swing.JScrollPane jScrollPane1;
-	private javax.swing.JTable tblDatos;
-	private javax.swing.JTextField txtBuscar;
-	// End of variables declaration//GEN-END:variables
 }

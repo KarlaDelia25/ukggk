@@ -207,6 +207,11 @@ public class vRefacciones extends javax.swing.JFrame {
         JButton btnNewButton = new JButton("PASAR FILA");
         btnNewButton.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
+        	}
+        });
+        JButton jButton = new JButton();
+		jButton.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
         		int FilaSeleccionada=tablaAuto.getSelectedRow();
         		
         		if(FilaSeleccionada>=0) {

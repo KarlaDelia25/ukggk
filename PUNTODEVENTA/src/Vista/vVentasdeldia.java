@@ -73,21 +73,5 @@ public class vVentasdeldia extends JFrame {
 		JButton btnNewButton = new JButton("PDF");
 		btnNewButton.setBounds(575, 100, 89, 23);
 		contentPane.add(btnNewButton);
-		
-		JButton btnAgregar = new JButton("AGREGAR");
-		btnAgregar.setBounds(54, 56, 89, 23);
-		contentPane.add(btnAgregar);
-		
-		JButton btnBorrar = new JButton("BORRAR");
-		btnBorrar.setBounds(54, 100, 89, 23);
-		contentPane.add(btnBorrar);
-		
-		JButton btnEditar = new JButton("EDITAR");
-		btnEditar.setBounds(54, 150, 89, 23);
-		contentPane.add(btnEditar);
-		
-		JButton btnEliminar = new JButton("ELIMINAR");
-		btnEliminar.setBounds(54, 196, 89, 23);
-		contentPane.add(btnEliminar);
 	}
 }
