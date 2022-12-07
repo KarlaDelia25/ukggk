@@ -20,16 +20,21 @@ import java.awt.SystemColor;
 import javax.swing.border.MatteBorder;
 import java.awt.Color;
 import javax.swing.border.LineBorder;
+import javax.swing.JLabel;
 
 public class vPrincipal extends JFrame {
-	private JDesktopPane desktopPane;
 	double ancho = Toolkit.getDefaultToolkit().getScreenSize().getWidth();
 	double alto = Toolkit.getDefaultToolkit().getScreenSize().getWidth();
-	private JButton btnNewButton;
-	private JMenuBar menuBar;
 	private JPanel contentPane;
 	private JToolBar barraHerramientas;
-	vUsuario Usuario = new vUsuario();
+	private JButton btnNewButton;
+	private JButton btnNewButton_1;
+	private JButton btnNewButton_2;
+	private JButton btnNewButton_3;
+	private JButton btnNewButton_4;
+	private JButton btnNewButton_5;
+	private JButton btnNewButton_6;
+	private JButton btnNewButton_7;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -45,49 +50,50 @@ public class vPrincipal extends JFrame {
 	}
 
 	public vPrincipal() {
-		setTitle("SISTEMA POS");
+		setTitle("PINWORKSHOP");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 1104, 876);
 		contentPane = new JPanel();
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-
-		menuBar = new JMenuBar();
-		menuBar.setForeground(SystemColor.desktop);
-		menuBar.setFont(new Font("Stencil", Font.PLAIN, 13));
-		menuBar.setBounds(0, 0, 1306, 22);
-		contentPane.add(menuBar);
-
-		JMenu mnNewMenu = new JMenu("CRUDS");
-		mnNewMenu.setBorder(new MatteBorder(4, 4, 4, 4, (Color) new Color(0, 0, 0)));
-		menuBar.add(mnNewMenu);
-
-		JMenuItem mntmNewMenuItem = new JMenuItem("USUARIO");
-		mnNewMenu.add(mntmNewMenuItem);
-
-		JToolBar toolBar = new JToolBar();
-		toolBar.setFont(new Font("Stencil", Font.PLAIN, 13));
-		toolBar.setBounds(0, 22, 424, 28);
-		contentPane.add(toolBar);
-
-		btnNewButton = new JButton("CRUD USUARIOS");
-		btnNewButton.setBorder(new MatteBorder(4, 4, 4, 6, (Color) new Color(0, 0, 0)));
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Usuario.setVisible(true);
-
-			}
-		});
-		toolBar.add(btnNewButton);
-
-		desktopPane = new JDesktopPane();
-		desktopPane.setBorder(new LineBorder(new Color(0, 0, 0), 5));
-		desktopPane.setBounds(0, 53, 408, 221);
-		desktopPane.setSize((int) ancho, (int) alto);
-		contentPane.add(desktopPane);
-		desktopPane.add(Usuario);
+		
+		btnNewButton = new JButton("VENTAS");
+		btnNewButton.setBounds(10, 11, 89, 23);
+		contentPane.add(btnNewButton);
+		
+		btnNewButton_1 = new JButton("CLIENTES");
+		btnNewButton_1.setBounds(109, 11, 89, 23);
+		contentPane.add(btnNewButton_1);
+		
+		btnNewButton_2 = new JButton("EMPLEADOS");
+		btnNewButton_2.setBounds(209, 11, 89, 23);
+		contentPane.add(btnNewButton_2);
+		
+		btnNewButton_3 = new JButton("REFACCIONES");
+		btnNewButton_3.setBounds(308, 11, 89, 23);
+		contentPane.add(btnNewButton_3);
+		
+		btnNewButton_4 = new JButton("TALLER");
+		btnNewButton_4.setBounds(10, 49, 89, 23);
+		contentPane.add(btnNewButton_4);
+		
+		btnNewButton_5 = new JButton("INVENTARIO");
+		btnNewButton_5.setBounds(109, 49, 89, 23);
+		contentPane.add(btnNewButton_5);
+		
+		btnNewButton_6 = new JButton("USUARIO");
+		btnNewButton_6.setBounds(219, 49, 89, 23);
+		contentPane.add(btnNewButton_6);
+		
+		btnNewButton_7 = new JButton("PROVEEDORES");
+		btnNewButton_7.setBounds(318, 49, 89, 23);
+		contentPane.add(btnNewButton_7);
+		
+		JLabel lblNewLabel = new JLabel("New label");
+		lblNewLabel.setBounds(61, 117, 684, 462);
+		contentPane.add(lblNewLabel);
 	}
 }

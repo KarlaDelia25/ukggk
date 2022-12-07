@@ -30,8 +30,8 @@ public  daoBuscar () {
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				Buscar p = new Buscar();
-				p.setIdproductos(rs.getInt("idproveedor"));
-				p.setDescripccion(rs.getString("descripcion"));
+				p.setIdrefaccion(rs.getInt("idproductos"));
+				p.setDescripcion(rs.getString("descripcion"));
 				p.setPrecio(rs.getDouble("precio"));
 				p.setPrecioventa(rs.getDouble("precioventa"));
 

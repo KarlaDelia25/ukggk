@@ -33,6 +33,7 @@ public class vLogin extends JFrame {
 	private JTextField txtUser;
 	private JLabel lblNewLabel_1;
 	DaoUsuario dao = new DaoUsuario();
+	private JButton btnNewButton;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -140,5 +141,9 @@ public class vLogin extends JFrame {
 		lblNewLabel_1.setIcon(new ImageIcon("C:\\Users\\Alumnos\\Pictures\\Nicky.png"));
 		lblNewLabel_1.setBounds(362, 48, 483, 237);
 		contentPane.add(lblNewLabel_1);
+		
+		btnNewButton = new JButton("CREAR NUEVO USUARIO");
+		btnNewButton.setBounds(132, 245, 180, 23);
+		contentPane.add(btnNewButton);
 	}
 }

@@ -36,11 +36,14 @@ import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 import javax.swing.border.LineBorder;
 import java.awt.Color;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 
 public class vRefacciones extends javax.swing.JFrame {
-
-    
+	
+    DefaultTableModel modelotabla;
     ImageIcon imgOri = null;
     String imagenActual = "";
     daoRefacciones dao = new daoRefacciones();
@@ -52,6 +55,13 @@ public class vRefacciones extends javax.swing.JFrame {
         this.setTitle("REFACCIONES");
         tablaAuto.setRowHeight(100);
         verTabla();
+    }
+ 
+    
+    public void nuevatabla() {
+    	modelotabla=new DefaultTableModel();
+    	
+    	
     }
 
    
@@ -193,6 +203,31 @@ public class vRefacciones extends javax.swing.JFrame {
         JLabel lblNewLabel = new JLabel("0");
         lblNewLabel.setBounds(46, 30, 46, 14);
         jPanel1.add(lblNewLabel);
+        
+        JButton btnNewButton = new JButton("PASAR FILA");
+        btnNewButton.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		int FilaSeleccionada=tablaAuto.getSelectedRow();
+        		
+        		if(FilaSeleccionada>=0) {
+        			String Datos[]=new String[2];
+        			Datos[0]=tablaAuto.getValueAt(FilaSeleccionada,0).toString();
+        			Datos[1]=tablaAuto.getValueAt(FilaSeleccionada,1).toString();
+        			Datos[2]=tablaAuto.getValueAt(FilaSeleccionada,2).toString();
+        			Datos[3]=tablaAuto.getValueAt(FilaSeleccionada,3).toString();
+        			Datos[4]=tablaAuto.getValueAt(FilaSeleccionada,4).toString();
+        			Datos[5]=tablaAuto.getValueAt(FilaSeleccionada,5).toString();
+        			
+        			vBuscar.model.addRow(Datos);
+        			modelotabla.removeRow(FilaSeleccionada);
+        			
+        			
+        		} 
+        	
+        	}
+        });
+        btnNewButton.setBounds(534, 220, 121, 23);
+        jPanel1.add(btnNewButton);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -350,6 +385,8 @@ public class vRefacciones extends javax.swing.JFrame {
         modeloTabla.addColumn("MARCA");
         modeloTabla.addColumn("IMAGEN");
         lista = dao.read();
+        vBuscar tabla2=new vBuscar();
+        tabla2.setVisible(true);
         for (Refacciones a : lista) {
             Object[] columna = new Object[5];
             columna[0] = a.getIdrefaccion();
@@ -362,6 +399,7 @@ public class vRefacciones extends javax.swing.JFrame {
         }
         tablaAuto.setModel(modeloTabla);
     }
+    
     private void btnBorrar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrar1ActionPerformed
     	txtMarca.setText("");
         txtMarca.setText("");
@@ -376,11 +414,7 @@ public class vRefacciones extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+       
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -397,9 +431,7 @@ public class vRefacciones extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(vRefacciones.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-
-        /* Create and display the form */
+        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new vRefacciones().setVisible(true);
@@ -407,7 +439,7 @@ public class vRefacciones extends javax.swing.JFrame {
         });
     }
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+    
     private javax.swing.JButton btnActualizar;
     private javax.swing.JButton btnBorrar1;
     private javax.swing.JButton btnCargarFoto;

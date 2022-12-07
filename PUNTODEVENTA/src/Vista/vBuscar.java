@@ -31,6 +31,8 @@ import com.itextpdf.text.pdf.PdfWriter;
 
 import Dao.DaoProvedor;
 import Modelo.Proveedor;
+import javax.swing.JButton;
+import javax.swing.JTextField;
 
 public class vBuscar extends javax.swing.JFrame {
 
@@ -39,9 +41,10 @@ public class vBuscar extends javax.swing.JFrame {
 	int id = 0;
 	ArrayList<Proveedor> listaProveedors = null;
 	Object opciones[] = { "Aceptar" };
-	DefaultTableModel model = new DefaultTableModel();
+	static DefaultTableModel model = new DefaultTableModel();
 
 	public vBuscar() {
+		setTitle("BUSCAR Y AGREGAR PRODUCTO");
 		initComponents();
 		model.addColumn("NOMBRE");
 		model.addColumn("CONTACTO");
@@ -56,19 +59,8 @@ public class vBuscar extends javax.swing.JFrame {
 	// <editor-fold defaultstate="collapsed" desc="Generated
 	// Code">//GEN-BEGIN:initComponents
 	private void initComponents() {
-
-		jLabel1 = new javax.swing.JLabel();
-		jLabel2 = new javax.swing.JLabel();
-		jLabel3 = new javax.swing.JLabel();
-		jLabel4 = new javax.swing.JLabel();
-		txtCiudad = new javax.swing.JTextField();
-		txtProveedor = new javax.swing.JTextField();
-		txtContacto = new javax.swing.JTextField();
-		txtTelefono = new javax.swing.JTextField();
-		btnLimpiar = new javax.swing.JButton();
 		btnAgregar = new javax.swing.JButton();
 		btnEliminar = new javax.swing.JButton();
-		btnGuardar = new javax.swing.JButton();
 		jScrollPane1 = new javax.swing.JScrollPane();
 		tblDatos = new javax.swing.JTable();
 		jLabel5 = new javax.swing.JLabel();
@@ -77,36 +69,6 @@ public class vBuscar extends javax.swing.JFrame {
 
 		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 		getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-		jLabel1.setText("id");
-		getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 21, -1, -1));
-
-		jLabel2.setText("descripcion");
-		getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, -1, -1));
-
-		jLabel3.setText("precio");
-		getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, -1, -1));
-
-		jLabel4.setText("precioventa");
-		getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, -1, -1));
-		getContentPane().add(txtCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 130, 150, 30));
-
-		txtProveedor.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				txtProveedorActionPerformed(evt);
-			}
-		});
-		getContentPane().add(txtProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 10, 150, 30));
-		getContentPane().add(txtContacto, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 50, 150, 30));
-		getContentPane().add(txtTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 90, 150, 30));
-
-		btnLimpiar.setText("Limpiar");
-		btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				btnLimpiarActionPerformed(evt);
-			}
-		});
-		getContentPane().add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 190, 70, 40));
 
 		btnAgregar.setText("Agregar");
 		btnAgregar.addActionListener(new java.awt.event.ActionListener() {
@@ -124,19 +86,14 @@ public class vBuscar extends javax.swing.JFrame {
 		});
 		getContentPane().add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 190, 70, 40));
 
-		btnGuardar.setText("Guardar");
-		btnGuardar.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				btnGuardarActionPerformed(evt);
-			}
-		});
-		getContentPane().add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 190, -1, 40));
-
 		tblDatos.setModel(
-				new javax.swing.table.DefaultTableModel(
-						new Object[][] { { null, null, null, null }, { null, null, null, null },
-								{ null, null, null, null }, { null, null, null, null } },
-						new String[] { "Title 1", "Title 2", "Title 3", "Title 4" }));
+				new DefaultTableModel(
+			new Object[][] {
+			},
+			new String[] {
+				"New column", "New column", "New column", "New column", "New column", "New column"
+			}
+		));
 		tblDatos.addMouseListener(new java.awt.event.MouseAdapter() {
 			public void mouseClicked(java.awt.event.MouseEvent evt) {
 				tblDatosMouseClicked(evt);
@@ -166,10 +123,6 @@ public class vBuscar extends javax.swing.JFrame {
 
 		pack();
 	}// </editor-fold>//GEN-END:initComponents
-
-	private void txtProveedorActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_txtProveedorActionPerformed
-		// TODO add your handling code here:
-	}// GEN-LAST:event_txtProveedorActionPerformed
 
 	private void btnPDFActionPerformed(java.awt.event.ActionEvent evt) {
 		try {
@@ -254,10 +207,10 @@ public class vBuscar extends javax.swing.JFrame {
 
 	private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnAgregarActionPerformed
 		p = new Proveedor();
-		p.setNombreProveedor(txtProveedor.getText().toString());
-		p.setNombreContacto(txtContacto.getText().toString());
-		p.setTelefonoProveedor(txtTelefono.getText().toString());
-		p.setCiudadProveedor(txtCiudad.getText().toString());
+		//p.setNombreProveedor(txtProveedor.getText().toString());
+	//	p.setNombreContacto(txtContacto.getText().toString());
+		//p.setTelefonoProveedor(txtTelefono.getText().toString());
+		//p.setCiudadProveedor(txtCiudad.getText().toString());
 		if (!p.validaProveedor()) {
 			JOptionPane.showOptionDialog(this, "Falta llenar campos", "ERROR", JOptionPane.DEFAULT_OPTION,
 					JOptionPane.INFORMATION_MESSAGE, new ImageIcon(getClass().getResource("/imagenes/logooxxomin.png")),
@@ -286,47 +239,11 @@ public class vBuscar extends javax.swing.JFrame {
 		int fila = tblDatos.getSelectedRow();
 		id = listaProveedors.get(fila).getIdProveedor();
 		p1 = DaoProveedor.read(id);
-		txtProveedor.setText(p1.getNombreProveedor());
-		txtContacto.setText(p1.getNombreContacto());
-		txtTelefono.setText(p1.getTelefonoProveedor());
-		txtCiudad.setText(p1.getCiudadProveedor());
+		//txtProveedor.setText(p1.getNombreProveedor());
+		//txtContacto.setText(p1.getNombreContacto());
+		//txtTelefono.setText(p1.getTelefonoProveedor());
+		//txtCiudad.setText(p1.getCiudadProveedor());
 	}// GEN-LAST:event_tblDatosMouseClicked
-
-	private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnGuardarActionPerformed
-		p1.setNombreProveedor(txtProveedor.getText().toString());
-		p1.setNombreContacto(txtContacto.getText().toString());
-		p1.setTelefonoProveedor(txtTelefono.getText().toString());
-		p1.setCiudadProveedor(txtCiudad.getText().toString());
-		if (p1.getIdProveedor() > 0) {
-
-			if (!p1.validaProveedor()) {
-				JOptionPane.showOptionDialog(this, "Falta Llenar Campos", "ERROR", JOptionPane.DEFAULT_OPTION,
-						JOptionPane.INFORMATION_MESSAGE,
-						new ImageIcon(getClass().getResource("/imagenes/logooxxomin.png")), opciones, opciones[0]);
-				return;
-			}
-			if (!DaoProveedor.update(p1)) {
-				JOptionPane.showOptionDialog(this, "Error al Actualizar Registro", "ERROR", JOptionPane.DEFAULT_OPTION,
-						JOptionPane.INFORMATION_MESSAGE,
-						new ImageIcon(getClass().getResource("/imagenes/logooxxomin.png")), opciones, opciones[0]);
-			} else {
-				JOptionPane.showOptionDialog(this, "Se Actualizo Correctamente!!", "EXITO!!!",
-						JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE,
-						new ImageIcon(getClass().getResource("/imagenes/logooxxomin.png")), opciones, opciones[0]);
-			}
-		} else {
-			JOptionPane.showOptionDialog(this, "Falta seleccionar un Registro a Eliminar", "ERROR",
-					JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE,
-					new ImageIcon(getClass().getResource("/imagenes/logooxxomin.png")), opciones, opciones[0]);
-		}
-
-		limpiarCampos();
-		refrescarTabla();
-	}// GEN-LAST:event_btnGuardarActionPerformed
-
-	private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnLimpiarActionPerformed
-		limpiarCampos();
-	}// GEN-LAST:event_btnLimpiarActionPerformed
 
 	private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnEliminarActionPerformed
 		if (id > 0) {
@@ -387,10 +304,10 @@ public class vBuscar extends javax.swing.JFrame {
 	}
 
 	public void limpiarCampos() {
-		txtProveedor.setText("");
-		txtContacto.setText("");
-		txtTelefono.setText("");
-		txtCiudad.setText("");
+		//txtProveedor.setText("");
+		//txtContacto.setText("");
+		//txtTelefono.setText("");
+		//txtCiudad.setText("");
 	}
 
 	public static void main(String args[]) {
@@ -431,20 +348,10 @@ public class vBuscar extends javax.swing.JFrame {
 	// Variables declaration - do not modify//GEN-BEGIN:variables
 	private javax.swing.JButton btnAgregar;
 	private javax.swing.JButton btnEliminar;
-	private javax.swing.JButton btnGuardar;
-	private javax.swing.JButton btnLimpiar;
 	private javax.swing.JButton btnPDF;
-	private javax.swing.JLabel jLabel1;
-	private javax.swing.JLabel jLabel2;
-	private javax.swing.JLabel jLabel3;
-	private javax.swing.JLabel jLabel4;
 	private javax.swing.JLabel jLabel5;
 	private javax.swing.JScrollPane jScrollPane1;
 	private javax.swing.JTable tblDatos;
 	private javax.swing.JTextField txtBuscar;
-	private javax.swing.JTextField txtCiudad;
-	private javax.swing.JTextField txtContacto;
-	private javax.swing.JTextField txtProveedor;
-	private javax.swing.JTextField txtTelefono;
 	// End of variables declaration//GEN-END:variables
 }
