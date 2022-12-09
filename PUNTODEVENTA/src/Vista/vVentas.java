@@ -153,7 +153,7 @@ public class vVentas extends JFrame {
 		btnImprimirTicket.setFont(new Font("Tahoma", Font.PLAIN, 8));
 		btnImprimirTicket.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 128, 192)));
 		btnImprimirTicket.setBackground(SystemColor.textHighlight);
-		btnImprimirTicket.setBounds(608, 471, 85, 23);
+		btnImprimirTicket.setBounds(640, 471, 85, 23);
 		contentPane.add(btnImprimirTicket);
 		
 		

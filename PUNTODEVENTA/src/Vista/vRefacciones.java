@@ -24,6 +24,7 @@ import java.awt.Toolkit;
 import java.awt.SystemColor;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.Color;
 
 public class vRefacciones extends JFrame {
 
@@ -61,7 +62,7 @@ public class vRefacciones extends JFrame {
 
 		setTitle("REFACCIONES");
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-		setBounds(100, 100, 631, 494);
+		setBounds(100, 100, 998, 537);
 		NOMBRE = new JPanel();
 		NOMBRE.setBackground(SystemColor.inactiveCaption);
 		NOMBRE.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -112,7 +113,7 @@ public class vRefacciones extends JFrame {
 		NOMBRE.add(lblId);
 
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 186, 595, 258);
+		scrollPane.setBounds(10, 186, 962, 301);
 		NOMBRE.add(scrollPane);
 
 		tblRefacciones = new JTable();
@@ -243,6 +244,16 @@ public class vRefacciones extends JFrame {
 		txtTelefonoc.setColumns(10);
 		txtTelefonoc.setBounds(106, 155, 86, 20);
 		NOMBRE.add(txtTelefonoc);
+		
+		JButton btnNewButton = new JButton("PASAR FILA");
+		btnNewButton.setBackground(new Color(206, 237, 247));
+		btnNewButton.setBounds(670, 27, 183, 23);
+		NOMBRE.add(btnNewButton);
+		
+		JButton btnNewButton_1 = new JButton("PASAR TODAS LAS FILAS");
+		btnNewButton_1.setBackground(new Color(206, 237, 247));
+		btnNewButton_1.setBounds(670, 83, 183, 23);
+		NOMBRE.add(btnNewButton_1);
 
 		modelo.addColumn("ID");
 		modelo.addColumn("DESCRIPCION");
