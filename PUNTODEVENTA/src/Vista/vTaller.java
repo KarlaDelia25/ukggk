@@ -29,6 +29,8 @@ import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.Font;
+import java.awt.SystemColor;
 
 public class vTaller extends JFrame {
 
@@ -97,9 +99,10 @@ public class vTaller extends JFrame {
 
 	public vTaller() {
 		setTitle("TALLER");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setBounds(100, 100, 926, 655);
 		contentPane = new JPanel();
+		contentPane.setBackground(SystemColor.inactiveCaption);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
@@ -114,6 +117,7 @@ public class vTaller extends JFrame {
 		contentPane.add(lblId);
 
 		JLabel lblNewLabel_2 = new JLabel("DETALLES");
+		lblNewLabel_2.setFont(new Font("Arial", Font.BOLD, 11));
 		lblNewLabel_2.setBounds(48, 51, 78, 14);
 		contentPane.add(lblNewLabel_2);
 
@@ -123,6 +127,7 @@ public class vTaller extends JFrame {
 		txtDetalles.setColumns(10);
 
 		JLabel lblNewLabel_2_1 = new JLabel("REFACCIONES");
+		lblNewLabel_2_1.setFont(new Font("Arial", Font.BOLD, 11));
 		lblNewLabel_2_1.setBounds(48, 260, 101, 14);
 		contentPane.add(lblNewLabel_2_1);
 
@@ -132,10 +137,12 @@ public class vTaller extends JFrame {
 		contentPane.add(txtCostototal);
 
 		JLabel lblNewLabel_2_2 = new JLabel("COSTO TOTAL");
+		lblNewLabel_2_2.setFont(new Font("Arial", Font.BOLD, 11));
 		lblNewLabel_2_2.setBounds(10, 469, 74, 14);
 		contentPane.add(lblNewLabel_2_2);
 
 		btnAgregar = new JButton("AGREGAR");
+		btnAgregar.setBackground(SystemColor.textHighlight);
 		btnAgregar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -166,6 +173,7 @@ public class vTaller extends JFrame {
 		contentPane.add(btnAgregar);
 
 		btnEliminar = new JButton("ELIMINAR");
+		btnEliminar.setBackground(SystemColor.textHighlight);
 		btnEliminar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -192,6 +200,7 @@ public class vTaller extends JFrame {
 		contentPane.add(btnEliminar);
 
 		btnEditar = new JButton("EDITAR");
+		btnEditar.setBackground(SystemColor.textHighlight);
 		btnEditar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -222,6 +231,7 @@ public class vTaller extends JFrame {
 		contentPane.add(btnEditar);
 
 		btnBorrar = new JButton("BORRAR");
+		btnBorrar.setBackground(SystemColor.textHighlight);
 		btnBorrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				limpiar();
@@ -273,6 +283,7 @@ public class vTaller extends JFrame {
 		contentPane.add(textRefacciones);
 		
 		hioj = new JLabel("MECANICO");
+		hioj.setFont(new Font("Arial", Font.BOLD, 11));
 		hioj.setBounds(10, 516, 74, 14);
 		contentPane.add(hioj);
 		
@@ -287,6 +298,7 @@ public class vTaller extends JFrame {
 		contentPane.add(txtCliente);
 		
 		lblCliente = new JLabel("CLIENTE");
+		lblCliente.setFont(new Font("Arial", Font.BOLD, 11));
 		lblCliente.setBounds(10, 556, 46, 14);
 		contentPane.add(lblCliente);
 		

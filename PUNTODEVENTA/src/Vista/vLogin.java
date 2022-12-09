@@ -23,6 +23,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
 import java.awt.Color;
+import javax.swing.border.MatteBorder;
+import javax.swing.border.LineBorder;
 
 public class vLogin extends JFrame {
 
@@ -33,7 +35,6 @@ public class vLogin extends JFrame {
 	private JTextField txtUser;
 	private JLabel lblNewLabel_1;
 	DaoUsuario dao = new DaoUsuario();
-	private JButton btnNewButton;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -62,18 +63,19 @@ public class vLogin extends JFrame {
 
 		JLabel lblNewLabel = new JLabel("Usuario");
 		lblNewLabel.setForeground(SystemColor.text);
-		lblNewLabel.setFont(new Font("Times New Roman", Font.PLAIN, 18));
+		lblNewLabel.setFont(new Font("Arial", Font.BOLD, 18));
 		lblNewLabel.setBounds(51, 22, 72, 38);
 		contentPane.add(lblNewLabel);
 
 		JLabel lblPassword = new JLabel("Password");
 		lblPassword.setForeground(SystemColor.text);
-		lblPassword.setFont(new Font("Times New Roman", Font.PLAIN, 18));
-		lblPassword.setBounds(51, 107, 72, 38);
+		lblPassword.setFont(new Font("Arial", Font.BOLD, 18));
+		lblPassword.setBounds(51, 107, 131, 38);
 		contentPane.add(lblPassword);
 
 		btnEntrar = new JButton("Entrar");
-		btnEntrar.setBackground(SystemColor.activeCaptionText);
+		btnEntrar.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
+		btnEntrar.setBackground(new Color(0, 0, 0));
 		btnEntrar.setIcon(null);
 		btnEntrar.setForeground(SystemColor.inactiveCaptionBorder);
 		btnEntrar.addActionListener(new ActionListener() {
@@ -82,7 +84,7 @@ public class vLogin extends JFrame {
 				user.setUser(txtUser.getText());
 				user.setPassword(String.valueOf(txtPassword.getPassword()));
 				if (dao.loginUsuarios(user)) {
-					JOptionPane.showMessageDialog(null, "BIENVENIDO MANITO");
+					JOptionPane.showMessageDialog(null, "BIENVENIDO	");
 					vCargando cargando = new vCargando();
 					setVisible(false);
 					cargando.setVisible(true);
@@ -93,24 +95,26 @@ public class vLogin extends JFrame {
 
 			}
 		});
-		btnEntrar.setFont(new Font("Times New Roman", Font.PLAIN, 18));
+		btnEntrar.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 18));
 		btnEntrar.setBounds(70, 197, 89, 23);
 		contentPane.add(btnEntrar);
 
 		btnCancelar = new JButton("Cancelar");
-		btnCancelar.setBackground(SystemColor.desktop);
+		btnCancelar.setBorder(new LineBorder(new Color(0, 0, 0)));
+		btnCancelar.setBackground(new Color(0, 0, 0));
 		btnCancelar.setForeground(SystemColor.inactiveCaptionBorder);
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null, "ADIOSITO");
+				JOptionPane.showMessageDialog(null, "ADIOS");
 				System.exit(0);
 			}
 		});
-		btnCancelar.setFont(new Font("Times New Roman", Font.PLAIN, 18));
+		btnCancelar.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 18));
 		btnCancelar.setBounds(213, 197, 111, 23);
 		contentPane.add(btnCancelar);
 
 		txtPassword = new JPasswordField();
+		txtPassword.setBackground(new Color(192, 192, 192));
 		txtPassword.setForeground(new Color(0, 102, 153));
 		txtPassword.addKeyListener(new KeyAdapter() {
 			@Override
@@ -124,6 +128,7 @@ public class vLogin extends JFrame {
 		contentPane.add(txtPassword);
 
 		txtUser = new JTextField();
+		txtUser.setBackground(new Color(192, 192, 192));
 		txtUser.setForeground(new Color(0, 128, 128));
 		txtUser.addKeyListener(new KeyAdapter() {
 			@Override
@@ -137,13 +142,9 @@ public class vLogin extends JFrame {
 		contentPane.add(txtUser);
 		txtUser.setColumns(10);
 
-		lblNewLabel_1 = new JLabel("New label");
-		lblNewLabel_1.setIcon(new ImageIcon("C:\\Users\\Alumnos\\Pictures\\Nicky.png"));
-		lblNewLabel_1.setBounds(362, 48, 483, 237);
+		lblNewLabel_1 = new JLabel("");
+		lblNewLabel_1.setIcon(new ImageIcon(vLogin.class.getResource("/img/uh.png")));
+		lblNewLabel_1.setBounds(362, 0, 483, 313);
 		contentPane.add(lblNewLabel_1);
-		
-		btnNewButton = new JButton("CREAR NUEVO USUARIO");
-		btnNewButton.setBounds(132, 245, 180, 23);
-		contentPane.add(btnNewButton);
 	}
 }

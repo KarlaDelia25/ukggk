@@ -67,7 +67,7 @@ public class vCargando extends JFrame {
 		barCargando = new JProgressBar();
 		barCargando.setForeground(SystemColor.desktop);
 		barCargando.setStringPainted(true);
-		barCargando.setFont(new Font("Tw Cen MT Condensed", Font.PLAIN, 19));
+		barCargando.setFont(new Font("Arial", Font.BOLD, 19));
 		barCargando.setBounds(0, 0, 658, 129);
 		contentPane.add(barCargando);
 		Cargando();

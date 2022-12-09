@@ -8,6 +8,7 @@ public class Refacciones {
     Double precioventa;
     String marca;
     String imagen;
+    
 
     public Refacciones() {
     	
@@ -60,6 +61,7 @@ public class Refacciones {
 	public void setImagen(String imagen) {
 		this.imagen = imagen;
 	}
-    }
+}
 
-    
+
+	

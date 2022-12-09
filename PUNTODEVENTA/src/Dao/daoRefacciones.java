@@ -1,6 +1,5 @@
 package Dao;
 
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -22,7 +21,7 @@ public class daoRefacciones {
 
     public boolean create(Refacciones a) {
         try {
-            String sql = "INSERT INTO refacciones (idrefacciones,descripcion,precio,precioventa,marca,imagen) VALUES(null,?,?,?,?,?)";
+            String sql = "INSERT INTO refacciones (idrefaacion,descripcion,precio,precioventa, imagen) VALUES(null,?,?,?,?,?)";
             PreparedStatement ps = cx.conectar().prepareStatement(sql);
             ps.setString(1, a.getDescripcion());
             ps.setDouble(2, a.getPrecio());
@@ -66,16 +65,16 @@ public class daoRefacciones {
         return lista;
     }
 
-    public Refacciones read(int idauto) {
+    public Refacciones read(int idrefaccion) {
         Refacciones a = new Refacciones();
         try {
             String sql = "SELECT * FROM refacciones WHERE idrefaccion=?";
             PreparedStatement ps = cx.conectar().prepareStatement(sql);
-            ps.setInt(1, idauto);
+            ps.setInt(1, idrefaccion);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
-                a.setIdrefaccion(rs.getInt("idauto"));
-                a.setDescripcion(rs.getString("marca"));
+                a.setIdrefaccion(rs.getInt("idrefaccion"));
+                a.setMarca(rs.getString("descripcion"));
                 a.setPrecio(rs.getDouble("precio"));
                 a.setPrecioventa(rs.getDouble("precioventa"));
                 a.setMarca(rs.getString("marca"));
@@ -92,13 +91,13 @@ public class daoRefacciones {
 
     public boolean update(Refacciones a) {
         try {
-            String sql = "UPDATE refacciones SET "
+            String sql = "UPDATE auto SET "
                     + "descripcion=?,"
                     + "precio=?,"
                     + "precioventa=?,"
                     + "marca=?,"
                     + "imagen=?"
-                    + "WHERE idauto=?";
+                    + "WHERE idrefaccion=?";
             PreparedStatement ps = cx.conectar().prepareStatement(sql);
             ps.setString(1, a.getDescripcion());
             ps.setDouble(2, a.getPrecio());
@@ -118,7 +117,7 @@ public class daoRefacciones {
 
     public boolean delete(int idrefaccion) {
         try {
-            String sql = "DELETE FROM auto WHERE idrefaacion=?";
+            String sql = "DELETE FROM refacciones WHERE idrefaccion=?";
             PreparedStatement ps = cx.conectar().prepareStatement(sql);
             ps.setInt(1, idrefaccion);
             ps.execute();

@@ -25,6 +25,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.Toolkit;
+import java.awt.SystemColor;
+import java.awt.Font;
 
 public class vClientes extends JFrame {
 
@@ -62,9 +64,10 @@ public class vClientes extends JFrame {
 		//setLocationRelativeTo(null);
 		//setIconImage(Toolkit.getDefaultToolkit().getImage(vUsuario.class.getResource("/img/Ying.jpg")));
 		setTitle("CLIENTES");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setBounds(100, 100, 534, 352);
 		NOMBRE = new JPanel();
+		NOMBRE.setBackground(SystemColor.inactiveCaption);
 		NOMBRE.setBorder(new EmptyBorder(5, 5, 5, 5));
 		//setLocationRelativeTo(null);
 
@@ -72,24 +75,29 @@ public class vClientes extends JFrame {
 		NOMBRE.setLayout(null);
 
 		txtNombrec = new JTextField();
+		txtNombrec.setBackground(SystemColor.activeCaptionBorder);
 		txtNombrec.setColumns(10);
 		txtNombrec.setBounds(106, 53, 86, 20);
 		NOMBRE.add(txtNombrec);
 
 		txtEmailc = new JTextField();
+		txtEmailc.setBackground(SystemColor.activeCaptionBorder);
 		txtEmailc.setColumns(10);
 		txtEmailc.setBounds(106, 84, 86, 20);
 		NOMBRE.add(txtEmailc);
 
 		JLabel lblNewLabel = new JLabel("NOMBRE");
+		lblNewLabel.setFont(new Font("Arial", Font.BOLD, 11));
 		lblNewLabel.setBounds(10, 56, 71, 14);
 		NOMBRE.add(lblNewLabel);
 
 		JLabel Password = new JLabel("EMAIL");
+		Password.setFont(new Font("Arial", Font.BOLD, 11));
 		Password.setBounds(10, 87, 59, 14);
 		NOMBRE.add(Password);
 
 		JLabel gdfjgjdfioj = new JLabel("DIRECCION");
+		gdfjgjdfioj.setFont(new Font("Arial", Font.BOLD, 11));
 		gdfjgjdfioj.setBounds(10, 121, 71, 14);
 		NOMBRE.add(gdfjgjdfioj);
 
@@ -98,6 +106,7 @@ public class vClientes extends JFrame {
 		NOMBRE.add(lblNewLabel_3);
 
 		txtDireccionc = new JTextField();
+		txtDireccionc.setBackground(SystemColor.activeCaptionBorder);
 		txtDireccionc.setBounds(106, 118, 86, 20);
 		NOMBRE.add(txtDireccionc);
 		txtDireccionc.setColumns(10);
@@ -111,6 +120,7 @@ public class vClientes extends JFrame {
 		NOMBRE.add(scrollPane);
 
 		tblClientes = new JTable();
+		tblClientes.setBackground(SystemColor.activeCaptionBorder);
 		tblClientes.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -140,6 +150,7 @@ public class vClientes extends JFrame {
 		scrollPane.setViewportView(tblClientes);
 
 		btnAgrgar = new JButton("AGREGAR");
+		btnAgrgar.setBackground(SystemColor.textHighlight);
 		btnAgrgar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -167,6 +178,7 @@ public class vClientes extends JFrame {
 		NOMBRE.add(btnAgrgar);
 
 		btnEditar = new JButton("EDITAR");
+		btnEditar.setBackground(SystemColor.textHighlight);
 		btnEditar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -197,6 +209,7 @@ public class vClientes extends JFrame {
 		NOMBRE.add(btnEditar);
 
 		btnEliminar = new JButton("ELIMINAR");
+		btnEliminar.setBackground(SystemColor.textHighlight);
 		btnEliminar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -219,6 +232,7 @@ public class vClientes extends JFrame {
 		NOMBRE.add(btnEliminar);
 
 		btnBorrar = new JButton("BORRAR");
+		btnBorrar.setBackground(SystemColor.textHighlight);
 		btnBorrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				limpiar();
@@ -228,10 +242,12 @@ public class vClientes extends JFrame {
 		NOMBRE.add(btnBorrar);
 		
 		JLabel lblTelefono = new JLabel("TELEFONO");
+		lblTelefono.setFont(new Font("Arial", Font.BOLD, 11));
 		lblTelefono.setBounds(10, 158, 71, 14);
 		NOMBRE.add(lblTelefono);
 		
 		txtTelefonoc = new JTextField();
+		txtTelefonoc.setBackground(SystemColor.activeCaptionBorder);
 		txtTelefonoc.setColumns(10);
 		txtTelefonoc.setBounds(106, 155, 86, 20);
 		NOMBRE.add(txtTelefonoc);

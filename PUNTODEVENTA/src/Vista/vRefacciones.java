@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Vista;
 
 
@@ -33,51 +28,40 @@ import Modelo.Refacciones;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JTextField;
-import javax.swing.border.TitledBorder;
-import javax.swing.border.LineBorder;
-import java.awt.Color;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+
 
 
 public class vRefacciones extends javax.swing.JFrame {
+
+
 	
-    DefaultTableModel modelotabla;
-    ImageIcon imgOri = null;
+	ImageIcon imgOri = null;
     String imagenActual = "";
     daoRefacciones dao = new daoRefacciones();
     ArrayList<Refacciones> lista;
     int index = -1;
-    Refacciones auto;
+    Refacciones refacciones;
     public vRefacciones() {
         initComponents();
         this.setTitle("REFACCIONES");
         tablaAuto.setRowHeight(100);
         verTabla();
     }
- 
-    
-    public void nuevatabla() {
-    	modelotabla=new DefaultTableModel();
-    	
-    	
-    }
 
    
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaAuto = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel1.setBounds(20, 106, 80, 14);
-        txtMarca = new javax.swing.JTextField();
-        txtMarca.setBounds(120, 67, 170, 22);
+        jLabel1.setBounds(0, 80, 110, 22);
+        txtPrecio = new javax.swing.JTextField();
+        txtPrecio.setBounds(120, 20, 170, 40);
         jLabel2 = new javax.swing.JLabel();
-        jLabel2.setBounds(20, 71, 80, 14);
+        jLabel2.setBounds(20, 30, 80, 22);
         btnEliminar = new javax.swing.JButton();
         btnEliminar.setBounds(300, 220, 80, 60);
         btnGuardar = new javax.swing.JButton();
@@ -85,11 +69,9 @@ public class vRefacciones extends javax.swing.JFrame {
         btnActualizar = new javax.swing.JButton();
         btnActualizar.setBounds(210, 220, 80, 60);
         btnCargarFoto = new javax.swing.JButton();
-        btnCargarFoto.setBounds(20, 235, 90, 30);
+        btnCargarFoto.setBounds(524, 211, 110, 30);
         btnBorrar1 = new javax.swing.JButton();
         btnBorrar1.setBounds(390, 220, 80, 60);
-        txtModelo = new javax.swing.JTextField();
-        txtModelo.setBounds(120, 103, 170, 22);
         lblImagen = new javax.swing.JLabel();
         lblImagen.setBounds(390, 30, 300, 170);
 
@@ -98,13 +80,13 @@ public class vRefacciones extends javax.swing.JFrame {
 
         tablaAuto.setModel(new DefaultTableModel(
         	new Object[][] {
-        		{null, null, null, null, null, null},
-        		{null, null, null, null, null, null},
-        		{null, null, null, null, null, null},
-        		{null, null, null, null, null, null},
+        		{null, null, null, null, null},
+        		{null, null, null, null, null},
+        		{null, null, null, null, null},
+        		{null, null, null, null, null},
         	},
         	new String[] {
-        		"Title 1", "Title 2", "Title 3", "Title 4", "New column", "New column"
+        		"Title 1", "Title 2", "Title 3", "Title 4", "New column"
         	}
         ));
         tablaAuto.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -116,16 +98,16 @@ public class vRefacciones extends javax.swing.JFrame {
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, 740, 210));
 
-        jPanel1.setBorder(new TitledBorder(null, "REFACCIONES", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+        jPanel1.setBorder(null);
         jPanel1.setLayout(null);
 
-        jLabel1.setFont(new Font("Tahoma", Font.BOLD, 13)); // NOI18N
-        jLabel1.setText("PRECIO");
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel1.setText("PRECIO venta");
         jPanel1.add(jLabel1);
-        jPanel1.add(txtMarca);
+        jPanel1.add(txtPrecio);
 
-        jLabel2.setFont(new Font("Tahoma", Font.BOLD, 11)); // NOI18N
-        jLabel2.setText("DESCRIPCION");
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel2.setText("PRECIO");
         jPanel1.add(jLabel2);
 
         btnEliminar.setText("Eliminar");
@@ -167,84 +149,36 @@ public class vRefacciones extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnBorrar1);
-        jPanel1.add(txtModelo);
 
         lblImagen.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel1.add(lblImagen);
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 740, 300));
         
-        JLabel lblPrecioVenta = new JLabel();
-        lblPrecioVenta.setText("PRECIO VENTA");
-        lblPrecioVenta.setFont(new Font("Tahoma", Font.BOLD, 12));
-        lblPrecioVenta.setBounds(20, 139, 90, 14);
-        jPanel1.add(lblPrecioVenta);
+        lblMarca = new JLabel();
+        lblMarca.setText("MARCA");
+        lblMarca.setFont(new Font("Tahoma", Font.BOLD, 18));
+        lblMarca.setBounds(30, 137, 80, 22);
+        jPanel1.add(lblMarca);
         
-        textField = new JTextField();
-        textField.setBounds(120, 136, 170, 22);
-        jPanel1.add(textField);
+        txtPrecioventa = new JTextField();
+        txtPrecioventa.setBounds(120, 74, 170, 40);
+        jPanel1.add(txtPrecioventa);
         
-        JLabel jLabel1_1_1 = new JLabel();
-        jLabel1_1_1.setText("MARCA");
-        jLabel1_1_1.setFont(new Font("Tahoma", Font.BOLD, 11));
-        jLabel1_1_1.setBounds(20, 169, 90, 14);
-        jPanel1.add(jLabel1_1_1);
-        
-        textField_1 = new JTextField();
-        textField_1.setBounds(120, 169, 170, 22);
-        jPanel1.add(textField_1);
-        
-        JLabel lblId = new JLabel();
-        lblId.setText("ID");
-        lblId.setFont(new Font("Tahoma", Font.BOLD, 11));
-        lblId.setBounds(20, 32, 34, 14);
-        jPanel1.add(lblId);
-        
-        JLabel lblNewLabel = new JLabel("0");
-        lblNewLabel.setBounds(46, 30, 46, 14);
-        jPanel1.add(lblNewLabel);
-        
-        JButton btnNewButton = new JButton("PASAR FILA");
-        btnNewButton.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        	}
-        });
-        JButton jButton = new JButton();
-		jButton.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        		int FilaSeleccionada=tablaAuto.getSelectedRow();
-        		
-        		if(FilaSeleccionada>=0) {
-        			String Datos[]=new String[2];
-        			Datos[0]=tablaAuto.getValueAt(FilaSeleccionada,0).toString();
-        			Datos[1]=tablaAuto.getValueAt(FilaSeleccionada,1).toString();
-        			Datos[2]=tablaAuto.getValueAt(FilaSeleccionada,2).toString();
-        			Datos[3]=tablaAuto.getValueAt(FilaSeleccionada,3).toString();
-        			Datos[4]=tablaAuto.getValueAt(FilaSeleccionada,4).toString();
-        			Datos[5]=tablaAuto.getValueAt(FilaSeleccionada,5).toString();
-        			
-        			vBuscar.model.addRow(Datos);
-        			modelotabla.removeRow(FilaSeleccionada);
-        			
-        			
-        		} 
-        	
-        	}
-        });
-        btnNewButton.setBounds(534, 220, 121, 23);
-        jPanel1.add(btnNewButton);
+        textMarca = new JTextField();
+        textMarca.setBounds(120, 131, 170, 40);
+        jPanel1.add(textMarca);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tablaAutoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaAutoMouseClicked
-        index = tablaAuto.getSelectedRow();
-        auto = dao.read(lista.get(index).getIdrefaccion());
-        txtMarca.setText(auto.getDescripcion());
-        txtModelo.setText(auto.getPrecio().toString());
-        txtModelo.setText(auto.getPrecioventa().toString());
-        txtModelo.setText(auto.getMarca());
-        ImageIcon img = base64ToImage(auto.getImagen());
+    private void tablaAutoMouseClicked(java.awt.event.MouseEvent evt) {
+        refacciones = dao.read(lista.get(index).getIdrefaccion());
+        txtPrecio.setText(refacciones.getDescripcion());
+        txtPrecio.setText(refacciones.getPrecio().toString());
+        txtPrecioventa.setText(refacciones.getPrecioventa().toString());
+        textMarca.setText(refacciones.getMarca());
+        ImageIcon img = base64ToImage(refacciones.getImagen());
         Image image = img.getImage(); // transform it
         Image newimg = image.getScaledInstance(lblImagen.getWidth(), lblImagen.getHeight(), Image.SCALE_SMOOTH); // scale it the smooth way
         ImageIcon i = new ImageIcon(newimg);
@@ -263,44 +197,42 @@ public class vRefacciones extends javax.swing.JFrame {
                 verTabla();
             }
         }
-        btnActualizar.setEnabled(false);
-        btnEliminar.setEnabled(false);
-        btnGuardar.setEnabled(false);
+        
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         Refacciones a = new Refacciones();
-        a.setMarca(txtMarca.getText());
-        a.setPrecio(Double.parseDouble(txtModelo.getText().toString()));
-        a.setPrecioventa(Double.parseDouble(txtModelo.getText().toString()));
-        a.setMarca(txtModelo.getText());
+        a.setDescripcion(txtPrecio.getText());
+        a.setPrecio(Double.parseDouble(txtPrecio.getText().toString()));
+        a.setPrecioventa(Double.parseDouble(txtPrecioventa.getText().toString()));
+        a.setMarca(textMarca.getText());
         a.setImagen(imagenActual);
         if (dao.create(a)) {
             JOptionPane.showMessageDialog(this, "Se Guardo correctamente");
             verTabla();
         } else {
-            JOptionPane.showMessageDialog(this, "Error al Guardar Auto");
+            JOptionPane.showMessageDialog(this, "Error al Guardar refaccion");
         }
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
-        auto.setDescripcion(txtMarca.getText());
-        auto.setPrecio(Double.parseDouble(txtModelo.getText().toString()));
-        auto.setPrecioventa(Double.parseDouble(txtModelo.getText().toString()));
-        auto.setMarca(txtModelo.getText());
-        auto.setImagen(imagenActual);
-        if (dao.update(auto)) {
+        refacciones.setDescripcion(txtPrecio.getText());
+        refacciones.setPrecio(Double.parseDouble(txtPrecio.getText().toString()));
+        refacciones.setPrecioventa(Double.parseDouble(txtPrecioventa.getText().toString()));
+        refacciones.setMarca(textMarca.getText());
+        refacciones.setImagen(imagenActual);
+        if (dao.update(refacciones)) {
             JOptionPane.showMessageDialog(this, "Se Actualizo correctamente");
             verTabla();
         } else {
-            JOptionPane.showMessageDialog(this, "Error al Actualizar Auto");
+            JOptionPane.showMessageDialog(this, "Error al Actualizar refaccion");
         }
         btnActualizar.setEnabled(false);
         btnEliminar.setEnabled(false);
         btnGuardar.setEnabled(false);
     }//GEN-LAST:event_btnActualizarActionPerformed
 
-    private void btnCargarFotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarFotoActionPerformed
+    private void btnCargarFotoActionPerformed(java.awt.event.ActionEvent evt) {
         JFileChooser selector = new JFileChooser();
         FileNameExtensionFilter filtroImagen = new FileNameExtensionFilter("JPG, PNG & GIF", "jpg", "png", "gif");
         selector.setFileFilter(filtroImagen);
@@ -369,7 +301,6 @@ public class vRefacciones extends javax.swing.JFrame {
 
     public void verTabla() {
         DefaultTableModel modeloTabla = new DefaultTableModel() {
-            @Override //Redefinimos el método getColumnClass
             public Class getColumnClass(int column) {
                 switch (column) {
                     case 0:
@@ -377,47 +308,40 @@ public class vRefacciones extends javax.swing.JFrame {
                     case 1:
                         return Object.class;
                     case 2:
+                    	return Object.class;
+                    case 3:
+                    	return Object.class;
+                    case 4:
                         return ImageIcon.class;
                     default:
                         return Object.class;
                 }
             }
         };
-        modeloTabla.addColumn("ID");
         modeloTabla.addColumn("DESCRIPCION");
         modeloTabla.addColumn("PRECIO");
-        modeloTabla.addColumn("PRECIOVENTA");
+        modeloTabla.addColumn("PRECIO VENTA");
         modeloTabla.addColumn("MARCA");
         modeloTabla.addColumn("IMAGEN");
         lista = dao.read();
-        vBuscar tabla2=new vBuscar();
-        tabla2.setVisible(true);
         for (Refacciones a : lista) {
             Object[] columna = new Object[5];
-            columna[0] = a.getIdrefaccion();
-            columna[1] = a.getDescripcion();
-            columna[2] = a.getPrecio();
-            columna[3] = a.getPrecioventa();
-            columna[4] = a.getMarca();
-            columna[5] = base64ToImage(a.getImagen());
+            columna[0] = a.getDescripcion();
+            columna[1] = a.getPrecio();
+            columna[2] = a.getPrecioventa();
+            columna[3] = a.getMarca();
+            columna[4] = base64ToImage(a.getImagen());
             modeloTabla.addRow(columna);
         }
         tablaAuto.setModel(modeloTabla);
     }
-    
-    private void btnBorrar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrar1ActionPerformed
-    	txtMarca.setText("");
-        txtMarca.setText("");
-        txtModelo.setText("");
-        txtMarca.setText("");
-        btnGuardar.setEnabled(false);
-        btnActualizar.setEnabled(false);
-        btnEliminar.setEnabled(false);
-    }//GEN-LAST:event_btnBorrar1ActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
+    private void btnBorrar1ActionPerformed(java.awt.event.ActionEvent evt) {
+        txtPrecio.setText("");
+        txtPrecioventa.setText("");
+        textMarca.setText("");
+        lblImagen.setText("");
+     
+    }
     public static void main(String args[]) {
        
         try {
@@ -436,7 +360,7 @@ public class vRefacciones extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(vRefacciones.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        
+     
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new vRefacciones().setVisible(true);
@@ -456,8 +380,8 @@ public class vRefacciones extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblImagen;
     private javax.swing.JTable tablaAuto;
-    private javax.swing.JTextField txtMarca;
-    private javax.swing.JTextField txtModelo;
-    private JTextField textField;
-    private JTextField textField_1;
+    private javax.swing.JTextField txtPrecio;
+    private JLabel lblMarca;
+    private JTextField txtPrecioventa;
+    private JTextField textMarca;
 }

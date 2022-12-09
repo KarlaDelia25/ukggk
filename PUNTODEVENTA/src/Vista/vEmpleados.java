@@ -64,7 +64,7 @@ public class vEmpleados extends JFrame {
 		//setLocationRelativeTo(null);
 		//setIconImage(Toolkit.getDefaultToolkit().getImage(vUsuario.class.getResource("/img/Ying.jpg")));
 		setTitle("EMPLEADOS");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setBounds(100, 100, 585, 406);
 		NOMBRE = new JPanel();
 		NOMBRE.setBorder(new EmptyBorder(5, 5, 5, 5));

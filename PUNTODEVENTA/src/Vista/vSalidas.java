@@ -31,6 +31,8 @@ import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.SystemColor;
+import java.awt.Font;
 
 public class vSalidas extends JFrame {
 
@@ -89,9 +91,10 @@ public class vSalidas extends JFrame {
 
 	public vSalidas() {
 		setTitle("SALIDAS");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setBounds(100, 100, 799, 505);
 		contentPane = new JPanel();
+		contentPane.setBackground(SystemColor.inactiveCaption);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
@@ -106,24 +109,29 @@ public class vSalidas extends JFrame {
 		contentPane.add(lblidsalida);
 
 		JLabel lblNewLabel_2 = new JLabel("CANTIDAD");
+		lblNewLabel_2.setFont(new Font("Arial", Font.BOLD, 11));
 		lblNewLabel_2.setBounds(10, 74, 46, 14);
 		contentPane.add(lblNewLabel_2);
 
 		txtCantidad = new JTextField();
+		txtCantidad.setBackground(SystemColor.activeCaptionBorder);
 		txtCantidad.setBounds(62, 71, 101, 20);
 		contentPane.add(txtCantidad);
 		txtCantidad.setColumns(10);
 
 		txtFecha = new JTextField();
+		txtFecha.setBackground(SystemColor.activeCaptionBorder);
 		txtFecha.setColumns(10);
 		txtFecha.setBounds(62, 111, 101, 20);
 		contentPane.add(txtFecha);
 
 		JLabel lblNewLabel_2_1 = new JLabel("FECHA");
+		lblNewLabel_2_1.setFont(new Font("Arial", Font.BOLD, 11));
 		lblNewLabel_2_1.setBounds(10, 114, 46, 14);
 		contentPane.add(lblNewLabel_2_1);
 
 		btnAgregar = new JButton("AGREGAR");
+		btnAgregar.setBackground(SystemColor.textHighlight);
 		btnAgregar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -150,6 +158,7 @@ public class vSalidas extends JFrame {
 		contentPane.add(btnAgregar);
 
 		btnEliminar = new JButton("ELIMINAR");
+		btnEliminar.setBackground(SystemColor.textHighlight);
 		btnEliminar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -176,6 +185,7 @@ public class vSalidas extends JFrame {
 		contentPane.add(btnEliminar);
 
 		btnEditar = new JButton("EDITAR");
+		btnEditar.setBackground(SystemColor.textHighlight);
 		btnEditar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -202,6 +212,7 @@ public class vSalidas extends JFrame {
 		contentPane.add(btnEditar);
 
 		btnBorrar = new JButton("BORRAR");
+		btnBorrar.setBackground(SystemColor.textHighlight);
 		btnBorrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				limpiar();
@@ -212,6 +223,7 @@ public class vSalidas extends JFrame {
 
 
 		scrollPane = new JScrollPane();
+		scrollPane.setBackground(SystemColor.scrollbar);
 		scrollPane.setBounds(173, 11, 610, 365);
 		contentPane.add(scrollPane);
 

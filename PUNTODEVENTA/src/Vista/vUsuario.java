@@ -23,6 +23,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.Toolkit;
+import java.awt.Font;
+import java.awt.SystemColor;
 
 public class vUsuario extends JFrame {
 
@@ -56,12 +58,12 @@ public class vUsuario extends JFrame {
 	}
 
 	public vUsuario() {
-		//setLocationRelativeTo(null);
-		//setIconImage(Toolkit.getDefaultToolkit().getImage(vUsuario.class.getResource("/img/Ying.jpg")));
+	
 		setTitle("USUARIO");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		NOMBRE = new JPanel();
+		NOMBRE.setBackground(SystemColor.inactiveCaption);
 		NOMBRE.setBorder(new EmptyBorder(5, 5, 5, 5));
 		//setLocationRelativeTo(null);
 
@@ -79,14 +81,17 @@ public class vUsuario extends JFrame {
 		NOMBRE.add(txtPassword);
 
 		JLabel lblNewLabel = new JLabel("USUARIO");
+		lblNewLabel.setFont(new Font("Arial", Font.BOLD, 11));
 		lblNewLabel.setBounds(10, 56, 71, 14);
 		NOMBRE.add(lblNewLabel);
 
 		JLabel Password = new JLabel("PASSWORD");
+		Password.setFont(new Font("Arial", Font.BOLD, 11));
 		Password.setBounds(10, 87, 59, 14);
 		NOMBRE.add(Password);
 
 		JLabel Nombre = new JLabel("NOMBRE");
+		Nombre.setFont(new Font("Arial", Font.BOLD, 11));
 		Nombre.setBounds(10, 121, 71, 14);
 		NOMBRE.add(Nombre);
 
@@ -127,6 +132,7 @@ public class vUsuario extends JFrame {
 		scrollPane.setViewportView(tblUsuario);
 
 		btnAgrgar = new JButton("AGREGAR");
+		btnAgrgar.setBackground(SystemColor.textHighlight);
 		btnAgrgar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -153,6 +159,7 @@ public class vUsuario extends JFrame {
 		NOMBRE.add(btnAgrgar);
 
 		btnEditar = new JButton("EDITAR");
+		btnEditar.setBackground(SystemColor.textHighlight);
 		btnEditar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -182,6 +189,7 @@ public class vUsuario extends JFrame {
 		NOMBRE.add(btnEditar);
 
 		btnEliminar = new JButton("ELIMINAR");
+		btnEliminar.setBackground(SystemColor.textHighlight);
 		btnEliminar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -204,6 +212,7 @@ public class vUsuario extends JFrame {
 		NOMBRE.add(btnEliminar);
 
 		btnBorrar = new JButton("BORRAR");
+		btnBorrar.setBackground(SystemColor.textHighlight);
 		btnBorrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				limpiar();

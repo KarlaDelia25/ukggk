@@ -31,6 +31,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.Font;
 import javax.swing.border.MatteBorder;
+import java.awt.SystemColor;
 
 public class vVentas extends JFrame {
 
@@ -81,10 +82,11 @@ public class vVentas extends JFrame {
 		
 		
 		
-		setTitle("VENTA DE PRODUCTOS");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setTitle("VENTA");
+		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setBounds(100, 100, 799, 626);
 		contentPane = new JPanel();
+		contentPane.setBackground(SystemColor.activeCaption);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
@@ -96,7 +98,7 @@ public class vVentas extends JFrame {
 
 		tblVentas = new JTable();
 		tblVentas.setSelectionBackground(Color.CYAN);
-		tblVentas.setBackground(new Color(187, 233, 255));
+		tblVentas.setBackground(SystemColor.activeCaptionBorder);
 		tblVentas.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -122,7 +124,7 @@ public class vVentas extends JFrame {
 		});
 		btnEntradas.setFont(new Font("Tahoma", Font.PLAIN, 8));
 		btnEntradas.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 128, 192)));
-		btnEntradas.setBackground(new Color(187, 233, 255));
+		btnEntradas.setBackground(SystemColor.textHighlight);
 		btnEntradas.setBounds(10, 67, 85, 23);
 		contentPane.add(btnEntradas);
 		
@@ -136,7 +138,7 @@ public class vVentas extends JFrame {
 		});
 		btnSalidas.setFont(new Font("Tahoma", Font.PLAIN, 8));
 		btnSalidas.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 128, 192)));
-		btnSalidas.setBackground(new Color(187, 233, 255));
+		btnSalidas.setBackground(SystemColor.activeCaption);
 		btnSalidas.setBounds(105, 67, 85, 23);
 		contentPane.add(btnSalidas);
 		
@@ -147,7 +149,7 @@ public class vVentas extends JFrame {
 		});
 		btnCobrar.setFont(new Font("Tahoma", Font.PLAIN, 8));
 		btnCobrar.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 128, 192)));
-		btnCobrar.setBackground(new Color(187, 233, 255));
+		btnCobrar.setBackground(SystemColor.textHighlight);
 		btnCobrar.setBounds(462, 449, 136, 66);
 		contentPane.add(btnCobrar);
 		
@@ -158,22 +160,10 @@ public class vVentas extends JFrame {
 		});
 		btnImprimirTicket.setFont(new Font("Tahoma", Font.PLAIN, 8));
 		btnImprimirTicket.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 128, 192)));
-		btnImprimirTicket.setBackground(new Color(187, 233, 255));
+		btnImprimirTicket.setBackground(SystemColor.textHighlight);
 		btnImprimirTicket.setBounds(489, 553, 85, 23);
 		contentPane.add(btnImprimirTicket);
 		
-		JButton btnVentasDelDia = new JButton("VENTAS DEL DÍA/MES/AÑO");
-		btnVentasDelDia.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				vVentasdeldia newJframe = new vVentasdeldia ();
-				newJframe.setVisible(true);
-			}
-		});
-		btnVentasDelDia.setFont(new Font("Tahoma", Font.PLAIN, 8));
-		btnVentasDelDia.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 128, 192)));
-		btnVentasDelDia.setBackground(new Color(187, 233, 255));
-		btnVentasDelDia.setBounds(629, 553, 154, 23);
-		contentPane.add(btnVentasDelDia);
 		
 		JLabel lblProductosEn = new JLabel("0 PRODUCTOS EN LA VENTA ACTUAL");
 		lblProductosEn.setFont(new Font("Arial", Font.PLAIN, 12));
@@ -227,6 +217,7 @@ public class vVentas extends JFrame {
 		contentPane.add(lblCambio);
 		
 		JButton btnNewButton = new JButton("BUSCAR Y/OAGREGAR");
+		btnNewButton.setBackground(SystemColor.textHighlight);
 		btnNewButton.setBounds(216, 66, 166, 23);
 		contentPane.add(btnNewButton);
 		actualizarTabla();
