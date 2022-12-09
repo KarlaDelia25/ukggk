@@ -10,6 +10,5 @@
 	<classpathentry kind="lib" path="jcalendar-1.4.jar"/>
 	<classpathentry kind="lib" path="AbsoluteLayout.jar"/>
 	<classpathentry kind="lib" path="itextpdf-5.5.9.jar"/>
-	<classpathentry kind="lib" path="sun.misc.BASE64Decoder.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

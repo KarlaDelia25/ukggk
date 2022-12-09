@@ -20,7 +20,11 @@ import java.awt.Color;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import com.toedter.calendar.JCalendar;
+import com.toedter.calendar.JDateChooser;
+
 import Dao.daoVentas;
+import Modelo.Refacciones;
 import Modelo.Ventas;
 
 import java.awt.event.ActionListener;
@@ -40,7 +44,7 @@ public class vVentas extends JFrame {
 	private JScrollPane scrollPane;
 	daoVentas dao = new daoVentas();
 	DefaultTableModel modelo = new DefaultTableModel();
-	ArrayList<Ventas> lista;
+	ArrayList<Refacciones> lista = new ArrayList<Refacciones>();
 	static double total;
 	double sub_total;
 	double igv;
@@ -60,24 +64,10 @@ public class vVentas extends JFrame {
 			}
 		});
 	}
-	public static DefaultTableModel modelo3                     ;
+	                  
 
-	public void actualizarTabla() {
-
-		while (modelo.getRowCount() > 0) {
-			modelo.removeRow(0);
-		}
-		lista = dao.consultaVentas();
-		for (Ventas ca : lista) {
-			Object carac[] = new Object[4];
-			carac[0] = ca.getCodigo();
-
-			modelo.addRow(carac);
-
-		}
-		tblVentas.setModel(modelo);
-	}
-
+	
+	
 	public vVentas() {
 		
 		
@@ -93,8 +83,10 @@ public class vVentas extends JFrame {
 		contentPane.setLayout(null);
 
 		scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 101, 773, 326);
+		scrollPane.setBounds(10, 114, 773, 324);
 		contentPane.add(scrollPane);
+		
+
 
 		tblVentas = new JTable();
 		tblVentas.setSelectionBackground(Color.CYAN);
@@ -110,7 +102,7 @@ public class vVentas extends JFrame {
 			new Object[][] {
 			},
 			new String[] {
-				"New column", "New column", "New column", "New column", "New column", "New column", "New column"
+				"New column", "New column", "New column", "New column", "New column", "New column"
 			}
 		));
 		scrollPane.setViewportView(tblVentas);
@@ -161,7 +153,7 @@ public class vVentas extends JFrame {
 		btnImprimirTicket.setFont(new Font("Tahoma", Font.PLAIN, 8));
 		btnImprimirTicket.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 128, 192)));
 		btnImprimirTicket.setBackground(SystemColor.textHighlight);
-		btnImprimirTicket.setBounds(489, 553, 85, 23);
+		btnImprimirTicket.setBounds(608, 471, 85, 23);
 		contentPane.add(btnImprimirTicket);
 		
 		
@@ -175,17 +167,12 @@ public class vVentas extends JFrame {
 		hno.setBounds(22, 534, 52, 14);
 		contentPane.add(hno);
 		
-		JLabel lblCobrar = new JLabel("$0.00");
-		lblCobrar.setFont(new Font("Arial", Font.BOLD, 26));
-		lblCobrar.setBounds(649, 472, 174, 43);
-		contentPane.add(lblCobrar);
-		
-		JLabel nkon = new JLabel("PAGÓ CON:");
+		JLabel nkon = new JLabel("SUB TOTAL:");
 		nkon.setFont(new Font("Arial", Font.PLAIN, 12));
 		nkon.setBounds(99, 534, 81, 14);
 		contentPane.add(nkon);
 		
-		JLabel ojojji = new JLabel("CAMBIO:");
+		JLabel ojojji = new JLabel("IGV:");
 		ojojji.setFont(new Font("Arial", Font.PLAIN, 12));
 		ojojji.setBounds(190, 534, 66, 14);
 		contentPane.add(ojojji);
@@ -193,8 +180,24 @@ public class vVentas extends JFrame {
 		JButton btnEliminar = new JButton("ELIMINAR VENTA");
 		btnEliminar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			}
-		});
+					try {
+						int opcion = JOptionPane.showConfirmDialog(null, "ESTA SEGURO DE ELIMINAR ESTA VENTA ?",
+								"ELIMINAR USUARIO", JOptionPane.YES_NO_OPTION);
+						if (opcion == 0) {
+							if (dao.delete(lista.get(fila).getIdrefaccion())) {
+								actualizarTabla();
+								JOptionPane.showMessageDialog(null, "SE ELIMINO CORRECTAMENTE !!");
+							} else {
+								JOptionPane.showMessageDialog(null, "ERROR");
+							}
+						}
+					} catch (Exception ex) {
+						JOptionPane.showMessageDialog(null, "ERROR");
+					}
+				}
+			});
+			
+		
 		btnEliminar.setFont(new Font("Tahoma", Font.PLAIN, 8));
 		btnEliminar.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 128, 192)));
 		btnEliminar.setBackground(new Color(187, 233, 255));
@@ -218,21 +221,39 @@ public class vVentas extends JFrame {
 		
 		JButton btnNewButton = new JButton("BUSCAR Y/OAGREGAR");
 		btnNewButton.setBackground(SystemColor.textHighlight);
-		btnNewButton.setBounds(216, 66, 166, 23);
+		btnNewButton.setBounds(408, 80, 166, 23);
 		contentPane.add(btnNewButton);
-		actualizarTabla();
+		
 		modelo.addColumn("CÓDIGO DE BARRAS");
 		modelo.addColumn("DESCRIPCIÓN DEL PRODUCTO");
 		modelo.addColumn("PRECIO");
 		modelo.addColumn("PRECIO VENTA");
+	}
 
 
 		
-		actualizarTabla();
+		public void actualizarTabla() {
+			while (modelo.getRowCount() > 0) {
+				modelo.removeRow(0);
+			}
+			lista = dao.read();
+			for (Refacciones u : lista) {
+				Object o[] = new Object[5];
+				o[0] = u.getIdrefaccion();
+				o[1] = u.getDescripcion();
+				o[2] = u.getPrecio();
+				o[3] = u.getPrecioventa();
+				o[4] = u.getMarca();
+
+				modelo.addRow(o);
+			}
+			tblVentas.setModel(modelo);
+		}
+	}
+
 	
 	
 	
 
 
-}
-}
+

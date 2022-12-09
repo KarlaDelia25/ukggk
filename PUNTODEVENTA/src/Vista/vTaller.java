@@ -159,6 +159,7 @@ public class vTaller extends JFrame {
 					taller.setMecanico(txtMecanico.getText());
 					taller.setMecanico(txtCliente.getText());
 					if (dao.insertarTaller(taller)) {
+						actualizarTabla();
 						JOptionPane.showMessageDialog(null, "SE AGREGO CORRECTAMENTE");
 					} else {
 						JOptionPane.showMessageDialog(null, "ERROR");

@@ -20,11 +20,14 @@ import java.awt.Color;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import com.toedter.calendar.JDateChooser;
+
 import Dao.daoEntradas;
 import Modelo.Entradas;
 
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
@@ -36,7 +39,6 @@ public class vEntradas extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtCantidad;
-	private JTextField txtFecha;
 	private JButton btnAgregar;
 	private JButton btnEliminar;
 	private JButton btnEditar;
@@ -49,7 +51,8 @@ public class vEntradas extends JFrame {
 	ArrayList<Entradas> lista;
 	int fila = -1;
 	Entradas entradas = new Entradas();
-
+	private JDateChooser txtFecha;
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -83,7 +86,8 @@ public class vEntradas extends JFrame {
 	public void limpiar() {
 		lblidentrada.setText("");
 		txtCantidad.setText("");
-		txtFecha.setText("");
+		txtFecha.setDateFormatString("");
+	    
 
 	}
 
@@ -111,18 +115,17 @@ public class vEntradas extends JFrame {
 		lblNewLabel_2.setFont(new Font("Arial", Font.BOLD, 11));
 		lblNewLabel_2.setBounds(10, 74, 46, 14);
 		contentPane.add(lblNewLabel_2);
+		txtFecha = new JDateChooser();
+		txtFecha.getCalendarButton().setBounds(78, 0, 21, 20);
+	      txtFecha.setBounds(62,114,99,20);
+	      contentPane.add(txtFecha);
+	      txtFecha.setLayout(null);
 
 		txtCantidad = new JTextField();
 		txtCantidad.setBackground(SystemColor.activeCaptionBorder);
 		txtCantidad.setBounds(62, 71, 101, 20);
 		contentPane.add(txtCantidad);
 		txtCantidad.setColumns(10);
-
-		txtFecha = new JTextField();
-		txtFecha.setBackground(SystemColor.activeCaptionBorder);
-		txtFecha.setColumns(10);
-		txtFecha.setBounds(62, 111, 101, 20);
-		contentPane.add(txtFecha);
 
 		JLabel lblNewLabel_2_1 = new JLabel("FECHA");
 		lblNewLabel_2_1.setFont(new Font("Arial", Font.BOLD, 11));
@@ -134,15 +137,16 @@ public class vEntradas extends JFrame {
 		btnAgregar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					if (txtCantidad.getText().equals("") || txtFecha.getText().equals("")) {
+					if (txtCantidad.getText().equals("") || txtFecha.getDate().equals("")) {
 						actualizarTabla();
 						JOptionPane.showMessageDialog(null, "CAMPOS VACÍOS");
 						return;
 					}
 					Entradas entradas = new Entradas();
 					entradas.setCantidad(Double.parseDouble(txtCantidad.getText().toString()));
-					entradas.setFecha(txtFecha.getText());
+					entradas.setFecha(txtFecha.getDate().toString());
 					if (dao.insertarEntradas(entradas)) {
+						actualizarTabla();
 						JOptionPane.showMessageDialog(null, "SE AGREGO CORRECTAMENTE");
 					} else {
 						JOptionPane.showMessageDialog(null, "ERROR");
@@ -188,13 +192,13 @@ public class vEntradas extends JFrame {
 		btnEditar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					if (txtCantidad.getText().equals("") || txtCantidad.getText().equals("")) {
+					if (txtCantidad.getText().equals("") || txtFecha.getDate().equals("")) {
 						actualizarTabla();
 						JOptionPane.showMessageDialog(null, "CAMPOS VACÍOS");
 						return;
 					}
-					entradas.setCantidad(Double.parseDouble(txtCantidad.getText().toString()));
-					entradas.setFecha(txtFecha.getText());
+					entradas.setCantidad(Double.parseDouble(txtFecha.getDate().toString()));
+					entradas.setFecha(txtFecha.getDate().toString());
 					if (dao.editarEntrada(entradas)) {
 						JOptionPane.showMessageDialog(null, "SE EDITÓ CORRECTAMENTE");
 					} else {
@@ -234,7 +238,7 @@ public class vEntradas extends JFrame {
 				entradas = lista.get(fila);
 				lblidentrada.setText("" + entradas.getIdentradas());
 				txtCantidad.setText("" + entradas.getCantidad());
-				txtFecha.setText(entradas.getFecha());
+				txtFecha.setDateFormatString("" +entradas.getFecha());
 
 			}
 		});
@@ -256,7 +260,7 @@ public class vEntradas extends JFrame {
 		actualizarTabla();
 		modelo.addColumn("ID");
 		modelo.addColumn("CANTIDAD");
-		modelo.addColumn("FECHA");
+		modelo.addColumn("FECHA Y HORA");
 		actualizarTabla();
 	
 	

@@ -20,6 +20,7 @@ import java.awt.Color;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import com.toedter.calendar.JDateChooser;
 
 import Dao.daoSalidas;
 
@@ -51,6 +52,7 @@ public class vSalidas extends JFrame {
 	ArrayList<Salidas> lista;
 	int fila = -1;
 	Salidas salidas = new Salidas();
+	private JDateChooser txtFechas;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -85,7 +87,7 @@ public class vSalidas extends JFrame {
 	public void limpiar() {
 		lblidsalida.setText("");
 		txtCantidad.setText("");
-		txtFecha.setText("");
+		txtFechas.setDateFormatString("");
 
 	}
 
@@ -107,6 +109,11 @@ public class vSalidas extends JFrame {
 		lblidsalida = new JLabel("0");
 		lblidsalida.setBounds(38, 26, 46, 14);
 		contentPane.add(lblidsalida);
+		txtFechas = new JDateChooser();
+		txtFechas.getCalendarButton().setBounds(78, 0, 21, 20);
+	      txtFechas.setBounds(62,114,99,20);
+	      contentPane.add(txtFechas);
+	      txtFechas.setLayout(null);
 
 		JLabel lblNewLabel_2 = new JLabel("CANTIDAD");
 		lblNewLabel_2.setFont(new Font("Arial", Font.BOLD, 11));
@@ -119,11 +126,7 @@ public class vSalidas extends JFrame {
 		contentPane.add(txtCantidad);
 		txtCantidad.setColumns(10);
 
-		txtFecha = new JTextField();
-		txtFecha.setBackground(SystemColor.activeCaptionBorder);
-		txtFecha.setColumns(10);
-		txtFecha.setBounds(62, 111, 101, 20);
-		contentPane.add(txtFecha);
+		
 
 		JLabel lblNewLabel_2_1 = new JLabel("FECHA");
 		lblNewLabel_2_1.setFont(new Font("Arial", Font.BOLD, 11));
@@ -135,15 +138,16 @@ public class vSalidas extends JFrame {
 		btnAgregar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					if (txtCantidad.getText().equals("") || txtFecha.getText().equals("")) {
+					if (txtCantidad.getText().equals("") || txtFechas.getDate().equals("")) {
 						actualizarTabla();
 						JOptionPane.showMessageDialog(null, "CAMPOS VACÍOS");
 						return;
 					}
 					Salidas salidas = new Salidas();
 					salidas.setCantidads(Double.parseDouble(txtCantidad.getText().toString()));
-					salidas.setFechas(txtFecha.getText());
+					salidas.setFechas(txtFechas.getDateFormatString());
 					if (dao.insertarSalidas(salidas)) {
+						actualizarTabla();
 						JOptionPane.showMessageDialog(null, "SE AGREGO CORRECTAMENTE");
 					} else {
 						JOptionPane.showMessageDialog(null, "ERROR");
@@ -195,7 +199,7 @@ public class vSalidas extends JFrame {
 						return;
 					}
 					salidas.setCantidads(Double.parseDouble(txtCantidad.getText().toString()));
-					salidas.setFechas(txtFecha.getText());
+					salidas.setFechas(txtFechas.getDateFormatString());
 					if (dao.editarSalida(salidas)) {
 						JOptionPane.showMessageDialog(null, "SE EDITÓ CORRECTAMENTE");
 					} else {
@@ -235,7 +239,7 @@ public class vSalidas extends JFrame {
 				salidas = lista.get(fila);
 				lblidsalida.setText("" + salidas.getIdsalida());
 				txtCantidad.setText("" + salidas.getCantidads());
-				txtFecha.setText(salidas.getFechas());
+				txtFechas.setDateFormatString(""+salidas.getFechas());
 
 			}
 		});
@@ -256,7 +260,7 @@ public class vSalidas extends JFrame {
 		actualizarTabla();
 		modelo.addColumn("ID");
 		modelo.addColumn("CANTIDAD");
-		modelo.addColumn("FECHA");
+		modelo.addColumn("FECHA Y HORA");
 		actualizarTabla();
 	
 	

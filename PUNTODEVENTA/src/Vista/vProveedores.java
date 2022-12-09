@@ -1,6 +1,6 @@
 package Vista;
 
-import java.awt.EventQueue;
+
 
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
@@ -13,10 +13,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-
 import Dao.daoProveedores;
 import Modelo.Proveedores;
-
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -26,6 +24,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.Toolkit;
 import java.awt.SystemColor;
+import java.awt.EventQueue;
 import java.awt.Font;
 
 public class vProveedores extends JFrame {
@@ -43,7 +42,7 @@ public class vProveedores extends JFrame {
 	daoProveedores dao = new daoProveedores();
 	DefaultTableModel modelo = new DefaultTableModel();
 	ArrayList<Proveedores> lista = new ArrayList<Proveedores>();
-	private JTable tblClientes;
+	private JTable tblProveedores;
 	Proveedores proveedores = new Proveedores();
 	private JTextField txtTelefonoc;
 
@@ -119,12 +118,12 @@ public class vProveedores extends JFrame {
 		scrollPane.setBounds(53, 195, 414, 107);
 		NOMBRE.add(scrollPane);
 
-		tblClientes = new JTable();
-		tblClientes.setBackground(SystemColor.controlShadow);
-		tblClientes.addMouseListener(new MouseAdapter() {
+		tblProveedores = new JTable();
+		tblProveedores.setBackground(SystemColor.controlShadow);
+		tblProveedores.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				fila = tblClientes.getSelectedRow();
+				fila = tblProveedores.getSelectedRow();
 				proveedores = lista.get(fila);
 				lblId.setText("" + proveedores.getIdproveedores());
 				txtNombrec.setText(proveedores.getNombreprov());
@@ -135,7 +134,7 @@ public class vProveedores extends JFrame {
 
 			}
 		});
-		tblClientes.setModel(new DefaultTableModel(
+		tblProveedores.setModel(new DefaultTableModel(
 			new Object[][] {
 				{null, null, null, null, null},
 				{null, null, null, null, null},
@@ -147,7 +146,7 @@ public class vProveedores extends JFrame {
 				"New column", "New column", "New column", "New column", "New column"
 			}
 		));
-		scrollPane.setViewportView(tblClientes);
+		scrollPane.setViewportView(tblProveedores);
 
 		btnAgrgar = new JButton("AGREGAR");
 		btnAgrgar.setFont(new Font("Arial", Font.BOLD, 11));
@@ -281,7 +280,7 @@ public class vProveedores extends JFrame {
 			
 			modelo.addRow(o);
 		}
-		tblClientes.setModel(modelo);
+		tblProveedores.setModel(modelo);
 	}
 
 	public void limpiar() {

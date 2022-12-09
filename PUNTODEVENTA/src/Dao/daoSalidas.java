@@ -81,9 +81,8 @@ public class daoSalidas {
 
 			ps = cx.conectar().prepareStatement("UPDATE salida SET cantidad=?,fecha=? WHERE idsalida=?");
 			ps.setDouble(1, sa.getCantidads());
-			ps.setString(3, sa.getFechas());
+			ps.setString(2, sa.getFechas());
 			ps.setInt(3, sa.getIdsalida());
-			ps.executeUpdate();
 			ps.executeUpdate();
 			cx.desconectar();
 			return true;

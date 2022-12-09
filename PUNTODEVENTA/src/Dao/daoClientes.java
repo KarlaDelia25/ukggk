@@ -10,6 +10,7 @@ import Modelo.Clientes;
 
 
 
+
 public class daoClientes {
 	conexion cx;
 
@@ -17,14 +18,14 @@ public class daoClientes {
 		cx = new conexion();
 	}
 
-	public boolean insertarclientes(Clientes prov) {
+	public boolean insertarClientes(Clientes cl) {
 		PreparedStatement ps = null;
 		try {
-			ps = cx.conectar().prepareStatement("INSERT INTO clientes VALUES(null,?,?,?,?)");
-			ps.setString(1, prov.getNombrecliente());
-			ps.setString(2, prov.getEmailcliente());
-			ps.setString(3, prov.getDireccioncliente());
-			ps.setInt(4, prov.getTelefonocliente());
+			ps = cx.conectar().prepareStatement("INSERT INTO empleados VALUES(null,?,?,?,?,?)");
+			ps.setString(1, cl.getNombrecliente());
+			ps.setString(2, cl.getEmailcliente());
+			ps.setString(3, cl.getDireccioncliente());
+			ps.setInt(4, cl.getTelefonocliente());
 			ps.executeUpdate();
 			cx.desconectar();
 			return true;
@@ -37,21 +38,21 @@ public class daoClientes {
 
 	}
 
-	public ArrayList<Clientes> consultaclientes() {
+	public ArrayList<Clientes> consultacliente() {
 		ArrayList<Clientes> lista = new ArrayList<Clientes>();
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		try {
-			ps = cx.conectar().prepareStatement("SELECT * FROM clientes");
+			ps = cx.conectar().prepareStatement("SELECT * FROM empleados");
 			rs = ps.executeQuery();
 			while (rs.next()) {
-				Clientes clientes = new Clientes();
-				clientes.setIdClientes(rs.getInt("idclientes"));
-				clientes.setNombrecliente(rs.getString("nombre"));
-				clientes.setEmailcliente(rs.getString("email"));
-				clientes.setDireccioncliente(rs.getString("direccion"));
-				clientes.setTelefonocliente(rs.getInt("telefono"));
-				lista.add(clientes);
+				Clientes cl = new Clientes();
+				cl.setIdClientes(rs.getInt("idempleados"));
+				cl.setNombrecliente(rs.getString("nombre"));
+				cl.setEmailcliente(rs.getString("email"));
+				cl.setDireccioncliente(rs.getString("direccion"));
+				cl.setTelefonocliente(rs.getInt("telefono"));
+				lista.add(cl);
 
 			}
 		} catch (SQLException e) {
@@ -61,11 +62,11 @@ public class daoClientes {
 
 	}
 
-	public boolean eliminarclientes(int idclientes) {
+	public boolean eliminarCliente(int id) {
 		PreparedStatement ps = null;
 		try {
-			ps = cx.conectar().prepareStatement("DELETE FROM clientes WHERE idclientes=?");
-			ps.setInt(1, idclientes);
+			ps = cx.conectar().prepareStatement("DELETE FROM empleados WHERE idempleados=?");
+			ps.setInt(1, id);
 			ps.executeUpdate();
 			cx.desconectar();
 			return true;
@@ -78,15 +79,15 @@ public class daoClientes {
 
 	}
 
-public boolean editarclientes(Clientes clien) {
+public boolean editarcliente(Clientes cl) {
 	PreparedStatement ps = null;
 	try {
-		ps = cx.conectar().prepareStatement("UPDATE clientes SET nombre=?,email=?,direccion=?,telefono=? WHERE idclientes=?");
-		ps.setString(1, clien.getNombrecliente());
-		ps.setString(2, clien.getEmailcliente());
-		ps.setString(3, clien.getDireccioncliente());
-		ps.setInt(4, clien.getTelefonocliente());
-		ps.setInt(5, clien.getIdClientes());
+		ps = cx.conectar().prepareStatement("UPDATE empleados SET nombre=?,email=?,direccion=?,telefono=?,rfc=? WHERE idempleados=?");
+		ps.setString(1, cl.getNombrecliente());
+		ps.setString(2, cl.getEmailcliente());
+		ps.setString(3, cl.getDireccioncliente());
+		ps.setInt(4, cl.getTelefonocliente());
+		ps.setInt(5, cl.getIdClientes());
 		ps.executeUpdate();
 		cx.desconectar();
 		return true;
@@ -99,4 +100,3 @@ public boolean editarclientes(Clientes clien) {
 
 }
 }
-

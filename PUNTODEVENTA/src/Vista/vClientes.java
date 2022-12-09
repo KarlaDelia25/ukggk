@@ -1,6 +1,6 @@
 package Vista;
 
-import java.awt.EventQueue;
+
 
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
@@ -13,10 +13,9 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-import Dao.DaoUsuario;
 import Dao.daoClientes;
 import Modelo.Clientes;
-import Modelo.Usuario;
+
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -26,7 +25,10 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.Toolkit;
 import java.awt.SystemColor;
+import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class vClientes extends JFrame {
 
@@ -46,6 +48,7 @@ public class vClientes extends JFrame {
 	private JTable tblClientes;
 	Clientes clientes = new Clientes();
 	private JTextField txtTelefonoc;
+	private JTextField txtBuscar;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -160,7 +163,7 @@ public class vClientes extends JFrame {
 					clientes.setDireccioncliente(txtDireccionc.getText());
 					clientes.setTelefonocliente(Integer.parseInt(txtTelefonoc.getText().toString()));
 
-					if (dao.insertarclientes(clientes)) {
+					if (dao.insertarClientes(clientes)) {
 						actualizarTabla();
 						JOptionPane.showMessageDialog(null, "SE AGREGO CORRCTAMENTE");
 					} else {
@@ -191,7 +194,7 @@ public class vClientes extends JFrame {
 					clientes.setEmailcliente(txtEmailc.getText());
 					clientes.setDireccioncliente(txtDireccionc.getText());
 					clientes.setTelefonocliente(Integer.parseInt(txtTelefonoc.getText().toString()));
-					if (dao.editarclientes(clientes)) {
+					if (dao.editarcliente(clientes)) {
 						actualizarTabla();
 						limpiar();
 						JOptionPane.showMessageDialog(null, "SE A CORRECTAMENTE");
@@ -216,7 +219,7 @@ public class vClientes extends JFrame {
 					int opcion = JOptionPane.showConfirmDialog(null, "ESTA SEGURO DE ELIMINAR ESTE CLIENTE ?",
 							"ELIMINAR USUARIO", JOptionPane.YES_NO_OPTION);
 					if (opcion == 0) {
-						if (dao.eliminarclientes(lista.get(fila).getIdClientes())) {
+						if (dao.eliminarCliente(lista.get(fila).getIdClientes())) {
 							actualizarTabla();
 							JOptionPane.showMessageDialog(null, "SE ELIMINO CORRECTAMENTE !!");
 						} else {
@@ -251,6 +254,16 @@ public class vClientes extends JFrame {
 		txtTelefonoc.setColumns(10);
 		txtTelefonoc.setBounds(106, 155, 86, 20);
 		NOMBRE.add(txtTelefonoc);
+		
+		txtBuscar = new JTextField();
+		
+		txtBuscar.setBounds(325, 155, 155, 20);
+		NOMBRE.add(txtBuscar);
+		txtBuscar.setColumns(10);
+		
+		JLabel lblNewLabel_1 = new JLabel("BUSCAR");
+		lblNewLabel_1.setBounds(374, 130, 46, 14);
+		NOMBRE.add(lblNewLabel_1);
 
 		modelo.addColumn("ID");
 		modelo.addColumn("NOMBRE");
@@ -260,19 +273,23 @@ public class vClientes extends JFrame {
 		actualizarTabla();
 		
 	}
+	
+
+
 
 	public void actualizarTabla() {
 		while (modelo.getRowCount() > 0) {
 			modelo.removeRow(0);
 		}
-		lista = dao.consultaclientes();
+		lista = dao.consultacliente();
 		for (Clientes u : lista) {
-			Object o[] = new Object[5];
+			Object o[] = new Object[6];
 			o[0] = u.getIdClientes();
 			o[1] = u.getNombrecliente();
 			o[2] = u.getEmailcliente();
 			o[3] = u.getDireccioncliente();
 			o[4] = u.getTelefonocliente();
+			
 			
 			
 			modelo.addRow(o);
@@ -285,6 +302,7 @@ public class vClientes extends JFrame {
 		txtEmailc.setText("");
 		txtDireccionc.setText("");
 		txtTelefonoc.setText("");
+		
 	}
 }
 
