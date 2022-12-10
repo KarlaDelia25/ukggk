@@ -11,10 +11,10 @@ public class conexion {
 
 	public Connection conectar() {
 	try {
-	//Class.forName("org.sqlite.JDBC");
-	//cx = DriverManager.getConnection("jdbc:sqlite:puntodeventa.db");
-	Class.forName("com.mysql.cj.jdbc.Driver");
-    cx = DriverManager.getConnection("jdbc:mysql://localhost:3306/puntoventa","root","");
+	Class.forName("org.sqlite.JDBC");
+	cx = DriverManager.getConnection("jdbc:sqlite:puntodeventa.db");
+	//Class.forName("com.mysql.cj.jdbc.Driver");
+    //cx = DriverManager.getConnection("jdbc:mysql://localhost:3306/puntoventa","root","");
 	System.out.println("CONEXION EXITOSA");
 	} catch (ClassNotFoundException e) {
 
