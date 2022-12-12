@@ -13,6 +13,18 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import com.itextpdf.text.BaseColor;
+import com.itextpdf.text.Chunk;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
+import com.itextpdf.text.pdf.codec.Base64.InputStream;
+
 import Dao.daoClientes;
 import Modelo.Clientes;
 
@@ -23,10 +35,16 @@ import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.awt.Toolkit;
 import java.awt.SystemColor;
+import java.awt.Desktop;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
@@ -48,7 +66,8 @@ public class vClientes extends JFrame {
 	private JTable tblClientes;
 	Clientes clientes = new Clientes();
 	private JTextField txtTelefonoc;
-	private JTextField txtBuscar;
+	private JButton btnPdf;
+	private JButton btnPdf_1;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -255,15 +274,16 @@ public class vClientes extends JFrame {
 		txtTelefonoc.setBounds(106, 155, 86, 20);
 		NOMBRE.add(txtTelefonoc);
 		
-		txtBuscar = new JTextField();
+		btnPdf_1 = new JButton("PDF");
+		btnPdf_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnPdf_1.setBackground(SystemColor.textHighlight);
+		btnPdf_1.setBounds(363, 62, 89, 23);
+		NOMBRE.add(btnPdf_1);
 		
-		txtBuscar.setBounds(325, 155, 155, 20);
-		NOMBRE.add(txtBuscar);
-		txtBuscar.setColumns(10);
 		
-		JLabel lblNewLabel_1 = new JLabel("BUSCAR");
-		lblNewLabel_1.setBounds(374, 130, 46, 14);
-		NOMBRE.add(lblNewLabel_1);
 
 		modelo.addColumn("ID");
 		modelo.addColumn("NOMBRE");

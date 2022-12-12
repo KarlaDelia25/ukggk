@@ -65,7 +65,7 @@ public class daoTaller {
 	public boolean eliminarTaller(int idtaller) {
 		PreparedStatement ps = null;
 		try {
-			ps = cx.conectar().prepareStatement("DELETE FROM taller WHERE idtaller =?");
+			ps = cx.conectar().prepareStatement("DELETE FROM taller WHERE idtaller=?");
 			ps.setInt(1, idtaller);
 			ps.executeUpdate();
 			cx.desconectar();

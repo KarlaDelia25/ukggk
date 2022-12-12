@@ -45,6 +45,7 @@ public class vProveedores extends JFrame {
 	private JTable tblProveedores;
 	Proveedores proveedores = new Proveedores();
 	private JTextField txtTelefonoc;
+	private JButton btnPdf;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -254,6 +255,12 @@ public class vProveedores extends JFrame {
 		txtTelefonoc.setColumns(10);
 		txtTelefonoc.setBounds(106, 155, 86, 20);
 		NOMBRE.add(txtTelefonoc);
+		
+		btnPdf = new JButton("PDF");
+		btnPdf.setFont(new Font("Arial", Font.BOLD, 11));
+		btnPdf.setBackground(SystemColor.textHighlight);
+		btnPdf.setBounds(354, 75, 89, 23);
+		NOMBRE.add(btnPdf);
 
 		modelo.addColumn("ID");
 		modelo.addColumn("NOMBRE");

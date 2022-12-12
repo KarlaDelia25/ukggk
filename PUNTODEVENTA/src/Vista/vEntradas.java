@@ -52,6 +52,7 @@ public class vEntradas extends JFrame {
 	int fila = -1;
 	Entradas entradas = new Entradas();
 	private JDateChooser txtFecha;
+	private JButton btnPdf;
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -257,6 +258,11 @@ public class vEntradas extends JFrame {
 			}
 		));
 		scrollPane.setViewportView(tblEntradas);
+		
+		btnPdf = new JButton("PDF");
+		btnPdf.setBackground(SystemColor.textHighlight);
+		btnPdf.setBounds(237, 403, 89, 23);
+		contentPane.add(btnPdf);
 		actualizarTabla();
 		modelo.addColumn("ID");
 		modelo.addColumn("CANTIDAD");

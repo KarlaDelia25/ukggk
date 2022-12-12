@@ -25,6 +25,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.Toolkit;
+import java.awt.Color;
 
 public class vEmpleados extends JFrame {
 
@@ -46,6 +47,7 @@ public class vEmpleados extends JFrame {
 	private JTextField txtTelefonoc;
 	private JLabel huihuh;
 	private JTextField txtRfc;
+	private JButton btnPdf;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -67,6 +69,7 @@ public class vEmpleados extends JFrame {
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setBounds(100, 100, 585, 406);
 		NOMBRE = new JPanel();
+		NOMBRE.setBackground(new Color(170, 221, 240));
 		NOMBRE.setBorder(new EmptyBorder(5, 5, 5, 5));
 		//setLocationRelativeTo(null);
 
@@ -247,6 +250,10 @@ public class vEmpleados extends JFrame {
 		txtRfc.setColumns(10);
 		txtRfc.setBounds(106, 198, 86, 20);
 		NOMBRE.add(txtRfc);
+		
+		btnPdf = new JButton("PDF");
+		btnPdf.setBounds(409, 83, 89, 23);
+		NOMBRE.add(btnPdf);
 
 		modelo.addColumn("ID");
 		modelo.addColumn("NOMBRE");

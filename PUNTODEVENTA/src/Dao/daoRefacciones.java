@@ -1,5 +1,7 @@
 package Dao;
 
+
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -8,16 +10,51 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import Conexion.conexion;
+
 import Modelo.Refacciones;
+
 
 
 public class daoRefacciones {
 
     conexion cx = new conexion();
 
-    public daoRefacciones() {
+   
 
+    public ArrayList<Refacciones> buscar(String palabra) {
+    ArrayList<Refacciones> lista2 = new ArrayList<Refacciones>();
+    try {
+        String sql = "SELECT * FROM refacciones WHERE "
+                + "(descripcion LIKE ?) OR "
+                + "(precio LIKE ?) OR"
+                + "(precioventa LIKE ?) OR "
+                + "(marca LIKE ?); ";
+        PreparedStatement ps = cx.conectar().prepareStatement(sql);
+        ps.setString(1, "%" + palabra + "%");
+        ps.setString(2, "%" + palabra + "%");
+        ps.setString(3, "%" + palabra + "%");
+        ps.setString(4, "%" + palabra + "%");
+        //System.out.println("CONSULTA" + ps.toString());
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            Refacciones p = new Refacciones();
+            p.setIdrefaccion(rs.getInt("idrefaccion"));
+            p.setDescripcion(rs.getString("descripcion"));
+            p.setPrecio(rs.getDouble("precio"));
+            p.setPrecioventa(rs.getDouble("precioventa"));
+            p.setMarca(rs.getString("marca"));
+            lista2.add(p);
+        }
+        ps.close();
+        ps = null;
+        cx.desconectar();
+    } catch (SQLException ex) {
+        System.out.println("Error en BUSCAR");
     }
+    return lista2;
+
+}
+
 
     public boolean create(Refacciones a) {
         try {

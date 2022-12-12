@@ -48,7 +48,7 @@ public class daoSalidas {
 			rs = ps.executeQuery();
 			while (rs.next()) {
 			 Salidas u = new Salidas();
-				u.setIdsalida(rs.getInt("idsalida"));
+				u.setIdsalida(rs.getInt("idsalidas"));
 				u.setCantidads(rs.getDouble("cantidads"));
 				u.setFechas(rs.getString("fechas"));
 				lista.add(u);
@@ -63,7 +63,7 @@ public class daoSalidas {
 	public boolean eliminarSalidas(int Idsalida) {
 		PreparedStatement ps = null;
 		try {
-			ps = cx.conectar().prepareStatement("DELETE FROM salidas WHERE idsalida=?");
+			ps = cx.conectar().prepareStatement("DELETE FROM salidas WHERE idsalidas=?");
 			ps.setInt(1, Idsalida);
 			ps.executeUpdate();
 			return true;
@@ -79,7 +79,7 @@ public class daoSalidas {
 		PreparedStatement ps = null;
 		try {
 
-			ps = cx.conectar().prepareStatement("UPDATE salida SET cantidad=?,fecha=? WHERE idsalida=?");
+			ps = cx.conectar().prepareStatement("UPDATE salida SET cantidads=?,fechas=? WHERE idsalidas=?");
 			ps.setDouble(1, sa.getCantidads());
 			ps.setString(2, sa.getFechas());
 			ps.setInt(3, sa.getIdsalida());

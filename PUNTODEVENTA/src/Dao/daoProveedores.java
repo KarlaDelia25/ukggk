@@ -46,10 +46,10 @@ public class daoProveedores {
 			while (rs.next()) {
 				Proveedores proveedores = new Proveedores();
 				proveedores.setIdproveedores(rs.getInt("idproveedores"));
-				proveedores.setNombreprov(rs.getString("nombre"));
-				proveedores.setEmailprov(rs.getString("email"));
-				proveedores.setDireccionprov(rs.getString("direccion"));
-				proveedores.setTelefonoprov(rs.getInt("telefono"));
+				proveedores.setNombreprov(rs.getString("nombreprov"));
+				proveedores.setEmailprov(rs.getString("emailprov"));
+				proveedores.setDireccionprov(rs.getString("direccionprov"));
+				proveedores.setTelefonoprov(rs.getInt("telefonoprov"));
 				lista.add(proveedores);
 
 			}
@@ -63,7 +63,7 @@ public class daoProveedores {
 	public boolean eliminarProveedores(int idprov) {
 		PreparedStatement ps = null;
 		try {
-			ps = cx.conectar().prepareStatement("DELETE FROM proveedores WHERE idproveedores =?");
+			ps = cx.conectar().prepareStatement("DELETE FROM proveedores WHERE idproveedores=?");
 			ps.setInt(1, idprov);
 			ps.executeUpdate();
 			cx.desconectar();
@@ -80,7 +80,7 @@ public class daoProveedores {
 public boolean editarProveedores(Proveedores prov) {
 	PreparedStatement ps = null;
 	try {
-		ps = cx.conectar().prepareStatement("UPDATE proveedores  SET nombre=?,email=?,direccion=?,telefono=? WHERE idproveedores?");
+		ps = cx.conectar().prepareStatement("UPDATE proveedores  SET nombreprov=?,emailprov=?,direccionprov=?,telefonoprov=? WHERE idproveedores?");
 		ps.setString(1, prov.getNombreprov());
 		ps.setString(2, prov.getEmailprov());
 		ps.setString(3, prov.getDireccionprov());

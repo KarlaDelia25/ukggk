@@ -48,10 +48,10 @@ public class daoEmpleados {
 			while (rs.next()) {
 				Empleados empleados = new Empleados();
 				empleados.setIdEmpleados(rs.getInt("idempleados"));
-				empleados.setNombreem(rs.getString("nombre"));
-				empleados.setEmailem(rs.getString("email"));
-				empleados.setDireccionem(rs.getString("direccion"));
-				empleados.setTelefonoem(rs.getInt("telefono"));
+				empleados.setNombreem(rs.getString("nombreem"));
+				empleados.setEmailem(rs.getString("emailem"));
+				empleados.setDireccionem(rs.getString("direccionem"));
+				empleados.setTelefonoem(rs.getInt("telefonoem"));
 				empleados.setRfc(rs.getInt("rfc"));
 				lista.add(empleados);
 
@@ -83,7 +83,7 @@ public class daoEmpleados {
 public boolean editarempleados(Empleados em) {
 	PreparedStatement ps = null;
 	try {
-		ps = cx.conectar().prepareStatement("UPDATE empleados SET nombre=?,email=?,direccion=?,telefono=?,rfc=? WHERE idempleados=?");
+		ps = cx.conectar().prepareStatement("UPDATE empleados SET nombreem=?,emailem=?,direccionem=?,telefonoem=?,rfc=? WHERE idempleados=?");
 		ps.setString(1, em.getNombreem());
 		ps.setString(2, em.getEmailem());
 		ps.setString(3, em.getDireccionem());

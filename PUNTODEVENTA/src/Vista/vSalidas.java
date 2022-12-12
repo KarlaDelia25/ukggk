@@ -145,7 +145,7 @@ public class vSalidas extends JFrame {
 					}
 					Salidas salidas = new Salidas();
 					salidas.setCantidads(Double.parseDouble(txtCantidad.getText().toString()));
-					salidas.setFechas(txtFechas.getDateFormatString());
+					salidas.setFechas(txtFechas.getDate().toString());
 					if (dao.insertarSalidas(salidas)) {
 						actualizarTabla();
 						JOptionPane.showMessageDialog(null, "SE AGREGO CORRECTAMENTE");

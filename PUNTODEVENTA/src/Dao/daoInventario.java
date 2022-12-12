@@ -58,11 +58,11 @@ public class daoInventario {
 
 	}
 
-	public boolean eliminarInventario(int id) {
+	public boolean eliminarInventario(int idinventario) {
 		PreparedStatement ps = null;
 		try {
-			ps = cx.conectar().prepareStatement("DELETE FROM inventario WHERE idinventario =?");
-			ps.setInt(1, id);
+			ps = cx.conectar().prepareStatement("DELETE FROM inventario WHERE idinventario=?");
+			ps.setInt(1, idinventario);
 			ps.executeUpdate();
 			cx.desconectar();
 			return true;
@@ -78,7 +78,7 @@ public class daoInventario {
 public boolean editarInventario(Inventario inv) {
 	PreparedStatement ps = null;
 	try {
-		ps = cx.conectar().prepareStatement("UPDATE inventario  SET marca=?,modelo=?,precio=?,img=? WHERE idinventario=?");
+		ps = cx.conectar().prepareStatement("UPDATE inventario  SET exitencia=?,cantidad=?,importe=? WHERE idinventario=?");
 		ps.setInt(1, inv.getExistencia());
 		ps.setInt(2, inv.getCantidad());
 		ps.setInt(3, inv.getImporte());

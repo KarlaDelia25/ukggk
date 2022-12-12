@@ -51,6 +51,7 @@ public class vInventario extends JFrame {
 	ArrayList<Inventario> lista;
 	int fila = -1;
 	Inventario inventario = new Inventario();
+	private JButton btnPdf;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -272,6 +273,11 @@ public class vInventario extends JFrame {
 			}
 		));
 		scrollPane.setViewportView(tblInventario);
+		
+		btnPdf = new JButton("PDF");
+		btnPdf.setBackground(SystemColor.textHighlight);
+		btnPdf.setBounds(254, 415, 89, 23);
+		contentPane.add(btnPdf);
 		actualizarTabla();
 		modelo.addColumn("ID");
 		modelo.addColumn("EXISTENCIA");

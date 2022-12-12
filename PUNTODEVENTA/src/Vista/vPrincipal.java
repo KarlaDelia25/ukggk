@@ -78,7 +78,7 @@ contentPane.add(btnNewButton);
 btnNewButton_1 = new JButton("CLIENTES");
 btnNewButton_1.setBackground(new Color(206, 237, 247));
 btnNewButton_1.setFont(new Font("Tahoma", Font.BOLD, 11));
-btnNewButton_1.setBounds(109, 11, 89, 23);
+btnNewButton_1.setBounds(333, 11, 89, 23);
 btnNewButton_1.setBorder(new LineBorder(new Color(0, 0, 0)));
 btnNewButton_1.addActionListener(new ActionListener() {
 public void actionPerformed(ActionEvent e) {
@@ -91,7 +91,7 @@ contentPane.add(btnNewButton_1);
 btnNewButton_2 = new JButton("EMPLEADOS");
 btnNewButton_2.setBackground(new Color(206, 237, 247));
 btnNewButton_2.setFont(new Font("Tahoma", Font.BOLD, 11));
-btnNewButton_2.setBounds(432, 11, 89, 23);
+btnNewButton_2.setBounds(542, 11, 89, 23);
 btnNewButton_2.setBorder(new LineBorder(new Color(0, 0, 0)));
 btnNewButton_2.addActionListener(new ActionListener() {
 public void actionPerformed(ActionEvent e) {
@@ -104,7 +104,7 @@ contentPane.add(btnNewButton_2);
 btnNewButton_3 = new JButton("REFACCIONES");
 btnNewButton_3.setBackground(new Color(206, 237, 247));
 btnNewButton_3.setFont(new Font("Tahoma", Font.BOLD, 11));
-btnNewButton_3.setBounds(531, 11, 89, 23);
+btnNewButton_3.setBounds(109, 11, 89, 23);
 btnNewButton_3.setBorder(new LineBorder(new Color(0, 0, 0)));
 btnNewButton_3.addActionListener(new ActionListener() {
 public void actionPerformed(ActionEvent e) {
@@ -117,7 +117,7 @@ contentPane.add(btnNewButton_3);
 btnNewButton_4 = new JButton("TALLER");
 btnNewButton_4.setBackground(new Color(206, 237, 247));
 btnNewButton_4.setFont(new Font("Tahoma", Font.BOLD, 11));
-btnNewButton_4.setBounds(223, 11, 89, 23);
+btnNewButton_4.setBounds(222, 11, 89, 23);
 btnNewButton_4.setBorder(new LineBorder(new Color(0, 0, 0)));
 btnNewButton_4.addActionListener(new ActionListener() {
 public void actionPerformed(ActionEvent e) {
@@ -130,7 +130,7 @@ contentPane.add(btnNewButton_4);
 btnNewButton_5 = new JButton("INVENTARIO");
 btnNewButton_5.setBackground(new Color(206, 237, 247));
 btnNewButton_5.setFont(new Font("Tahoma", Font.BOLD, 11));
-btnNewButton_5.setBounds(333, 11, 89, 23);
+btnNewButton_5.setBounds(443, 11, 89, 23);
 btnNewButton_5.setBorder(new LineBorder(new Color(0, 0, 0)));
 btnNewButton_5.addActionListener(new ActionListener() {
 public void actionPerformed(ActionEvent e) {
@@ -144,7 +144,7 @@ contentPane.add(btnNewButton_5);
 btnNewButton_6 = new JButton("USUARIO");
 btnNewButton_6.setBackground(new Color(206, 237, 247));
 btnNewButton_6.setFont(new Font("Tahoma", Font.BOLD, 11));
-btnNewButton_6.setBounds(630, 11, 89, 23);
+btnNewButton_6.setBounds(652, 11, 89, 23);
 btnNewButton_6.setBorder(new LineBorder(new Color(0, 0, 0)));
 btnNewButton_6.addActionListener(new ActionListener() {
 public void actionPerformed(ActionEvent e) {
@@ -159,7 +159,7 @@ contentPane.add(btnNewButton_6);
 btnNewButton_7 = new JButton("PROVEEDORES");
 btnNewButton_7.setBackground(new Color(206, 237, 247));
 btnNewButton_7.setFont(new Font("Tahoma", Font.BOLD, 11));
-btnNewButton_7.setBounds(729, 11, 89, 23);
+btnNewButton_7.setBounds(760, 11, 89, 23);
 btnNewButton_7.setBorder(new LineBorder(new Color(0, 0, 0)));
 btnNewButton_7.addActionListener(new ActionListener() {
 public void actionPerformed(ActionEvent e) {
