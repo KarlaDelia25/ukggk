@@ -392,55 +392,7 @@ public class vRefacciones extends JFrame {
 		lblBuscar.setFont(new Font("Arial", Font.BOLD, 11));
 		lblBuscar.setBounds(228, 161, 71, 14);
 		NOMBRE.add(lblBuscar);
-		
-		btnNewButton = new JButton("+");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				int fsel =tblRefacciones.getSelectedRow();
-				try {
-					String codigo,descripcion,precio,cant,importe;
-					double calcula=0.0,x = 0.0,igvs=0.0;
-					int canti=0;
-					
-					if( fsel==-1){
-						JOptionPane.showMessageDialog(null, "Debe seleccionar una refacción","Advertencia",JOptionPane.WARNING_MESSAGE);
-					}else {
-						modelo =(DefaultTableModel)tblRefacciones.getModel();
-						codigo =tblRefacciones.getValueAt(fsel, 0).toString();
-						descripcion =tblRefacciones.getValueAt(fsel, 1).toString();
-						precio =tblRefacciones.getValueAt(fsel, 2).toString();
-						cant =txtCantidad.getText();
-						
-						
-						x=(Double.parseDouble(precio)*Integer.parseInt(cant));
-						importe =String.valueOf(x);
-						
-						modelo=(DefaultTableModel) tblVentas.getModel();
-						String filaelemento[] = (cant,descripcion,precio,importe);
-						modelo.addRow(filaelemento);
-						
-						calcula =(Double.parseDouble(precio));
-						total= total + calcula;
-						igvs= total * 0.19;
-						sub_total = total -igv;
-						
-						lbltotal.setText(""+total);
-						lblsutotal.setText(""+sub_total);
-						lbligv.setText(""+igv);
-						
-						
-						
-						
-						
-						
-					}
-					
-					
-				} catch (HeadlessException | NumberformatException e) {
-					JOptionPane.showMessageDialog(null,"Verificar seleccionar bien el producto,"error",JOptionPane.ERROR_MESSAGE);
-				}
-				
-			}
+	
 		
 		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 18));
 		btnNewButton.setBackground(new Color(0, 128, 0));
