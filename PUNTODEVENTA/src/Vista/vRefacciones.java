@@ -414,6 +414,15 @@ public class vRefacciones extends JFrame {
 		NOMBRE.add(txtCantidad);
 		txtCantidad.setColumns(10);
 		
+		JButton btnNewButton_1 = new JButton("AGREGAR A VENTA");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		btnNewButton_1.setBounds(243, 530, 143, 23);
+		NOMBRE.add(btnNewButton_1);
+		
 		
 
 		modelo.addColumn("ID");
